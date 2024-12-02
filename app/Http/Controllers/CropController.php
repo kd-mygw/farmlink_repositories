@@ -18,6 +18,12 @@ class CropController extends Controller
     }
 
     // 新規農作物の登録フォームを表示
+    public function create()
+    {
+        return view('crops.create');
+    }
+
+    // 新規農作物の保存
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -31,18 +37,71 @@ class CropController extends Controller
             'cooking_tips' => 'require|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
-
         ]);
         
-        
+        $data = $request->all();
 
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+        if ($request->hasFile('video')) {
+            $data['video'] = $request->file('video')->store('videos', 'public');
+        }
+
+        Crop::create(array_merge($data, ['user_id' => Auth::id()]));
+    
+        return redirect()->route('crops.index')->with('success', '農作物が登録されました');
+        
     }
     
-    // 新規農作物の保存
 
     // 農作物の編集フォームを表示
-
+    public function edit($id)
+    {
+        // 指定されたIDの農作物を取得し、編集フォームを表示
+        $crop = Crop::where('user_id', Auth::id())->findOrFail($id);
+        return view('crops.edit', compact('crop'));
+    }
     // 農作物の更新
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'product_name' => 'require|string|max:255',
+            'name' => 'require|string|max:255',
+            'cultivation_method' => 'require|string',
+            'fertilizer_info' => 'nullable|string|max:255',
+            'pesticide_info' => 'nulable|string|max:255',
+            'description' => 'require|string|max:255',
+            'cooking_tips' => 'require|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
+        ]);
+
+        // 指定されたIDの農作物を取得し、更新
+        $crop = Crop::where('user_id', Auth::id())->findOrFail($id);
+        $data = $request->all();
+
+        // 画像がアップロードされていれば保存
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        // 動画がアップロードされていれば保存
+        if ($request->hasFile('video')) {
+            $data['video'] = $request->file('video')->store('videos', 'public');
+        }
+
+        $crop->update($data);
+
+        return redirect()->route('crops.index')->with('success', '農作物が更新されました');
+    }
 
     // 農作物の削除
+    public function destroy($id)
+    {
+        $crop = Crop::where('user_id', Auth::id())->findOrFail($id);
+        $crop->delete();
+
+        return redirect()->route('crops.index')->with('success', '農作物が削除されました');
+    }
 }
