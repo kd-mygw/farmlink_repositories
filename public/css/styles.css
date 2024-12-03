@@ -129,3 +129,306 @@ body {
 .start-button:hover {
   background: #065f46;
 }
+
+/* 登録画面のデザイン */
+/* Custom CSS for Crop Registration Page */
+
+.crop-body {
+  font-family: 'Figtree', sans-serif;
+  background: linear-gradient(to bottom, #60a5fa20, #10b98120);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.crop-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.crop-header {
+  color: #2e8b57;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.crop-form-group {
+  margin-bottom: 15px;
+}
+
+.crop-form-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.crop-form-control {
+  border: 2px solid #2e8b57;
+  border-radius: 25px;
+  padding: 10px;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.crop-form-control:focus {
+  border-color: #66cdaa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
+}
+
+.crop-btn-primary {
+  background-color: #2e8b57;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.crop-btn-primary:hover {
+  background-color: #66cdaa;
+  transform: scale(1.05);
+}
+
+.crop-btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
+}
+
+.crop-textarea {
+  border-radius: 10px;
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #2e8b57;
+  transition: border-color 0.3s;
+}
+
+.crop-textarea:focus {
+  border-color: #66cdaa;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
+}
+
+.crop-label {
+  color: #2e8b57;
+  font-weight: bold;
+}
+
+.crop-card {
+  border: none;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crop-card-body {
+  padding: 20px;
+}
+
+.crop-image-upload-label {
+  display: block;
+  margin-bottom: 10px;
+  color: #2e8b57;
+  font-weight: bold;
+}
+
+.crop-image-upload {
+  border: 2px dashed #2e8b57;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.crop-image-upload:hover {
+  background-color: #f0fff0;
+}
+
+.crop-file-input {
+  display: none;
+}
+
+.crop-text-secondary {
+  color: #6c757d;
+}
+
+.crop-text-success {
+  color: #2e8b57;
+}
+
+.crop-textarea::placeholder, .crop-form-control::placeholder {
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .crop-container {
+      padding: 10px;
+  }
+  .crop-btn-primary {
+      width: 100%;
+      padding: 15px;
+  }
+}
+
+/* 管理画面のデザイン */
+
+.crop-management-body {
+  font-family: 'Figtree', sans-serif;
+  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.crop-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.crop-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.crop-management-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.crop-management-header a {
+  background-color: #3b82f6;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crop-management-header a:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+.crop-management-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+}
+
+.crop-management-table th,
+.crop-management-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.crop-management-table th {
+  background-color: #f9fafb;
+  font-weight: bold;
+}
+
+.crop-management-table tr:hover {
+  background-color: #f3f4f6;
+}
+
+.crop-management-action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.crop-management-action-buttons a,
+.crop-management-action-buttons button {
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crop-management-action-buttons .edit-button {
+  background-color: #fbbf24;
+}
+
+.crop-management-action-buttons .edit-button:hover {
+  background-color: #f59e0b;
+  transform: scale(1.05);
+}
+
+.crop-management-action-buttons .delete-button {
+  background-color: #ef4444;
+}
+
+.crop-management-action-buttons .delete-button:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+}
+
+.crop-management-action-buttons .qr-code-button {
+  background-color: #10b981;
+}
+
+.crop-management-action-buttons .qr-code-button:hover {
+  background-color: #059669;
+  transform: scale(1.05);
+}
+
+.crop-management-success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .crop-management-container {
+      padding: 20px;
+  }
+  .crop-management-header h1 {
+      font-size: 1.5rem;
+  }
+  .crop-management-header a {
+      padding: 8px 15px;
+  }
+  .crop-management-table th,
+  .crop-management-table td {
+      padding: 10px;
+  }
+  .crop-management-action-buttons {
+      flex-direction: column;
+      gap: 5px;
+  }
+}

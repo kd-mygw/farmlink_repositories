@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CropController;
+use App\Http\Controllers\PublicCropController;
+use App\Http\Controllers\QRCodeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,9 +20,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// QRコードからアクセスされる公開ページ用のルート
+Route::get('/crops/public/{id}', [PublicCropController::class, 'show'])->name('crops.public.show');
+
+
 // 認証が必要なユーザー向けのルート設定
 Route::middleware(['auth'])->group(function () {
     Route::resource('crops', CropController::class);
+});
+
+// QRコード生成用のルート
+Route::middleware(['auth'])->group(function () {
+    Route::get('crops/{crop}/generate-qr', [QRCodeController::class, 'create'])->name('qr.create');
+    Route::post('crops/{crop}/generate-qr', [QRCodeController::class, 'store'])->name('qr.store');
 });
 
 
