@@ -39,7 +39,6 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </form>
-                        <!-- <a href="{{ route('shipments.create', ['crop_id' => $crop->id]) }}" class="btn btn-info">出荷情報を管理</a> -->
                     </td>
                 </tr>
             @endforeach
