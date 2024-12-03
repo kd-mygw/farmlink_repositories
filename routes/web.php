@@ -30,10 +30,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // QRコード生成用のルート
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('crops/{crop}/generate-qr', [QRCodeController::class, 'create'])->name('qr.create');
-//     Route::post('crops/{crop}/generate-qr', [QRCodeController::class, 'store'])->name('qr.store');
-// });
+Route::middleware(['auth'])->group(function () {
+    Route::get('crops/{crop}/generate-qr', [QRCodeController::class, 'create'])->name('qr.create');
+    Route::post('crops/{crop}/generate-qr', [QRCodeController::class, 'store'])->name('qr.store');
+});
 
 
 require __DIR__.'/auth.php';
