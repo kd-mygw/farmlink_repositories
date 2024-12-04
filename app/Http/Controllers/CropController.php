@@ -65,13 +65,13 @@ class CropController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            'product_name' => 'require|string|max:255',
-            'name' => 'require|string|max:255',
-            'cultivation_method' => 'require|string',
+            'product_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'cultivation_method' => 'required|string',
             'fertilizer_info' => 'nullable|string|max:255',
             'pesticide_info' => 'nulable|string|max:255',
-            'description' => 'require|string|max:255',
-            'cooking_tips' => 'require|string|max:255',
+            'description' => 'required|string|max:255',
+            'cooking_tips' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
         ]);
