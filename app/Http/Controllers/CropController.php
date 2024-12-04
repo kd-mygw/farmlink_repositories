@@ -69,9 +69,9 @@ class CropController extends Controller
             'name' => 'required|string|max:255',
             'cultivation_method' => 'required|string',
             'fertilizer_info' => 'nullable|string|max:255',
-            'pesticide_info' => 'nulable|string|max:255',
-            'description' => 'required|string|max:255',
-            'cooking_tips' => 'required|string|max:255',
+            'pesticide_info' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'cooking_tips' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
         ]);
