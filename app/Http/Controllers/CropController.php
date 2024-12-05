@@ -11,9 +11,20 @@ use Illuminate\Support\Facades\Auth;
 class CropController extends Controller
 {
     //農作物の一覧を表示
-    public function index()
+    public function index(Request $request)
     {
-        $crops = Crop::where('user_id', Auth::id())->get();
+        $query = Crop::where('user_id', Auth::id());
+    
+        // 検索条件がある場合にフィルタリング
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('product_name', 'like', "%{$search}%")
+                  ->orWhere('cultivation_method', 'like', "%{$search}%");
+        }
+    
+        $crops = $query->get();
+    
         return view('crops.index', compact('crops'));
     }
 
