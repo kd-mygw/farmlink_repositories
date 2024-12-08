@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -14,6 +14,27 @@
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Farm Name -->
+        <div class="mt-4">
+            <x-input-label for="farm_name" :value="__('Farm Name')" />
+            <x-text-input id="farm_name" class="block mt-1 w-full" type="text" name="farm_name" :value="old('farm_name')" required />
+            <x-input-error :messages="$errors->get('farm_name')" class="mt-2" />
+        </div>
+
+        <!-- Farm Address -->
+        <div class="mt-4">
+            <x-input-label for="farm_address" :value="__('Farm Address')" />
+            <x-text-input id="farm_address" class="block mt-1 w-full" type="text" name="farm_address" :value="old('farm_address')" required />
+            <x-input-error :messages="$errors->get('farm_address')" class="mt-2" />
+        </div>
+
+        <!-- Icon -->
+        <div class="mt-4">
+            <x-input-label for="icon" :value="__('Icon')" />
+            <input id="icon" class="block mt-1 w-full" type="file" name="icon" required />
+            <x-input-error :messages="$errors->get('icon')" class="mt-2" />
         </div>
 
         <!-- Password -->
