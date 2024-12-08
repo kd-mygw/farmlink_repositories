@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -30,10 +31,20 @@ class ProfileController extends Controller
     
         // 新しいアイコンをアップロードする場合
         if ($request->hasFile('icon')) {
+
+            // 古いアイコンを削除する
+            if ($user->icon) {
+                Storage::disk('public')->delete($user->icon);
+            }
+
             $iconPath = $request->file('icon')->store('icons', 'public');
             $user->icon = $iconPath;
         }
-    
+        
+        // farm_name,farm_addressを更新
+        $user->farm_name = $request->input('farm_name');
+        $user->farm_address = $request->input('farm_address');
+
         $user->fill($request->validated());
     
         if ($user->isDirty('email')) {

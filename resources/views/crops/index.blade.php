@@ -8,9 +8,11 @@
             <a href="{{ route('crops.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">新規農作物を登録</a>
         </div>
 
-        <div class="mb-4">
+        <div class="search-bar">
             <form action="{{ route('crops.index') }}" method="GET">
-                <input type="text" name="search" placeholder="検索キーワードを入力" value="{{ request('search') }}" class="border rounded p-2 w-full">
+                <div>
+                    <input type="text" id="search-input" name="search" placeholder="検索キーワードを入力" value="{{ request('search') }}">
+                </div>
             </form>
         </div>
        
