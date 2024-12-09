@@ -11,8 +11,8 @@
 
 </head>
 <body>
-    <header>
-        <h1>野菜の情報公開ページ</h1>
+    <header class="text-center py-3">
+        <img src = "{{asset('images/header.png')}}"   class = "img-fluid">
     </header>
 
     <main>
