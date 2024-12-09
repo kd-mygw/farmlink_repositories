@@ -1,0 +1,48 @@
+/* 検索バー全体のスタイル */
+.search-bar {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* インプットボックスのスタイル */
+#search-input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* 左側に余白を作りアイコン用のスペースを確保 */
+  border: 2px solid #2e8b57;
+  border-radius: 25px;
+  outline: none;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+/* プレースホルダー用の虫眼鏡アイコンを擬似要素で表示 */
+.search-bar::before {
+  content: "\1F50D"; /* Unicode character for magnifying glass (🔍) */
+  position: absolute;
+  top: 50%;
+  left: 15px; /* アイコンの位置を調整 */
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #aaa; /* アイコンの色 */
+  pointer-events: none;
+}
+
+/* フォーカス時に幅を広げる */
+#search-input:focus {
+  width: 300px;
+  border-color: #66cdaa;
+  box-shadow: 0 0 10px rgba(102, 205, 170, 0.5);
+}
+
+/* プレースホルダーのスタイル */
+#search-input::placeholder {
+  color: #aaa;
+  transition: color 0.3s ease-in-out;
+}
+
+/* フォーカス時のプレースホルダーの色変更 */
+#search-input:focus::placeholder {
+  color: #555;
+}

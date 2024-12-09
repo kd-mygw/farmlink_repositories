@@ -1,6 +1,7 @@
 body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #60a5fa20, #10b98120);
+  background: url('/images/background.png') no-repeat center top;
+  background-size: cover;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -57,19 +58,21 @@ body {
 }
 
 .main-content {
-  background: white;
-  padding: 40px;
+  background: rgb(189, 208, 216);
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 800px;
   width: 100%;
+  margin: 20px auto;
 }
 
 .main-content h2 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 10px;
+  color: rgb(0, 0, 0);
 }
 
 .description {
@@ -129,6 +132,7 @@ body {
 .start-button:hover {
   background: #065f46;
 }
+
 
 /* 登録画面のデザイン */
 /* Custom CSS for Crop Registration Page */
@@ -322,19 +326,19 @@ body {
 }
 
 .crop-management-header a {
-  background-color: #3b82f6;
+  background-color: #59986b;
   color: #ffffff;
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .crop-management-header a:hover {
-  background-color: #2563eb;
+  background-color: #0a862d;
   transform: scale(1.05);
 }
 
@@ -369,11 +373,11 @@ body {
 .crop-management-action-buttons a,
 .crop-management-action-buttons button {
   padding: 8px 12px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 0.875rem;
   font-weight: bold;
   text-decoration: none;
-  color: #ffffff;
+  /* color: #ffffff; */
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -430,5 +434,111 @@ body {
   .crop-management-action-buttons {
       flex-direction: column;
       gap: 5px;
+  }
+}
+
+/* 消費者側のデザイン */
+
+.consumer-body {
+  font-family: 'Figtree', sans-serif;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  margin: 0;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.consumer-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.consumer-header {
+  text-align: center;
+  color: #2e8b57;
+  margin-bottom: 30px;
+}
+
+.consumer-header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.consumer-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.consumer-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.consumer-card-body {
+  padding: 15px 0;
+}
+
+.consumer-card-title {
+  color: #2e8b57;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.consumer-card-content {
+  background: #f0fdf4;
+  color: #374151;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s;
+}
+
+.consumer-card-content:hover {
+  background: #e5f9e7;
+}
+
+.consumer-video {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.consumer-section {
+  margin-bottom: 30px;
+}
+
+.consumer-icon {
+  color: #2e8b57;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.consumer-text {
+  color: #374151;
+}
+
+@media (max-width: 768px) {
+  .consumer-header h1 {
+      font-size: 2rem;
+  }
+  .consumer-card-title {
+      font-size: 1.25rem;
+  }
+  .consumer-card-content {
+      padding: 10px;
+  }
+  .consumer-container {
+      padding: 15px;
   }
 }

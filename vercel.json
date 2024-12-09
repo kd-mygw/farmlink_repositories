@@ -18,7 +18,7 @@
     ],
     "env": {
         "APP_NAME": "Laravel Vercel",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
@@ -28,6 +28,11 @@
         "CACHE_STORE": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
-        "VIEW_COMPILED_PATH": "/tmp"
+        "VIEW_COMPILED_PATH": "/tmp",
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "127.0.0.1",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "farmlink_db",
+        "DB_USERNAME": "root"
     }
 }

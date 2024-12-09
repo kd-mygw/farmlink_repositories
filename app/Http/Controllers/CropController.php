@@ -11,9 +11,20 @@ use Illuminate\Support\Facades\Auth;
 class CropController extends Controller
 {
     //農作物の一覧を表示
-    public function index()
+    public function index(Request $request)
     {
-        $crops = Crop::where('user_id', Auth::id())->get();
+        $query = Crop::where('user_id', Auth::id());
+    
+        // 検索条件がある場合にフィルタリング
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('product_name', 'like', "%{$search}%")
+                  ->orWhere('cultivation_method', 'like', "%{$search}%");
+        }
+    
+        $crops = $query->get();
+    
         return view('crops.index', compact('crops'));
     }
 
@@ -65,13 +76,13 @@ class CropController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            'product_name' => 'require|string|max:255',
-            'name' => 'require|string|max:255',
-            'cultivation_method' => 'require|string',
+            'product_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'cultivation_method' => 'required|string',
             'fertilizer_info' => 'nullable|string|max:255',
-            'pesticide_info' => 'nulable|string|max:255',
-            'description' => 'require|string|max:255',
-            'cooking_tips' => 'require|string|max:255',
+            'pesticide_info' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'cooking_tips' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
         ]);
