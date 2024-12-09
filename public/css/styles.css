@@ -455,6 +455,7 @@ body {
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .consumer-header {
@@ -466,6 +467,11 @@ body {
 .consumer-header h1 {
   font-size: 2.5rem;
   font-weight: bold;
+}
+
+.consumer-header h2 {
+  font-size: 1.5rem;
+  color: #374151;
 }
 
 .consumer-image {
@@ -491,6 +497,8 @@ body {
   color: #2e8b57;
   font-weight: bold;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
 }
 
@@ -501,6 +509,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: background 0.3s;
+  line-height: 1.6;
 }
 
 .consumer-card-content:hover {
@@ -512,6 +521,7 @@ body {
   height: auto;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
 }
 
 .consumer-section {
@@ -530,15 +540,21 @@ body {
 
 @media (max-width: 768px) {
   .consumer-header h1 {
-      font-size: 2rem;
+    font-size: 2rem;
+  }
+  .consumer-header h2 {
+    font-size: 1.2rem;
   }
   .consumer-card-title {
-      font-size: 1.25rem;
+    font-size: 1.25rem;
   }
   .consumer-card-content {
-      padding: 10px;
+    padding: 10px;
   }
   .consumer-container {
-      padding: 15px;
+    padding: 15px;
+  }
+  .consumer-video {
+    margin-top: 10px;
   }
 }
