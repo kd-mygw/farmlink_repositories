@@ -48,16 +48,16 @@
                             <td>{{ $crop->description }}</td>
                             <td>{{ $crop->cooking_tips }}</td>
                             <td class="crop-management-action-buttons">
-                                <a href="{{ route('crops.edit', $crop->id) }}" class="edit-button">編集</a>
+                                <a href="{{ route('crops.edit', $crop->id) }}" class="btn btn-outline-success">編集</a>
                                 <form action="{{ route('crops.destroy', $crop->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('本当に削除しますか？')">削除</button>
                                 </form>
                                 @if ($crop->qr_code_path)
-                                    <a href="{{ asset('storage/' . $crop->qr_code_path) }}" target="_blank" class="qr-code-button">QRコードを表示</a>
+                                    <a href="{{ asset('storage/' . $crop->qr_code_path) }}" target="_blank" class="btn btn-outline-secondary">QRコードを表示</a>
                                 @else
-                                    <a href="{{ route('qr.create', ['crop' => $crop->id]) }}" class="qr-code-button">QRコードを生成</a>
+                                    <a href="{{ route('qr.create', ['crop' => $crop->id]) }}" class="btn btn-outline-secondary">QRコードを生成</a>
                                 @endif
                             </td>
                         </tr>
