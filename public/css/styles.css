@@ -441,7 +441,7 @@ body {
 
 .consumer-body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  background: linear-gradient(to bottom, #f1f1f1, #ffffff);
   margin: 0;
   padding: 20px 10px;
   box-sizing: border-box;
@@ -494,7 +494,7 @@ body {
 }
 
 .consumer-card-title {
-  color: #2e8b57;
+  color: #000000;
   font-weight: bold;
   font-size: 1.5rem;
   display: flex;
@@ -503,13 +503,16 @@ body {
 }
 
 .consumer-card-content {
-  background: #f0fdf4;
-  color: #374151;
+  background: #CBEBC9;
+  color: #374151; /*文字の色*/
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: background 0.3s;
   line-height: 1.6;
+  text-align: center;
+  font-size: 15px;  /*文字の大きさ*/
+  font-weight: 700; /*文字の太さ*/
 }
 
 .consumer-card-content:hover {
