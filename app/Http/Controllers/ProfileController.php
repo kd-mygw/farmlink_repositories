@@ -29,17 +29,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
     
-        // 新しいアイコンをアップロードする場合
-        if ($request->hasFile('icon')) {
-
-            // 古いアイコンを削除する
-            if ($user->icon) {
-                Storage::disk('public')->delete($user->icon);
-            }
-
-            $iconPath = $request->file('icon')->store('icons', 'public');
-            $user->icon = $iconPath;
-        }
+        
         
         // farm_name,farm_addressを更新
         $user->farm_name = $request->input('farm_name');
@@ -48,7 +38,7 @@ class ProfileController extends Controller
         $user->fill($request->validated());
     
         if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
+            $user->email;
         }
     
         $user->save();
@@ -75,5 +65,29 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function uploadIcon(Request $request)
+    {
+        $request->validate([
+            'icon' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // バリデーション
+        ]);
+
+        $user = Auth::user();
+
+        // 既存のアイコンを削除
+        if ($user->icon) {
+            Storage::disk('public')->delete($user->icon);
+        }
+
+        // 新しいアイコンを保存
+        $iconPath = $request->file('icon')->store('icons', 'public');
+        $user->icon = $iconPath;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'path' => asset('storage/' . $iconPath),
+        ]);
     }
 }

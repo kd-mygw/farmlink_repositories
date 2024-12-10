@@ -35,5 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('crops/{crop}/generate-qr', [QRCodeController::class, 'store'])->name('qr.store');
 });
 
+Route::post('/profile/upload-icon', [ProfileController::class, 'uploadIcon'])->name('profile.upload-icon');
+
 
 require __DIR__.'/auth.php';
