@@ -161,4 +161,6 @@
 
       .header_area {
         padding: 0;
+        display: grid;
+        place-items: center;
       }
