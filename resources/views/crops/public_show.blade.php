@@ -1,66 +1,85 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="consumer-body">
-    <div class="consumer-container">
-        <div class="consumer-header">
-            <h1>{{ $crop->product_name }}</h1>
-            <h2>-{{ $crop->name}}-</h2>
-            @if ($crop->image)
-                <div class="consumer-image text-center mt-3">
-                    <img src="{{ asset('storage/' . $crop->image) }}" alt="Crop Image" class="consumer-image">
-                </div>
+<div class="container">
+    <!-- Header -->
+    <header>
+        <div class="logo">FARM LINK</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        @if ($crop->image)
+            <img src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
+        @endif
+        <div class="hero-content">
+            <h1>{{ $crop->product_name }} -({{ $crop->name }})-</h1>
+            @if ($crop->cultivation_method === '有機栽培')
+                <span class="badge">有機栽培</span>
             @endif
         </div>
+    </section>
 
-        <div class="consumer-card consumer-section">
-            <div class="consumer-card-body">
-                <h2 class="consumer-card-title flex items-center">
-                    <span class="consumer-icon material-icons"></span> 農法・栽培方法
-                </h2>
-                <div class="consumer-card-content">
-                    {{ $crop->cultivation_method }}
+    <!-- Main Content -->
+    <main>
+        <!-- Product Information -->
+        <section class="section">
+            <h2 class="section-title">商品情報</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>生産地</h3>
+                    <p>{{ Auth::user()->farm_address }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>栽培方法</h3>
+                    <p>{{ $crop->cultivation_method }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💧</div>
+                    <h3>農薬情報</h3>
+                    <p>{{ $crop->pesticide_info }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🍃</div>
+                    <h3>肥料情報</h3>
+                    <p>{{ $crop->fertilizer_info }}</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="consumer-card consumer-section">
-            <div class="consumer-card-body">
-                <h2 class="consumer-card-title flex items-center">
-                    <span class="consumer-icon material-icons"></span> 農家の声
-                </h2>
-                <div class="consumer-card-content">
-                    {{ $crop->description }}
-                </div>
-            </div>
-        </div>
-
-        <div class="consumer-card consumer-section">
-            <div class="consumer-card-body">
-                <h2 class="consumer-card-title flex items-center">
-                    <span class="consumer-icon material-icons"></span> おいしい食べ方
-                </h2>
-                <div class="consumer-card-content">
-                    {{ $crop->cooking_tips }}
-                </div>
-            </div>
-        </div>
-
-        @if ($crop->video)
-            <div class="consumer-card consumer-section">
-                <div class="consumer-card-body">
-                    <h2 class="consumer-card-title flex items-center">
-                        <span class="consumer-icon material-icons"></span> 動画
-                    </h2>
-                    <div class="consumer-video text-center">
-                        <video controls class="consumer-video">
-                            <source src="{{ asset('storage/' . $crop->video) }}" type="video/mp4">
-                            お使いのブラウザは動画タグに対応していません。
-                        </video>
+        <!-- Farmer Information -->
+        <section class="section">
+            <h2 class="section-title">農家の一言</h2>
+            <div class="card">
+                <div class="farmer-profile">
+                    <div class="farmer-avatar">
+                        <img src="{{ asset('storage/' . Auth::user()->icon) }}" alt="User Icon" >
+                    </div>
+                    <div class="farmer-info">
+                        <h3>{{ $crop->farmer_name }}</h3>
+                        <p>{{ $crop->farmer_title }}</p>
                     </div>
                 </div>
+                <p class="farmer-philosophy">
+                    {{ $crop->description }}
+                </p>
             </div>
-        @endif
-    </div>
+        </section>
+
+        <!-- Recommended Recipes -->
+        <section class="section">
+            <h2 class="section-title">農家おすすめの調理法</h2>
+            <div class="card">
+                @if ($crop->recipe_image)
+                    <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
+                @endif
+                <p class="recipe-description">
+                    {{ $crop->cooking_tips }}
+                </p>
+            </div>
+        </section>
+    </main>
 </div>
 @endsection
