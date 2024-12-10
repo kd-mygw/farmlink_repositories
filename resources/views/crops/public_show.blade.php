@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <!-- Header -->
-    <header>
+    {{-- <header>
         <div class="logo">FARM LINK</div>
-    </header>
+    </header> --}}
 
     <!-- Hero Section -->
     <section class="hero">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <p class="farmer-philosophy">
-                    {{ $crop->description }}
+                    {!! nl2br(e($crop->description)) !!}
                 </p>
             </div>
         </section>
@@ -76,7 +76,7 @@
                     <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
                 @endif
                 <p class="recipe-description">
-                    {{ $crop->cooking_tips }}
+                    {!! nl2br(e($crop->cooking_tips)) !!}
                 </p>
             </div>
         </section>
