@@ -30,7 +30,8 @@
                 <div class="card">
                     <div class="card-icon">📍</div>
                     <h3>生産地</h3>
-                    <p>{{ Auth::user()->farm_address }}</p>
+                    <p>{{ $farm_name}}</p>
+                    <p>{{ $farm_address }}</p>
                 </div>
                 <div class="card">
                     <div class="card-icon">🌱</div>
@@ -56,7 +57,7 @@
             <div class="card">
                 <div class="farmer-profile">
                     <div class="farmer-avatar">
-                        <img src="{{ asset('storage/' . Auth::user()->icon) }}" alt="User Icon" >
+                        <img src="{{ asset('storage/' . $icon) }}" alt="User Icon" >
                     </div>
                     <div class="farmer-info">
                         <h3>{{ $crop->farmer_name }}</h3>
