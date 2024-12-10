@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <header class="text-center py-3">
+    <header class="header_area">
         <img src = "{{asset('images/header.png')}}"   class = "img-fluid">
     </header>
 

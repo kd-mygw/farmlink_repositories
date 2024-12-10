@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <!-- Header -->
-    <header>
+    {{-- <header>
         <div class="logo">FARM LINK</div>
-    </header>
+    </header> --}}
 
     <!-- Hero Section -->
     <section class="hero">
@@ -13,8 +13,8 @@
             <img src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
         @endif
         <div class="hero-content">
-            <h1>{{ $crop->product_name }} -({{ $crop->name }})-</h1>
-            @if ($crop->cultivation_method === '有機栽培')
+            <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
+            @if (str_contains($crop->cultivation_method, '有機栽培'))
                 <span class="badge">有機栽培</span>
             @endif
         </div>
@@ -24,6 +24,7 @@
     <main>
         <!-- Product Information -->
         <section class="section">
+            <br>
             <h2 class="section-title">商品情報</h2>
             <div class="card-grid">
                 <div class="card">
@@ -63,22 +64,24 @@
                     </div>
                 </div>
                 <p class="farmer-philosophy">
-                    {{ $crop->description }}
+                    {!! nl2br(e($crop->description)) !!}
                 </p>
             </div>
         </section>
 
         <!-- Recommended Recipes -->
         <section class="section">
+            @if (!empty($crop->cooking_tips))
             <h2 class="section-title">農家おすすめの調理法</h2>
             <div class="card">
                 @if ($crop->recipe_image)
                     <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
                 @endif
                 <p class="recipe-description">
-                    {{ $crop->cooking_tips }}
+                    {!! nl2br(e($crop->cooking_tips)) !!}
                 </p>
             </div>
+            @endif
         </section>
     </main>
 </div>
