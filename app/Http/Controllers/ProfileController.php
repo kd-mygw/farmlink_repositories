@@ -81,6 +81,7 @@ class ProfileController extends Controller
         }
 
         // 新しいアイコンを保存
+        /** @var \App\Models\User $user **/
         $iconPath = $request->file('icon')->store('icons', 'public');
         $user->icon = $iconPath;
         $user->save();
