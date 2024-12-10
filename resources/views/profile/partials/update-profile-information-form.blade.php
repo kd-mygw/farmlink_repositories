@@ -78,7 +78,7 @@ function handleIconChange(input) {
     formData.append('icon', file);
     formData.append('_token', document.querySelector('input[name="_token"]').value); // CSRFトークン
 
-    fetch('/profile/upload-icon', {
+    fetch('{{ route('profile.upload-icon') }}', {
         method: 'POST',
         body: formData,
         headers: {
