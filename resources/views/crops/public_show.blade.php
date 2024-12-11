@@ -84,6 +84,18 @@
             </div>
             @endif
         </section>
+        <!-- Video Section -->
+        <section class="section">
+            @if (!empty($crop->video))
+                <h2 class="section-title">紹介動画</h2>
+                <div class="card">
+                    <video controls class="w-full rounded-lg shadow">
+                        <source src="{{ asset('storage/' . $crop->video) }}" type="video/mp4">
+                        お使いのブラウザは動画タグに対応していません。
+                    </video>
+                </div>
+            @endif
+        </section>        
     </main>
 </div>
 @endsection
