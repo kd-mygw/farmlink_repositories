@@ -19,6 +19,7 @@ class PublicCropController extends Controller
             'farm_name' => $crop->user->farm_name ?? '未登録',
             'farm_address' => $crop->user->farm_address ?? '未登録',
             'icon' => $crop->user->icon ?? '未登録',
+            'name' => $crop->user->name ?? '未登録',
         ]);
     }
 }

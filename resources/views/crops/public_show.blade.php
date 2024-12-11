@@ -60,8 +60,7 @@
                         <img src="{{ asset('storage/' . $icon) }}" alt="User Icon" >
                     </div>
                     <div class="farmer-info">
-                        <h3>{{ $crop->farmer_name }}</h3>
-                        <p>{{ $crop->farmer_title }}</p>
+                        <h3>{{ $name }}</h3>
                     </div>
                 </div>
                 <p class="farmer-philosophy">
