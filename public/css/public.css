@@ -164,4 +164,5 @@
         padding: 0;
         display: grid;
         place-items: center;
+        object-fit: cover;
       }

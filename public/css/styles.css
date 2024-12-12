@@ -179,7 +179,7 @@ body {
 
 .crop-form-control {
   border: 2px solid #2e8b57;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 10px;
   transition: border-color 0.3s;
   width: 100%;
@@ -310,6 +310,7 @@ body {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-top: 10px;
 }
 
 .crop-management-header {

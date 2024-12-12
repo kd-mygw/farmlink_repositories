@@ -16,8 +16,14 @@
                 <input type="text" class="crop-form-control" id="name" name="name" value="{{ $crop->name }}" required>
             </div>
             <div class="crop-form-group">
-                <label for="cultivation_method" class="crop-form-label">農法・栽培方法</label>
-                <input type="text" class="crop-form-control" id="cultivation_method" name="cultivation_method" value="{{ $crop->cultivation_method }}" required>
+                <label for="cultivation_method" class="crop-form-label">栽培方法</label>
+                <select class="crop-form-control" id="cultivation_method" name="cultivation_method" value="{{ $crop->cultivation_method }}" required>
+                    <option value="">栽培方法を選択してください</option>
+                    <option value="有機栽培" {{ $crop->cultivation_method === '有機栽培' ? 'selected' : '' }}>有機栽培</option>
+                    <option value="特別栽培" {{ $crop->cultivation_method === '特別栽培' ? 'selected' : '' }}>特別栽培</option>
+                    <option value="慣行栽培" {{ $crop->cultivation_method === '慣行栽培' ? 'selected' : '' }}>慣行栽培</option>
+                    <option value="自然栽培" {{ $crop->cultivation_method === '自然栽培' ? 'selected' : '' }}>自然栽培</option>
+                </select>
             </div>
             <div class="crop-form-group">
                 <label for="fertilizer_info" class="crop-form-label">使用している肥料</label>
