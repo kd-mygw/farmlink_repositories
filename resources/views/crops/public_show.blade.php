@@ -52,6 +52,7 @@
 
         <!-- Farmer Information -->
         <section class="section">
+            @if (!empty($crop->description))
             <h2 class="section-title">農家の一言</h2>
             <div class="card">
                 <div class="farmer-profile">
@@ -67,12 +68,13 @@
                     {!! nl2br(e($crop->description)) !!}
                 </p>
             </div>
+            @endif
         </section>
 
         <!-- Recommended Recipes -->
         <section class="section">
             @if (!empty($crop->cooking_tips))
-            <h2 class="section-title">農家おすすめの調理法</h2>
+            <h2 class="section-title">おいしい食べ方</h2>
             <div class="card">
                 @if ($crop->recipe_image)
                     <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
