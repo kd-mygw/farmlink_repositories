@@ -22,7 +22,8 @@
         @endif
     </div>
 
-    <!-- User Information -->
+
+     <!-- User Information -->
     <div class="text-center mt-6">
         <h2 class="text-2xl font-bold text-gray-900">{{ $user->name }}</h2>
         <p class="text-sm text-gray-600">{{ $user->email }}</p>
@@ -34,25 +35,25 @@
         @method('patch')
 
         <!-- Name -->
-        <label for="name">{{ __('aaa') }}</label>
+        <label for="name">{{ __('名前') }}</label>
         <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required>
 
         <!-- Email -->
-        <label for="email">{{ __('Email') }}</label>
+        <label for="email">{{ __('メールアドレス') }}</label>
         <input id="email" name="email" type="email" value="{{ old('email', $user->email) }}" required>
 
         <!-- Farm Name -->
-        <label for="farm_name">{{ __('Farm Name') }}</label>
+        <label for="farm_name">{{ __('農園名') }}</label>
         <input id="farm_name" name="farm_name" type="text" value="{{ old('farm_name', $user->farm_name) }}" required>
 
         <!-- Farm Address -->
-        <label for="farm_address">{{ __('Farm Address') }}</label>
+        <label for="farm_address">{{ __('農園の住所') }}</label>
         <input id="farm_address" name="farm_address" type="text" value="{{ old('farm_address', $user->farm_address) }}" required>
 
         <!-- Save Button -->
-        <button type="submit" class="save-button">{{ __('Save Changes') }}</button>
-    </form>
-</div>
+        <button type="submit" class="save-button">{{ __('変更の更新') }}</button>
+        </form>
+    </div>
 
 <script>
 function handleIconChange(input) {
@@ -98,3 +99,4 @@ function handleIconChange(input) {
         });
 }
 </script>
+
