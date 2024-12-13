@@ -1,65 +1,107 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="container mt-4">
-    <div class="card shadow-lg border-0 mb-4 rounded-lg">
-        <div class="card-body text-center">
-            <h1 class="card-title text-4xl font-bold text-green-700 mb-4">{{ $crop->product_name }}</h1>
-            @if ($crop->image)
-                <div class="image text-center mt-3">
-                    <img src="{{ asset('storage/' . $crop->image) }}" alt="Crop Image" class="img-fluid rounded-lg shadow">
-                </div>
+<div class="container">
+    <!-- Header -->
+    {{-- <header>   
+        <div class="logo">FARM LINK</div>
+    </header> --}}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        @if ($crop->image)
+            <img src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
+        @endif
+        <div class="hero-content">
+            <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
+            @if (str_contains($crop->cultivation_method, '有機栽培'))
+                <span class="badge">有機栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '特別栽培'))
+                <span class="badge">特別栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '慣行栽培'))
+                <span class="badge">慣行栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '自然栽培'))
+                <span class="badge">自然栽培</span>
             @endif
         </div>
-    </div>
-
-    <div class="card shadow-lg border-0 mb-4 rounded-lg">
-        <div class="card-body">
-            <h2 class="card-subtitle mb-3 text-2xl font-semibold text-green-700 flex items-center">
-                <span class="material-icons text-green-500 mr-2"></span> 農法・栽培方法
-            </h2>
-            <p class="card-text p-4 bg-green-50 rounded-lg text-gray-700">
-                {{ $crop->cultivation_method }}
+    </section>
+            <!-- Farmer Information -->
+            <section class="section">
+        <h2 class="section-title">農家の一言</h2>
+        <div class="card">
+            <div class="farmer-profile">
+                <div class="farmer-avatar">
+                    <img src="{{ asset('storage/' . $icon) }}" alt="User Icon" >
+                </div>
+                <div class="farmer-info">
+                    <h3>{{ $name }}</h3>
+                </div>
+            </div>
+            <p class="farmer-philosophy">
+                {!! nl2br(e($crop->description)) !!}
             </p>
         </div>
-    </div>
+    </section>
 
-    <div class="card shadow-lg border-0 mb-4 rounded-lg">
-        <div class="card-body">
-            <h2 class="card-subtitle mb-3 text-2xl font-semibold text-green-700 flex items-center">
-                <span class="material-icons text-yellow-500 mr-2"></span> 食の安全性
-            </h2>
-            <p class="card-text p-4 bg-green-50 rounded-lg text-gray-700">
-                {{ $crop->description }}
-            </p>
-        </div>
-    </div>
 
-    <div class="card shadow-lg border-0 mb-4 rounded-lg">
-        <div class="card-body">
-            <h2 class="card-subtitle mb-3 text-2xl font-semibold text-green-700 flex items-center">
-                <span class="material-icons text-orange-500 mr-2"></span> おいしい食べ方
-            </h2>
-            <p class="card-text p-4 bg-green-50 rounded-lg text-gray-700">
-                {{ $crop->cooking_tips }}
-            </p>
-        </div>
-    </div>
+    <!-- Main Content -->
+    <main>
+        <!-- Product Information -->
+        <section class="section">
+            <br>
+            <h2 class="section-title">商品情報</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>生産地</h3>
+                    <p>{{ $farm_name}}</p>
+                    <p>{{ $farm_address }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>栽培方法</h3>
+                    <p>{{ $crop->cultivation_method }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💧</div>
+                    <h3>農薬情報</h3>
+                    <p>{{ $crop->pesticide_info }}</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🍃</div>
+                    <h3>肥料情報</h3>
+                    <p>{{ $crop->fertilizer_info }}</p>
+                </div>
+            </div>
+        </section>
 
-    @if ($crop->video)
-        <div class="card shadow-lg border-0 mb-4 rounded-lg">
-            <div class="card-body">
-                <h2 class="card-subtitle mb-3 text-2xl font-semibold text-green-700 flex items-center">
-                    <span class="material-icons text-blue-500 mr-2"></span> 動画
-                </h2>
-                <div class="video text-center">
-                    <video controls class="w-100 rounded-lg shadow">
+
+        <!-- Recommended Recipes -->
+        <section class="section">
+            @if (!empty($crop->cooking_tips))
+            <h2 class="section-title">農家おすすめの調理法</h2>
+            <div class="card">
+                @if ($crop->recipe_image)
+                    <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
+                @endif
+                <p class="recipe-description">
+                    {!! nl2br(e($crop->cooking_tips)) !!}
+                </p>
+            </div>
+            @endif
+        </section>
+        <!-- Video Section -->
+        <section class="section">
+            @if (!empty($crop->video))
+                <h2 class="section-title">紹介動画</h2>
+                <div class="card">
+                    <video controls class="w-full rounded-lg shadow">
                         <source src="{{ asset('storage/' . $crop->video) }}" type="video/mp4">
                         お使いのブラウザは動画タグに対応していません。
                     </video>
                 </div>
-            </div>
-        </div>
-    @endif
+            @endif
+        </section>        
+    </main>
 </div>
 @endsection

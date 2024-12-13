@@ -34,7 +34,7 @@
         @method('patch')
 
         <!-- Name -->
-        <label for="name">{{ __('Name') }}</label>
+        <label for="name">{{ __('aaa') }}</label>
         <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required>
 
         <!-- Email -->
@@ -78,7 +78,7 @@ function handleIconChange(input) {
     formData.append('icon', file);
     formData.append('_token', document.querySelector('input[name="_token"]').value); // CSRFトークン
 
-    fetch('/profile/upload-icon', {
+    fetch("{{ route('profile.upload-icon') }}", {
         method: 'POST',
         body: formData,
         headers: {
