@@ -34,7 +34,7 @@
         @method('patch')
 
         <!-- Name -->
-        <label for="name">{{ __('Name') }}</label>
+        <label for="name">{{ __('aaa') }}</label>
         <input id="name" name="name" type="text" value="{{ old('name', $user->name) }}" required>
 
         <!-- Email -->
