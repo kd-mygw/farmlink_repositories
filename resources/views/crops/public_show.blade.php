@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <!-- Header -->
-    {{-- <header>
+    {{-- <header>   
         <div class="logo">FARM LINK</div>
     </header> --}}
 
@@ -16,9 +16,33 @@
             <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
             @if (str_contains($crop->cultivation_method, '有機栽培'))
                 <span class="badge">有機栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '特別栽培'))
+                <span class="badge">特別栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '慣行栽培'))
+                <span class="badge">慣行栽培</span>
+            @elseif (str_contains($crop->cultivation_method, '自然栽培'))
+                <span class="badge">自然栽培</span>
             @endif
         </div>
     </section>
+            <!-- Farmer Information -->
+            <section class="section">
+        <h2 class="section-title">農家の一言</h2>
+        <div class="card">
+            <div class="farmer-profile">
+                <div class="farmer-avatar">
+                    <img src="{{ asset('storage/' . $icon) }}" alt="User Icon" >
+                </div>
+                <div class="farmer-info">
+                    <h3>{{ $name }}</h3>
+                </div>
+            </div>
+            <p class="farmer-philosophy">
+                {!! nl2br(e($crop->description)) !!}
+            </p>
+        </div>
+    </section>
+
 
     <!-- Main Content -->
     <main>
@@ -51,23 +75,6 @@
             </div>
         </section>
 
-        <!-- Farmer Information -->
-        <section class="section">
-            <h2 class="section-title">農家の一言</h2>
-            <div class="card">
-                <div class="farmer-profile">
-                    <div class="farmer-avatar">
-                        <img src="{{ asset('storage/' . $icon) }}" alt="User Icon" >
-                    </div>
-                    <div class="farmer-info">
-                        <h3>{{ $name }}</h3>
-                    </div>
-                </div>
-                <p class="farmer-philosophy">
-                    {!! nl2br(e($crop->description)) !!}
-                </p>
-            </div>
-        </section>
 
         <!-- Recommended Recipes -->
         <section class="section">
