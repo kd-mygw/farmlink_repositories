@@ -295,8 +295,9 @@ body {
 /* 管理画面のデザイン */
 
 .crop-management-body {
+  background:url('/images/nobunaga.jpg') no-repeat center top;
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
+  background: linear-gradient(to bottom, #5b8569, #2d6330);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
