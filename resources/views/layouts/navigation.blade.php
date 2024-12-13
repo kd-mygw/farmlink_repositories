@@ -1,7 +1,6 @@
 <style>
     .header-bg {
         background: linear-gradient(90deg, #2f855a, #38a169); /* 緑のグラデーション */
-        margin-bottom: 30px; /* 下部にスペースを追加 */
         border-bottom: 2px solid #276749; /* 濃い緑でボーダーを追加 */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 下方向に柔らかな影 */
     }

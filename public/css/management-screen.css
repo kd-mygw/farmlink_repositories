@@ -1,23 +1,42 @@
 /* 管理画面のデザイン */
 
 .crop-management-body {
-  background:url('/images/nobunaga.jpg') no-repeat center top;
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #5b8569, #2d6330);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
+  background-color: #fffdd0; /* クリーム色 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .crop-management-container {
+  position: relative;
+  background:url('/images/background-image-borad.png');
+  background-size: 100%;
+  width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
+  padding: 60px;
+  padding-left: 130px;
+  background-color: #fffdd0;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.crop-manager{
+  flex: 1;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 10px;
+
 }
 
 .crop-management-header {
@@ -51,21 +70,20 @@
 }
 
 .crop-management-table {
-  width: 100%;
+  width: 95%; /* 横幅を少し小さくする */
   text-align: left;
-  border-collapse: collapse;
-  border: 1px solid #e5e7eb;
-}
+  border-collapse: collapse; /* セルの境界線を重ねる */
+  border: 1px solid #ffffff;}
 
 .crop-management-table th,
 .crop-management-table td {
   padding: 5px 8px; /* Changed from 10px to 5px */
-  border-bottom: 1px solid #e5e7eb;
-  color: #374151;
+  border-bottom: 1px solid #e5ebe5; /* テーブルの横罫線 */
+  color: #374151; /* テキストの色 */
 }
 
 .crop-management-table th {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   font-weight: bold;
 }
 
@@ -85,6 +103,11 @@
   border-radius: 8px;
   margin-bottom: 20px;
 }
+
+.create-button{
+  margin-right: 20px;
+}
+
 
 @media (max-width: 768px) {
   .crop-management-container {
