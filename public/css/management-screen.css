@@ -1,0 +1,104 @@
+/* 管理画面のデザイン */
+
+.crop-management-body {
+  background:url('/images/nobunaga.jpg') no-repeat center top;
+  font-family: 'Figtree', sans-serif;
+  background: linear-gradient(to bottom, #5b8569, #2d6330);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.crop-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-top: 10px;
+}
+
+.crop-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.crop-management-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.crop-management-header a {
+  background-color: #59986b;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  /* border-radius: 25px; */
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crop-management-header a:hover {
+  background-color: #0a862d;
+  transform: scale(1.05);
+}
+
+.crop-management-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+}
+
+.crop-management-table th,
+.crop-management-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+.crop-management-table th {
+  background-color: #f9fafb;
+  font-weight: bold;
+}
+
+.crop-management-table tr:hover {
+  background-color: #f3f4f6;
+}
+
+
+
+.crop-management-success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .crop-management-container {
+      padding: 20px;
+  }
+  .crop-management-header h1 {
+      font-size: 1.5rem;
+  }
+  .crop-management-header a {
+      padding: 8px 15px;
+  }
+  .crop-management-table th,
+  .crop-management-table td {
+      padding: 10px;
+  }
+  .crop-management-action-buttons {
+      flex-direction: column;
+      gap: 5px;
+  }
+}
