@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <!-- Header -->
-    {{-- <header>   
+    {{-- <header>
         <div class="logo">FARM LINK</div>
     </header> --}}
 
