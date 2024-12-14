@@ -153,7 +153,7 @@ body {
 
 .crop-body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #60a5fa20, #10b98120);
+  background: linear-gradient(to bottom, #eae73220, #cad59520);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -169,7 +169,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
