@@ -13,7 +13,6 @@
         <header class="header">
             <div class="header-left">
                 <h1>FARMLINK</h1>
-                <a href="/top" class="top-link">TOP</a>
             </div>
             <nav class="header-right">
                 @if (Route::has('login'))
@@ -29,8 +28,8 @@
         <main class="main-content">
             <h2>FARMLINKへようこそ</h2>
             <p class="description">生産者と消費者を繋ぐプラットフォーム</p>
-            <div class="features">
-                <div class="feature">
+            <div class="features" scroll-animation>
+                <div class="feature" scroll-animation>
                     <span class="icon">👑</span>
                     <h3>魅力を伝える</h3>
                     <p>魅力・こだわりを消費者に伝える</p>
@@ -51,3 +50,24 @@
     </div>
 </body>
 </html>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const targets = document.querySelectorAll(".scroll-animation");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  targets.forEach((target) => {
+    observer.observe(target);
+  });
+});
+
+</script>
