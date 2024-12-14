@@ -4,7 +4,7 @@
 <div class="crop-management-body">
     <div class="crop-management-container">
         <div class="crop-management-header">
-            <h1>農作物一覧</h1>
+            <h1 class="custom-font">農作物一覧</h1>
             <a href="{{ route('crops.create') }}" class="create-button bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600">新規農作物を登録</a>
         </div>
 
@@ -64,6 +64,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="pagination-links">
+            {{ $crops->links() }}
         </div>
     </div>
 </div>

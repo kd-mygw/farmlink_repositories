@@ -1,7 +1,7 @@
 /* 管理画面のデザイン */
 
 .crop-management-body {
-  font-family: 'Figtree', sans-serif;
+  font-family: 'PencilKaisho', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,15 +15,16 @@
 .crop-management-container {
   position: relative;
   background:url('/images/background-image-borad.png');
-  background-size: 100%;
+  background-size: 100% 100%;
   width: 90%;
   max-width: 1200px;
+  height: 650px;
   margin: 0 auto;
   padding: 60px;
+  padding-top: 60px;
   padding-left: 130px;
   background-color: #fffdd0;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-top: 10px;
   display: flex;
   flex-direction: column;
@@ -31,8 +32,8 @@
 }
 
 .crop-manager{
-  flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
   border-radius: 10px;
@@ -50,6 +51,7 @@
   font-size: 2rem;
   font-weight: bold;
   color: #374151;
+  border-bottom: 2px solid #374151;
 }
 
 .crop-management-header a {
@@ -108,6 +110,12 @@
   margin-right: 20px;
 }
 
+.pagination-links .pagination{
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+}
+
 
 @media (max-width: 768px) {
   .crop-management-container {
@@ -128,4 +136,16 @@
       display: flex;
       gap: 5px;
   }
+}
+
+@font-face {
+  font-family: 'PencilKaisho';
+  src: url('/fonts/g_pencilkaisho_free.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 使用例 */
+.custom-font {
+  font-family: 'PencilKaisho', sans-serif;
 }

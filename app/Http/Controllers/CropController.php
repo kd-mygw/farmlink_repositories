@@ -18,12 +18,14 @@ class CropController extends Controller
         // 検索条件がある場合にフィルタリング
         if ($request->has('search')) {
             $search = $request->input('search');
-            $query->where('name', 'like', "%{$search}%")
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
                   ->orWhere('product_name', 'like', "%{$search}%")
                   ->orWhere('cultivation_method', 'like', "%{$search}%");
+            });        
         }
-    
-        $crops = $query->get();
+        // ページネーション
+        $crops = $query->paginate(6);
     
         return view('crops.index', compact('crops'));
     }
