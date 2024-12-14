@@ -25,7 +25,7 @@ class CropController extends Controller
             });        
         }
         // ページネーション
-        $crops = $query->paginate(6);
+        $crops = $query->paginate(10);
     
         return view('crops.index', compact('crops'));
     }

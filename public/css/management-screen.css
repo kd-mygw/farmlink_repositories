@@ -51,7 +51,6 @@
   font-size: 2rem;
   font-weight: bold;
   color: #374151;
-  border-bottom: 2px solid #374151;
 }
 
 .crop-management-header a {
@@ -75,7 +74,9 @@
   width: 95%; /* 横幅を少し小さくする */
   text-align: left;
   border-collapse: collapse; /* セルの境界線を重ねる */
-  border: 1px solid #ffffff;}
+  border: 1px solid #ffffff; /* テーブルの外枠 */
+  background-color: transparent; /* テーブルの背景色 */
+}
 
 .crop-management-table th,
 .crop-management-table td {
@@ -85,12 +86,13 @@
 }
 
 .crop-management-table th {
-  background-color: #ffffff;
+  background-color: transparent;
   font-weight: bold;
+  height: 10px;
 }
 
 .crop-management-table tr:hover {
-  background-color: #f3f4f6;
+  background-color: #e7e7e7;
 }
 
 .crop-management-action-buttons {
@@ -145,7 +147,22 @@
   font-style: normal;
 }
 
-/* 使用例 */
 .custom-font {
   font-family: 'PencilKaisho', sans-serif;
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+.custom-font::after {
+  content: ''; /* 擬似要素を表示する */
+  position: absolute;
+  bottom: 0; /* テキストの下部に配置 */
+  left: 0;
+  width: 100%; /* テキストの幅に合わせる */
+  height: 8px; /* マーカーの高さ */
+  background-color: #fdd835; /* マーカーの色（黄色） */
+  z-index: -1; /* テキストの背面に配置 */
+  border-radius: 4px; /* マーカーの角を丸くする */
 }

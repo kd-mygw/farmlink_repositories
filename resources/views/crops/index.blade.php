@@ -23,7 +23,7 @@
             </div>
         @endif
 
-        <div class="crops-manager">
+        <div class="crop-manager">
             <table class="crop-management-table">
                 <thead>
                     <tr>
