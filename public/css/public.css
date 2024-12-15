@@ -139,6 +139,7 @@
           border-bottom: 2px solid #e0e0e0;
       }
     .card {
+        font-family: 'G_PencilKaisho', Arial, sans-serif;
         padding: 1rem;
         margin-bottom: 1rem;
         box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.6); 
@@ -146,6 +147,7 @@
         background-image: url('/images/paper-texture.jpg'); /* 紙のような質感を追加 */
         background-size: cover;
     }
+    
     /* ピンのスタイル (張り紙を固定しているように見せる) */
     .card::before {
         content: '';
@@ -183,7 +185,7 @@
           color: #2c7a2c;
       }
       .card h3 {
-        font-family: 'Permanent Marker', cursive; /* Google Fontsからインポート */
+        font-family: 'G_PencilKaisho','Permanent Marker', cursive; /* Google Fontsからインポート */
         font-size: 1.25rem;
         margin-bottom: 0.5rem;
         color: #2c7a2c;
@@ -248,3 +250,10 @@
         object-fit: cover;
       }
 
+      @font-face {
+        font-family: 'G_PencilKaisho';
+        src: url('/fonts/g_pencilkaisho_free.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
