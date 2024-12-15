@@ -38,4 +38,8 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/profile/upload-icon', [ProfileController::class, 'uploadIcon'])->name('profile.upload-icon');
 
 
+// QRコード作成用のルート
+Route::post('/qr/create/{crop}', [QRCodeController::class, 'store'])->name('qr.store');
+
+
 require __DIR__.'/auth.php';

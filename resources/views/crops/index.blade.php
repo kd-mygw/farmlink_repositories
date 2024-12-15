@@ -57,7 +57,10 @@
                                 @if ($crop->qr_code_path)
                                     <a href="{{ asset('storage/' . $crop->qr_code_path) }}" target="_blank" class="btn btn-outline-secondary">QRコードを表示</a>
                                 @else
-                                    <a href="{{ route('qr.create', ['crop' => $crop->id]) }}" class="btn btn-outline-secondary">QRコードを生成</a>
+                                    <form action="{{ route('qr.store', ['crop' => $crop->id]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-info">QRコードを生成</button>
+                                    </form>
                                 @endif
                             </td>
                         </tr>
