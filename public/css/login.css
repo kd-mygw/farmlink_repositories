@@ -1,7 +1,7 @@
 /* 全体の背景とレイアウト */
 body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+  background: linear-gradient(to bottom right, #216d2a, #b5ffb5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,15 +10,26 @@ body {
   padding: 0;
 }
 
+/* 背景アニメーションのスタイル */
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 背景として扱う */
+  overflow: hidden;
+}
 /* ログインコンテナ */
 .login-container {
   background: white;
-  padding: 30px;
+  padding: 40px;
   border-radius: 10px;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   width: 100%;
   max-width: 400px;
   text-align: center;
+  z-index: 1; /* 背景より手前に表示 */
 }
 
 /* ログインタイトル */

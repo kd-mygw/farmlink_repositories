@@ -2,47 +2,64 @@
 .search-bar {
   position: relative;
   display: inline-block;
-  width: 50px;
-  transition: width 0.4s ease-in-out;
+  width: 50px; /* 初期状態では丸形にするための幅 */
+  height: 50px; /* 高さも丸形に合わせる */
+  border-radius: 50%; /* 完全な丸形に */
+  background-color: transparent; /* 背景色を追加 */
+  transition: width 0.4s ease-in-out, background-color 0.3s ease-in-out; /* 幅と背景色のトランジション */
 }
 
 /* インプットボックスのスタイル */
 #search-input {
-  width: 100%;
-  padding: 10px 10px 10px 40px; /* 左側に余白を作りアイコン用のスペースを確保 */
+  width: 50px;
+  height: 50px;
+  padding: 12px 12px 12px 45px; /* 左側の余白を広げ、アイコンと間隔を確保 */
   border: 2px solid #c2c2c2;
-  border-radius: 25px;
+  border-radius: 50px; /* より滑らかな丸みを持たせる */
   outline: none;
   color: #333;
+  font-size: 1rem; /* フォントサイズを調整 */
   transition: all 0.3s ease-in-out;
+  background-color: transparent; /* 背景色をやや明るく */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 微かな影を追加 */
 }
 
 /* プレースホルダー用の虫眼鏡アイコンを擬似要素で表示 */
 .search-bar::before {
-  content: "\1F50D"; /* Unicode character for magnifying glass (🔍) */
+  content: "";
   position: absolute;
   top: 50%;
-  left: 15px; /* アイコンの位置を調整 */
+  left: 15px; /* アイコンの位置を微調整 */
+  width: 18px; /* アイコンの幅 */
+  height: 18px; /* アイコンの高さ */
+  background: url('/images/icons8-検索-50.png') no-repeat center;
+  background-size: contain; /* 画像をコンテナに収める */
   transform: translateY(-50%);
-  font-size: 20px;
-  color: #aaa; /* アイコンの色 */
   pointer-events: none;
+  opacity: 0.6; /* アイコンを少し薄くする */
 }
 
 /* フォーカス時に幅を広げる */
 #search-input:focus {
-  width: 300px;
-  border-color: #dfdfdf;
-  box-shadow: 0 0 10px rgba(114, 114, 114, 0.5);
+  width: 350px; /* フォーカス時の幅をさらに広く */
+  border-color: #888; /* フォーカス時のボーダー色を強調 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を強調 */
+  background-color: transparent; /* 背景色を白に */
 }
 
 /* プレースホルダーのスタイル */
 #search-input::placeholder {
-  color: #aaa;
+  color: #999;
   transition: color 0.3s ease-in-out;
 }
 
 /* フォーカス時のプレースホルダーの色変更 */
 #search-input:focus::placeholder {
   color: #555;
+}
+
+/* ホバー時のインプットボックスの効果 */
+#search-input:hover {
+  border-color: #bfbfbf;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }

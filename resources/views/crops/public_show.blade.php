@@ -10,7 +10,7 @@
     <!-- Hero Section -->
     <section class="hero">
         @if ($crop->image)
-            <img src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
+            <img class="crop-images" src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
         @endif
         <div class="hero-content">
             <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
