@@ -43,8 +43,8 @@
                 <textarea class="crop-textarea" name="cooking_tips" id="cooking_tips"></textarea>
             </div>
             <div class="crop-form-group">
-                <label for="image" class="crop-image-upload-label">画像をアップロード</label>
-                <input type="file" class="crop-form-control" id="image" name="image">
+                <label for="images" class="crop-image-upload-label">画像をアップロード</label>
+                <input type="file" class="crop-form-control" id="images" name="images[]" multiple>
             </div>
             <div class="crop-form-group">
                 <label for="video" class="crop-image-upload-label">動画のアップロード</label>

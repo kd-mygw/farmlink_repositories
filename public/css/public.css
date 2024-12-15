@@ -32,20 +32,68 @@
       }
 
       /* Hero section styles */
-      .hero {
-          position: relative;
-          background-size: cover;
-          background-position: center;
-          color: #ffffff;
-          padding: 1rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          margin-bottom: 10px;
-          align-items: center;
-          overflow: hidden;
+/* スライダーコンテナ */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* 必要に応じて調整 */
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto;
+}
 
-      }
+/* スライダー */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 各スライド */
+.slide {
+    flex: 0 0 100%; /* 表示領域いっぱいに表示 */
+    text-align: center;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 画像が領域内に収まる */
+    border-radius: 8px; /* 任意で角を丸くする */
+}
+
+/* ナビゲーションボタン */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Hero全体の調整 */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+    
       .hero::after {
           content: '';
           position: absolute;

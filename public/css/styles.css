@@ -337,6 +337,28 @@ body {
   color: #aaa;
 }
 
+.existing-images{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview{
+  position: relative;
+}
+
+.image-preview img{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.image-preview label{
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #333;
+}
 
 @media (max-width: 768px) {
   .crop-container {

@@ -42,11 +42,21 @@
                 <textarea class="crop-textarea" id="cooking_tips" name="cooking_tips" required>{{ $crop->cooking_tips }}</textarea>
             </div>
             <div class="crop-form-group">
-                <label for="image" class="crop-image-upload-label">商品画像</label>
-                <input type="file" class="crop-form-control" id="image" name="image">
-                @if ($crop->image)
-                    <img src="{{ asset('storage/' . $crop->image) }}" alt="商品画像" style="max-width: 300px; height: auto;">
-                @endif
+                <label for="images" class="crop-image-upload-label">商品画像</label>
+                <input type="file" class="crop-form-control" id="images" name="images[]" multiple>
+                <!-- 既存の画像を表示 -->
+                @if ($crop->images)
+                    <div class="existing-images">
+                        @foreach (json_decode($crop->images, true) as $index => $image)
+                            <div class="image-preview">
+                                <img src="{{ asset('storage/' . $image) }}" alt="商品画像" style="max-width: 100px; height: auto;">
+                                <label>
+                                    <input type="checkbox" name="delete_images[]" value="{{ $image }}"> 削除
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif            
             </div>
             <div class="crop-form-group">
                 <label for="video" class="crop-image-upload-label">商品紹介動画</label>
