@@ -1,0 +1,141 @@
+/* 全体の背景とレイアウト */
+body {
+  font-family: 'Figtree', sans-serif;
+  background: linear-gradient(to bottom right, #216d2a, #b5ffb5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* 背景アニメーションのスタイル */
+#background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 背景として扱う */
+  overflow: hidden;
+}
+/* ログインコンテナ */
+.login-container {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 1; /* 背景より手前に表示 */
+}
+
+/* ログインタイトル */
+.login-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ログイン説明 */
+.login-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* フォーム */
+.login-form .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* ラベル */
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* 入力フィールド */
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.login-form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* エラーメッセージ */
+.error-message {
+  color: #ff0000;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* チェックボックス */
+.remember-me {
+  display: flex;
+  /* align-items: center; */
+  /* margin-bottom: 20px; */
+}
+
+.checkbox-label {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* アクション */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-password-link {
+  font-size: 0.875rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* ボタン */
+.primary-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+}
+
+input[type="checkbox"].checkbox-custom {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}

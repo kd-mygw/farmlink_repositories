@@ -1,22 +1,3 @@
-<style>
-    .header-bg {
-        background: linear-gradient(90deg, #2f855a, #38a169); /* 緑のグラデーション */
-        margin-bottom: 30px; /* 下部にスペースを追加 */
-        border-bottom: 2px solid #276749; /* 濃い緑でボーダーを追加 */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 下方向に柔らかな影 */
-    }
-
-    .header-bg a {
-        color: #f0fff4; /* 白に近い緑でテキストのコントラストを高める */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストに影を追加 */
-    }
-
-    .header-bg a:hover {
-        color: #c6f6d5; /* ホバー時のライトグリーン */
-    }
-</style>
-
-
 <nav x-data="{ open: false }" class="header-bg bg-green-700 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
