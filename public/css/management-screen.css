@@ -14,15 +14,13 @@
 
 .crop-management-container {
   position: relative;
-  background:url('/images/background-image-borad.png');
+  background:url('/images/background-frame.jpg');
   background-size: 100% 100%;
   width: 90%;
   max-width: 1200px;
-  height: 650px;
+  height: 750px;
   margin: 0 auto;
-  padding: 60px;
-  padding-top: 60px;
-  padding-left: 130px;
+  padding: 100px;
   background-color: #fffdd0;
   border-radius: 10px;
   border-top: 10px;
@@ -31,12 +29,47 @@
   overflow: hidden;
 }
 
+.crop-management-container::before{
+  content: '';
+  position: absolute;
+  top: 50px; /* 額縁の内側に余白を作る */
+  left: 50px;
+  right: 50px;
+  bottom: 50px;
+  background: url('/images/コルクテクスチャ.jpg') repeat;
+  background-size: 500px 500px; /* タイルサイズを調整 */
+  z-index: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.crop-management-content{
+  background-image: url('/images/paper-texture.jpg');
+  position: relative;
+  background-size: 100% 100%;
+  width: 100%;
+  max-width: 1200px;
+  height: 650px;
+  margin: 0 auto;
+  padding: 60px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #fffdd0;
+  /* border-radius: 10px; */
+  border-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .crop-manager{
   overflow-y: auto;
   overflow-x: hidden;
   background-color: transparent;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom: 30px;
 
 }
 
@@ -44,7 +77,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .crop-management-header h1 {
@@ -74,14 +107,14 @@
   width: 95%; /* 横幅を少し小さくする */
   text-align: left;
   border-collapse: collapse; /* セルの境界線を重ねる */
-  border: 1px solid #ffffff; /* テーブルの外枠 */
+  border: transparent; /* テーブルの外枠 */
   background-color: transparent; /* テーブルの背景色 */
 }
 
 .crop-management-table th,
 .crop-management-table td {
   padding: 5px 8px; /* Changed from 10px to 5px */
-  border-bottom: 1px solid #e5ebe5; /* テーブルの横罫線 */
+  border-bottom: transparent; /* テーブルの横罫線 */
   color: #374151; /* テキストの色 */
 }
 
@@ -97,7 +130,7 @@
 }
 
 .crop-management-table tr:hover {
-  background-color: #e7e7e7;
+  background-color: rgba(242, 190, 126, 0.5); /* 透過性を上げる */
 }
 
 .crop-management-action-buttons {
@@ -171,3 +204,4 @@
   z-index: -1; /* テキストの背面に配置 */
   border-radius: 4px; /* マーカーの角を丸くする */
 }
+

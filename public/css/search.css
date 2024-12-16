@@ -14,7 +14,7 @@
   width: 50px;
   height: 50px;
   padding: 12px 12px 12px 45px; /* 左側の余白を広げ、アイコンと間隔を確保 */
-  border: 2px solid #c2c2c2;
+  border: 1px solid #4e4e4e;
   border-radius: 50px; /* より滑らかな丸みを持たせる */
   outline: none;
   color: #333;
@@ -42,7 +42,7 @@
 /* フォーカス時に幅を広げる */
 #search-input:focus {
   width: 350px; /* フォーカス時の幅をさらに広く */
-  border-color: #888; /* フォーカス時のボーダー色を強調 */
+  border-color: #2b2b2b; /* フォーカス時のボーダー色を強調 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を強調 */
   background-color: transparent; /* 背景色を白に */
 }
@@ -60,6 +60,6 @@
 
 /* ホバー時のインプットボックスの効果 */
 #search-input:hover {
-  border-color: #bfbfbf;
+  border-color: #303030;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
