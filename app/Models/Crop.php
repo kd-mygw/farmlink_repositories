@@ -19,8 +19,10 @@ class Crop extends Model
         'description', //作物の説明
         'cooking_tips', //料理のコツ
         'image', //画像
+        'images', //画像
         'video', //動画
     ];
+    
 
     public function user()
     {

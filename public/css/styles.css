@@ -18,7 +18,6 @@ body {
 .header {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +25,18 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 .header-left h1 {
@@ -33,6 +44,21 @@ body {
   font-weight: bold;
   margin-right: 20px;
 }
+.header-bg {
+  background: linear-gradient(90deg, #857e2f, #38a169); /* 緑のグラデーション */
+  border-bottom: 2px solid #276749; /* 濃い緑でボーダーを追加 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 下方向に柔らかな影 */
+}
+
+.header-bg a {
+  color: #f0fff4; /* 白に近い緑でテキストのコントラストを高める */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストに影を追加 */
+}
+
+.header-bg a:hover {
+  color: #c6f6d5; /* ホバー時のライトグリーン */
+}
+
 
 .top-link {
   font-size: 1rem;
@@ -95,16 +121,30 @@ body {
 }
 
 .feature {
-  background: #f9fafb;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   text-align: center;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .icon {
   font-size: 2rem;
   margin-bottom: 10px;
+  animation: popUp 0.8s ease-out;
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1; 
+    transform: scale(1);
+  }
 }
 
 .feature h3 {
@@ -131,7 +171,22 @@ body {
 
 .start-button:hover {
   background: #065f46;
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-animation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 /* 登録画面のデザイン */
@@ -139,7 +194,7 @@ body {
 
 .crop-body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #60a5fa20, #10b98120);
+  background: linear-gradient(to bottom, #eae73220, #cad59520);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -155,7 +210,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -282,6 +337,29 @@ body {
   color: #aaa;
 }
 
+.existing-images{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-preview{
+  position: relative;
+}
+
+.image-preview img{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.image-preview label{
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
 @media (max-width: 768px) {
   .crop-container {
       padding: 10px;
@@ -292,273 +370,4 @@ body {
   }
 }
 
-/* 管理画面のデザイン */
 
-.crop-management-body {
-  font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
-.crop-management-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border-top: 10px;
-}
-
-.crop-management-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.crop-management-header h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #374151;
-}
-
-.crop-management-header a {
-  background-color: #59986b;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  /* border-radius: 25px; */
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.crop-management-header a:hover {
-  background-color: #0a862d;
-  transform: scale(1.05);
-}
-
-.crop-management-table {
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-  border: 1px solid #e5e7eb;
-}
-
-.crop-management-table th,
-.crop-management-table td {
-  padding: 15px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #374151;
-}
-
-.crop-management-table th {
-  background-color: #f9fafb;
-  font-weight: bold;
-}
-
-.crop-management-table tr:hover {
-  background-color: #f3f4f6;
-}
-
-.crop-management-action-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.crop-management-action-buttons a,
-.crop-management-action-buttons button {
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-decoration: none;
-  /* color: #ffffff; */
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.crop-management-action-buttons .edit-button {
-  background-color: #fbbf24;
-}
-
-.crop-management-action-buttons .edit-button:hover {
-  background-color: #f59e0b;
-  transform: scale(1.05);
-}
-
-.crop-management-action-buttons .delete-button {
-  background-color: #ef4444;
-}
-
-.crop-management-action-buttons .delete-button:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-}
-
-.crop-management-action-buttons .qr-code-button {
-  background-color: #10b981;
-}
-
-.crop-management-action-buttons .qr-code-button:hover {
-  background-color: #059669;
-  transform: scale(1.05);
-}
-
-.crop-management-success-message {
-  background-color: #d1fae5;
-  color: #065f46;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .crop-management-container {
-      padding: 20px;
-  }
-  .crop-management-header h1 {
-      font-size: 1.5rem;
-  }
-  .crop-management-header a {
-      padding: 8px 15px;
-  }
-  .crop-management-table th,
-  .crop-management-table td {
-      padding: 10px;
-  }
-  .crop-management-action-buttons {
-      flex-direction: column;
-      gap: 5px;
-  }
-}
-
-/* 消費者側のデザイン */
-
-.consumer-body {
-  font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #f1f1f1, #ffffff);
-  margin: 0;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
-.consumer-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.consumer-header {
-  text-align: center;
-  color: #2e8b57;
-  margin-bottom: 30px;
-}
-
-.consumer-header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.consumer-header h2 {
-  font-size: 1.5rem;
-  color: #374151;
-}
-
-.consumer-image {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.consumer-card {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.consumer-card-body {
-  padding: 15px 0;
-}
-
-.consumer-card-title {
-  color: #000000;
-  font-weight: bold;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.consumer-card-content {
-  background: #CBEBC9;
-  color: #374151; /*文字の色*/
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: background 0.3s;
-  line-height: 1.6;
-  text-align: center;
-  font-size: 15px;  /*文字の大きさ*/
-  font-weight: 700; /*文字の太さ*/
-}
-
-.consumer-card-content:hover {
-  background: #e5f9e7;
-}
-
-.consumer-video {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 15px;
-}
-
-.consumer-section {
-  margin-bottom: 30px;
-}
-
-.consumer-icon {
-  color: #2e8b57;
-  margin-right: 10px;
-  font-size: 1.5rem;
-}
-
-.consumer-text {
-  color: #374151;
-}
-
-@media (max-width: 768px) {
-  .consumer-header h1 {
-    font-size: 2rem;
-  }
-  .consumer-header h2 {
-    font-size: 1.2rem;
-  }
-  .consumer-card-title {
-    font-size: 1.25rem;
-  }
-  .consumer-card-content {
-    padding: 10px;
-  }
-  .consumer-container {
-    padding: 15px;
-  }
-  .consumer-video {
-    margin-top: 10px;
-  }
-}

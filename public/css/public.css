@@ -13,7 +13,6 @@
       .container {
           max-width: 480px;
           margin: 0 auto;
-          background-color: #fff;
           box-shadow: 0 0 10px rgba(0,0,0,0.1);
       }
 
@@ -33,18 +32,68 @@
       }
 
       /* Hero section styles */
-      .hero {
-          position: relative;
-          height: 250px;
-          background-image: url('https://source.unsplash.com/featured/?farm,vegetables');
-          background-size: cover;
-          background-position: center;
-          color: #fff;
-          padding: 1rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-      }
+/* スライダーコンテナ */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* 必要に応じて調整 */
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto;
+}
+
+/* スライダー */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 各スライド */
+.slide {
+    flex: 0 0 100%; /* 表示領域いっぱいに表示 */
+    text-align: center;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 画像が領域内に収まる */
+    border-radius: 8px; /* 任意で角を丸くする */
+}
+
+/* ナビゲーションボタン */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Hero全体の調整 */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+    
       .hero::after {
           content: '';
           position: absolute;
@@ -52,11 +101,14 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+          /* background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); */
       }
       .hero-content {
           position: relative;
-          z-index: 1;
+          z-index: 2;
+          text-align: center;
+          padding: 10px 20px;
+          background-color: rgba(0, 0, 0, 0.1); /* 半透明の黒背景でテキストを見やすく */
       }
       .hero h1 {
           font-size: 1.3rem;
@@ -75,6 +127,7 @@
       /* Main content styles */
       main {
           padding: 1rem;
+          background:url('/images/木目背景.jpg');
       }
       .section {
           margin-bottom: 2rem;
@@ -86,13 +139,42 @@
           padding-bottom: 0.5rem;
           border-bottom: 2px solid #e0e0e0;
       }
-      .card {
-          background-color: #fff;
-          border-radius: 8px;
-          padding: 1rem;
-          margin-bottom: 1rem;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      }
+    .card {
+        font-family: 'G_PencilKaisho', Arial, sans-serif;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.6); 
+        position: relative;
+        background-image: url('/images/paper-texture.jpg'); /* 紙のような質感を追加 */
+        background-size: cover;
+    }
+    
+    /* ピンのスタイル (張り紙を固定しているように見せる) */
+    .card::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+    .card::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 10px;
+        background-color: #f4d03f; /* 黄色いテープ */
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-10deg); /* 少し傾けて自然な感じに */
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
       .card-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -104,8 +186,10 @@
           color: #2c7a2c;
       }
       .card h3 {
-          font-size: 1rem;
-          margin-bottom: 0.5rem;
+        font-family: 'G_PencilKaisho','Permanent Marker', cursive; /* Google Fontsからインポート */
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: #2c7a2c;
       }
       .card p {
           font-size: 0.875rem;
@@ -147,14 +231,14 @@
           line-height: 1.6;
       }
 
-      /* Recipe styles */
-      .recipe-image {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
-          border-radius: 8px;
-          margin-bottom: 1rem;
-      }
+    /* レシピ画像の張り紙風スタイル */
+    .recipe-image {
+    border: 2px dashed #ccc; /* 破線を追加 */
+    padding: 5px;
+    background-color: #fdfdfd; /* 紙の色 */
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
       .recipe-description {
           font-size: 0.875rem;
           line-height: 1.6;
@@ -166,3 +250,11 @@
         place-items: center;
         object-fit: cover;
       }
+
+      @font-face {
+        font-family: 'G_PencilKaisho';
+        src: url('/fonts/g_pencilkaisho_free.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
