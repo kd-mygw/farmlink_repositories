@@ -202,25 +202,79 @@ body {
 }
 
 .crop-container {
-  min-height: 100vh;
+  position: relative;
+  background:url('/images/background-frame.jpg');
+  background-size: 100% 100%;
+  width: 90%;
+  max-width: 1200px;
+  height: 750px;
+  margin: 0 auto;
+  /* padding: 100px; */
+  background-color: #fffdd0;
+  border-radius: 10px;
+  border-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 800px;
+  overflow: hidden;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.crop-container::before{
+  content: '';
+  position: absolute;
+  top: 60px; /* 額縁の内側に余白を作る */
+  left: 50px;
+  right: 50px;
+  bottom: 60px;
+  background: url('/images/コルクテクスチャ.jpg') repeat;
+  background-size: 500px 500px; /* タイルサイズを調整 */
+  z-index: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.crop-content {
+  background-image: url('/images/paper-texture.jpg');
+  position: relative;
+  background-size: 100% 100%;
+  width: 100%;
+  max-width: 1200px;
+  height: 650px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #fffdd0;
+  /* border-radius: 10px; */
+  border-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .crop-header {
-  color: #2e8b57;
-  text-align: center;
-  margin-bottom: 20px;
+  font-family: 'PencilKaisho', sans-serif;
+  position: relative;
+  display: inline-block;
   font-size: 2rem;
   font-weight: bold;
+  color: #374151;
+  margin-bottom: 20px;
+}
+.crop-header::after {
+  content: ''; /* 擬似要素を表示する */
+  position: absolute;
+  bottom: 0; /* テキストの下部に配置 */
+  left: 0;
+  width: 100%; /* テキストの幅に合わせる */
+  height: 8px; /* マーカーの高さ */
+  background-color: #fdd835; /* マーカーの色（黄色） */
+  z-index: -1; /* テキストの背面に配置 */
+  border-radius: 4px; /* マーカーの角を丸くする */
 }
 
 .crop-form-group {
@@ -233,12 +287,24 @@ body {
 }
 
 .crop-form-control {
+  font-family: 'PencilKaisho', sans-serif;
   border: 2px solid #2e8b57;
   border-radius: 5px;
   padding: 10px;
   transition: border-color 0.3s;
   width: 100%;
   box-sizing: border-box;
+}
+.form-design input{
+  background-color: transparent;
+}
+
+.form-design select{
+  background-color: transparent;
+}
+
+.form-design textarea{
+  background-color: transparent;
 }
 
 .crop-form-control:focus {
