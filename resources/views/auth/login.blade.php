@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="login-container">
+    <div class="login-container mx-auto items-center">
         <h2 class="login-title">ログイン</h2>
         <p class="login-description">FARMLINK にログインして始めましょう</p>
 

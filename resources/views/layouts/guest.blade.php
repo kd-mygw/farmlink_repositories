@@ -16,21 +16,21 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <canvas id="background-animation"></canvas>
+        <!-- <canvas id="background-animation"></canvas> -->
         <!-- <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900"> -->
             <!-- <div>
                 <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
             </div> -->
-            <div class="min-h-screen flex items-center justify-center">
-                <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div class=" frame-container">
+                <div class="login-area items-center">
                     {{ $slot }}
                 </div>
             </div>
         <!-- </div> -->
         <!-- JavaScript -->
-        <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-        <script src="{{ asset('js/blob-animation.js') }}"></script>    
+        <!-- <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+        <script src="{{ asset('js/blob-animation.js') }}"></script>     -->
     </body>
 </html>

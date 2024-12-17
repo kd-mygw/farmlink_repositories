@@ -22,10 +22,9 @@ body {
 }
 /* ログインコンテナ */
 .login-container {
-  background: white;
+  background-image : url('/images/paper-texture.jpg');
   padding: 40px;
-  border-radius: 10px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
@@ -63,6 +62,7 @@ body {
 
 /* 入力フィールド */
 .login-form input {
+  background-color: transparent;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -134,8 +134,21 @@ input[type="checkbox"].checkbox-custom {
   height: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: transparent;
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.frame-container{
+  background-image: url('/images/background-frame.jpg');
+  background-size: 100% 100%;
+  padding: 100px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  width: 100%;
+  min-height: 500px;
+  max-width: 700px;
+  text-align: center;
+  z-index: 1; /* 背景より手前に表示 */
 }
