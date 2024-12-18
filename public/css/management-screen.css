@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 1s ease-in;
 }
 
 .crop-management-container {
@@ -144,4 +145,35 @@
 .pagination-links a:hover {
   background-color: #4caf50;
   color: #fff;
+}
+/* レスポンシブデザイン */
+@media screen and (max-width: 768px) {
+  .crop-management-container {
+    padding: 1rem;
+    margin-top: 15px;
+  }
+
+  .crop-management-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .create-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .crop-management-table th, .crop-management-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .pagination-links a {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
 }
