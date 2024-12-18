@@ -41,5 +41,13 @@ Route::post('/profile/upload-icon', [ProfileController::class, 'uploadIcon'])->n
 // QRコード作成用のルート
 Route::post('/qr/create/{crop}', [QRCodeController::class, 'store'])->name('qr.store');
 
+// routes/web.php
+Route::get('crops/{crop}/templates', [CropController::class, 'editTemplate'])->name('crops.templates.edit');
+Route::post('crops/{crop}/templates', [CropController::class, 'updateTemplate'])->name('crops.templates.update');
+
+Route::get('/crops/preview/{template}', [CropController::class, 'preview'])->name('crops.preview');
+
+Route::get('/crops/preview/{id}/{template}', [CropController::class, 'preview'])->name('crops.preview');
+
 
 require __DIR__.'/auth.php';

@@ -54,6 +54,8 @@
                                         <button type="submit" class="btn btn-outline-primary">QRコードを生成</button>
                                     </form>
                                 @endif
+                                <!-- テンプレート選択ボタン -->
+                                <a href="{{ route('crops.templates.edit', $crop->id) }}" class="btn btn-outline-secondary">テンプレート選択</a>
                             </td>
                         </tr>
                     @endforeach
