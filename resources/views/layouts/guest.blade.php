@@ -23,14 +23,12 @@
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>
             </div> -->
-            <div class=" frame-container">
-                <div class="login-area items-center">
+            <div class="min-h-screen flex items-center justify-center">
                     {{ $slot }}
-                </div>
             </div>
         <!-- </div> -->
         <!-- JavaScript -->
-        <!-- <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-        <script src="{{ asset('js/blob-animation.js') }}"></script>     -->
+        <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+        <script src="{{ asset('js/blob-animation.js') }}"></script>    
     </body>
 </html>
