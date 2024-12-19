@@ -1,98 +1,154 @@
-/* プロフィール画面の背景グラデーション */
+/* 全体背景 */
 .profile-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
-  color: #333;
+  font-family: 'Figtree', 'PencilKaisho', cursive, sans-serif;
+  background: linear-gradient(to bottom right, #f3f8e0, #d4e8d0);
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* プロフィールコンテナ */
+/* コンテナ */
 .profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ヘッダーテキスト */
+.profile-container h2 {
+  font-family: 'PencilKaisho', cursive;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.profile-container p {
+  font-family: 'Figtree', sans-serif;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 1rem;
 }
 
 /* プロフィールアイコン */
 .profile-icon-container {
   position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .profile-icon-container img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 4px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 4px solid #4caf50;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon-container img:hover {
+  transform: scale(1.05);
 }
 
 .profile-icon-container .edit-icon {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: #007bff;
+  bottom: 5px;
+  right: 5px;
+  background-color: #4caf50;
   padding: 8px;
   border-radius: 50%;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* プロフィールフォーム全体のスタイル */
+.profile-icon-container .edit-icon:hover {
+  background-color: #45a049;
+}
+
+/* フォーム */
 .profile-form {
-  background: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
   margin-top: 20px;
+  text-align: left;
 }
 
-/* フォームラベル */
 .profile-form label {
-  display: block;
-  margin-bottom: 8px;
+  font-family: 'Figtree', sans-serif;
   font-weight: bold;
-  color: #555;
+  color: #2e7d32;
+  margin-bottom: 5px;
+  display: block;
 }
 
-/* フォーム入力フィールド */
 .profile-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+  border: 2px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9fff9;
+  transition: all 0.3s ease;
 }
 
 .profile-form input:focus {
-  border-color: #007bff;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
   outline: none;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
 /* 保存ボタン */
-.profile-form .profile-save-button {
-  display: inline-block;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+.profile-save-button {
+    display: inline-block;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
 }
 
-.profile-form .profile-save-button:hover {
-  background-color: #0056b3;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.profile-save-button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+  .profile-save-button {
+    width: 100%;
+    padding: 12px;
+  }
 }

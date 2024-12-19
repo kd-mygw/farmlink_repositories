@@ -4,7 +4,7 @@
     <div class="profile-background py-12 flex flex-col justify-center items-center">
         <div class="max-w-4xl w-full mx-auto sm:px-6 lg:px-8 space-y-6">
             <!-- プロフィール情報更新 -->
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex justify-center">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex justify-center profile-info-bg">
                 <div class="max-w-xl w-full">
                     @include('profile.partials.update-profile-information-form')
                 </div>

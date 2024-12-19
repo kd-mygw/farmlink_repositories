@@ -191,183 +191,123 @@ body {
 
 /* 登録画面のデザイン */
 /* Custom CSS for Crop Registration Page */
-
+/* 全体背景 */
 .crop-body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #eae73220, #cad59520);
+  background: linear-gradient(to bottom right, #f3f8e0, #d4e8d0);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
-}
-
-.crop-container {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: transparent;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* コンテナ */
+.crop-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* ヘッダー */
 .crop-header {
-  color: #2e8b57;
-  text-align: center;
-  margin-bottom: 20px;
+  font-family:  sans-serif;
   font-size: 2rem;
   font-weight: bold;
-}
-
-.crop-form-group {
-  margin-bottom: 15px;
-}
-
-.crop-form-label {
-  font-weight: bold;
-  color: #555;
-}
-
-.crop-form-control {
-  border: 2px solid #2e8b57;
-  border-radius: 5px;
-  padding: 10px;
-  transition: border-color 0.3s;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.crop-form-control:focus {
-  border-color: #66cdaa;
-  outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
-}
-
-.crop-btn-primary {
-  background-color: #2e8b57;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.crop-btn-primary:hover {
-  background-color: #66cdaa;
-  transform: scale(1.05);
-}
-
-.crop-btn-primary:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
-}
-
-.crop-textarea {
-  border-radius: 10px;
-  height: 100px;
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #2e8b57;
-  transition: border-color 0.3s;
-}
-
-.crop-textarea:focus {
-  border-color: #66cdaa;
-  outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
-}
-
-.crop-label {
-  color: #2e8b57;
-  font-weight: bold;
-}
-
-.crop-card {
-  border: none;
-  border-radius: 15px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.crop-card-body {
-  padding: 20px;
-}
-
-.crop-image-upload-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #2e8b57;
-  font-weight: bold;
-}
-
-.crop-image-upload {
-  border: 2px dashed #2e8b57;
-  padding: 20px;
+  color: #2e7d32;
   text-align: center;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.crop-image-upload:hover {
-  background-color: #f0fff0;
-}
-
-.crop-file-input {
-  display: none;
-}
-
-.crop-text-secondary {
-  color: #6c757d;
-}
-
-.crop-text-success {
-  color: #2e8b57;
-}
-
-.crop-textarea::placeholder, .crop-form-control::placeholder {
-  color: #aaa;
-}
-
-.existing-images{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.image-preview{
+  margin-bottom: 1.5rem;
   position: relative;
 }
 
-.image-preview img{
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-.image-preview label{
+.crop-header::after {
+  content: '';
   display: block;
-  margin-top: 5px;
-  font-size: 0.9rem;
-  color: #333;
+  width: 50px;
+  height: 4px;
+  background-color: #66bb6a;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
-@media (max-width: 768px) {
-  .crop-container {
-      padding: 10px;
-  }
-  .crop-btn-primary {
-      width: 100%;
-      padding: 15px;
-  }
+/* フォーム */
+.crop-form-group {
+  margin-bottom: 1.5rem;
 }
 
+.crop-form-label {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  color: #1b5e20;
+  margin-bottom: 0.5rem;
+  display: block;
+}
 
+.crop-form-control,
+.crop-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #c8e6c9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fff9;
+}
+
+.crop-form-control:focus,
+.crop-textarea:focus {
+  outline: none;
+  border-color: #66bb6a;
+  box-shadow: 0 0 8px rgba(102, 187, 106, 0.5);
+}
+
+.crop-textarea {
+  height: 100px;
+}
+
+/* ボタン */
+.crop-btn-primary {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.crop-btn-primary:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 削除テキストのスタイル */
+.image-delete-label {
+  font-family: 'PencilKaisho', sans-serif; /* 例: 特定のフォント */
+  font-size: 1rem; /* フォントサイズ */
+  font-weight: bold; /* フォントの太さ */
+  color: #2e7d32; /* 色 */
+}
+
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
