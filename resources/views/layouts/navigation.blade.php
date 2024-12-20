@@ -9,13 +9,15 @@
                         FARMLINK
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-yellow-100 hover:text-yellow-300">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div> -->
+                <!-- 台帳リンク -->
+                <div class="ms-10 flex items-center space-x-4">
+                    <a href="{{ route('ledger.index') }}" class="text-yellow-100 hover:text-yellow-300 font-medium">
+                        台帳
+                    </a>
+                    <a href="{{ route('cropping.index') }}" class="text-yellow-100 hover:text-yellow-300 font-medium">
+                        作付
+                    </a>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

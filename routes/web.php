@@ -4,6 +4,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CropController;
 use App\Http\Controllers\PublicCropController;
 use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\LedgerController;
+use App\Http\Controllers\FieldController;
+use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CroppingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -49,5 +58,30 @@ Route::get('/crops/preview/{template}', [CropController::class, 'preview'])->nam
 
 Route::get('/crops/preview/{id}/{template}', [CropController::class, 'preview'])->name('crops.preview');
 
+Route::prefix('ledger')->group(function () {
+    Route::get('/', [LedgerController::class, 'index'])->name('ledger.index');
+    Route::get('/fields', [LedgerController::class, 'fields'])->name('ledger.fields');
+    Route::get('/workers', [LedgerController::class, 'workers'])->name('ledger.workers');
+    Route::get('/clients', [LedgerController::class, 'clients'])->name('ledger.clients');
+    Route::get('/items', [LedgerController::class, 'items'])->name('ledger.items');
+    Route::get('/tasks', [LedgerController::class, 'tasks'])->name('ledger.tasks');
+    Route::get('/equipment', [LedgerController::class, 'equipment'])->name('ledger.equipment');
+    Route::get('/products', [LedgerController::class, 'products'])->name('ledger.products');
+});
+
+Route::post('/fields', [FieldController::class, 'store'])->name('fields.store');
+Route::post('/workers', [WorkerController::class, 'store'])->name('workers.store');
+Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::post('/equipment', [EquipmentController::class, 'store'])->name('equipment.store');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
+Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
+Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+Route::get('/fields', [FieldController::class, 'index'])->name('fields.index');
 
 require __DIR__.'/auth.php';
