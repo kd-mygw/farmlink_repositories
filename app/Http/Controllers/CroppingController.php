@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cropping;
 use App\Models\Item;
 use App\Models\Field;
+use Illuminate\Container\Attributes\Log;
 
 class CroppingController extends Controller
 {
@@ -18,12 +19,13 @@ class CroppingController extends Controller
     public function create()
     {
         $fields = Field::all();
-        return view('cropping.create', compact('fields'));
+        $items = Item::all();
+        return view('cropping.create', compact('fields', 'items'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'item_id' => 'required|exists:items,id',
             'field_id' => 'required|exists:fields,id',
@@ -33,7 +35,8 @@ class CroppingController extends Controller
             'color' => 'required|string|max:7', // Hex color code
         ]);
 
-        Cropping::create($request->all());
+        Cropping::create($validated);
+
 
         return redirect()->route('cropping.index')->with('success', '作付が登録されました。');
     }

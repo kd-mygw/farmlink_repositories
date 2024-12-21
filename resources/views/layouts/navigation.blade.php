@@ -17,6 +17,9 @@
                     <a href="{{ route('cropping.index') }}" class="text-yellow-100 hover:text-yellow-300 font-medium">
                         作付
                     </a>
+                    <a href="{{ route('materials.index')}}" class="text-yellow-100 hover:text-yellow-300 font-medium">
+                        資材
+                    </a>
                 </div>
             </div>
 

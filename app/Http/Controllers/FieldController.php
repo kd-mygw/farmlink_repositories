@@ -7,6 +7,13 @@ use App\Models\Field;
 
 class FieldController extends Controller
 {
+
+    public function index()
+    {
+        $fields = Field::all();
+
+        return view('ledger.fields', compact('fields'));
+    }
     public function store(Request $request)
     {
         $request->validate([

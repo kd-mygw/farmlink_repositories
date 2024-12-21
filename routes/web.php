@@ -13,6 +13,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CroppingController;
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\SeedController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -82,6 +85,26 @@ Route::get('/cropping/create',[CroppingController::class, 'create'])->name('crop
 Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
 
 Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+Route::get('/items/select', [ItemController::class, 'index'])->name('items.select');
 Route::get('/fields', [FieldController::class, 'index'])->name('fields.index');
+Route::get('/items/select', [ItemController::class, 'select'])->name('items.select');
+
+// 資材管理ページのルート
+Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
+Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
+Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+
+
+
+// 記録ページのルート
+Route::get('/records', [RecordController::class, 'index'])->name('records.index');
+Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
+Route::post('/records', [RecordController::class, 'store'])->name('records.store');
+
+// 種苗
+Route::get('/materials/seeds', [SeedController::class, 'index'])->name('materials.seeds.index');
+Route::get('/materials/seeds/create', [SeedController::class, 'create'])->name('materials.seeds.create');
+Route::post('/materials/seeds', [SeedController::class, 'store'])->name('materials.seeds.store');
+
 
 require __DIR__.'/auth.php';
