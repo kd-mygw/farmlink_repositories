@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="container">
+<div class="container default-container">
     <!-- Header -->
     {{-- <header>
         <div class="logo">FARM LINK</div>
@@ -9,9 +9,20 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        @if ($crop->image)
-            <img class="crop-images" src="{{ asset('storage/' . $crop->image) }}" alt="{{ $crop->product_name }}" alt="Crop Image" class="">
-        @endif
+        <div class="slider-container">
+            <div class="slider">
+                @if ($crop->images)
+                    @foreach (json_decode($crop->images, true) as $image)
+                        <div class="slide">
+                            <img src="{{ asset('storage/' . $image) }}" alt="Image">
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <!-- ナビゲーションボタン -->
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
         <div class="hero-content">
             <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
             @if (str_contains($crop->cultivation_method, '有機栽培'))
@@ -26,7 +37,7 @@
         </div>
     </section>
             <!-- Farmer Information -->
-            <section class="section">
+    <section class="section">
         <h2 class="section-title">農家の一言</h2>
         <div class="card">
             <div class="farmer-profile">
@@ -105,3 +116,38 @@
     </main>
 </div>
 @endsection
+
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".slider");
+        const slides = document.querySelectorAll(".slide");
+        const prevButton = document.querySelector(".prev");
+        const nextButton = document.querySelector(".next");
+
+        let currentIndex = 0;
+
+        // スライダーを更新
+        function updateSlider() {
+            const offset = -currentIndex * 100; // 表示位置を計算
+            slider.style.transform = `translateX(${offset}%)`;
+        }
+
+        // 前のスライド
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+
+        // 次のスライド
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        });
+
+        // 自動スライド (任意で設定)
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }, 5000); // 5秒ごとにスライド
+    });
+ </script>

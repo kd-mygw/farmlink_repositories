@@ -19,12 +19,21 @@ class Crop extends Model
         'description', //作物の説明
         'cooking_tips', //料理のコツ
         'image', //画像
+        'images', //画像
         'video', //動画
+        'template_id', //テンプレートID
     ];
+    
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Templateとのリレーション
+    public function template()
+    {
+        return $this->belongsTo(Template::class, 'template_id');
     }
 
 }
