@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-6">取引先の登録</h1>
 
-    <form action="{{ route('clients.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('ledger.clients.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         <div class="mb-4">
             <label for="official_name" class="block text-gray-700 text-sm font-bold mb-2">正式名称</label>

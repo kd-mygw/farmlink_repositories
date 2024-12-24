@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-6">作業員の登録</h1>
 
-    <form action="{{ route('workers.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('ledger.workers.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">名前</label>

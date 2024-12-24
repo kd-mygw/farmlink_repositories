@@ -102,7 +102,7 @@
     .header-bg {
         position: fixed;
         top: 0;
-        left: 16rem; /* サイドバーの幅と一致させる */
+        left: 0; /* サイドバーの幅と一致させる */
         right: 0;
         height: 4rem;
         background-color: #047857; /* ナビゲーションバーの背景色 */

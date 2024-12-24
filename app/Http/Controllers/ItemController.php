@@ -11,7 +11,12 @@ class ItemController extends Controller
     {
         $items = Item::all();
 
-        return view('items.select', compact('items'));
+        return view('ledger.items.index', compact('items'));
+    }
+
+    public function create()
+    {
+        return view('ledger.items.create');
     }
 
     public function store(Request $request)
@@ -26,12 +31,26 @@ class ItemController extends Controller
             'variety_name' => $request->variety_name,
         ]);
 
-        return redirect()->route('ledger.items')->with('success', '品目が登録されました。');
+        return redirect()->route('ledger.items.index')->with('success', '品目が登録されました。');
     }
 
-    public function select(Request $request)
+    public function edit(Item $item)
     {
-        $items = Item::all();
-        return view('items.select', compact('items'));
+        return view('ledger.items.edit', compact('item'));
+    }
+
+    public function update(Request $request, Item $item)
+    {
+        $request->validate([
+            'crop_name' => 'required|string|max:255',
+            'variety_name' => 'required|string|max:255',
+        ]);
+
+        $item->update([
+            'crop_name' => $request->crop_name,
+            'variety_name' => $request->variety_name,
+        ]);
+
+        return redirect()->route('ledger.items.index')->with('success', '品目情報が更新されました。');
     }
 }

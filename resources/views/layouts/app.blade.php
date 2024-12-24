@@ -21,14 +21,15 @@
     <style>
         /* 全体のレイアウト設定 */
         .layout {
-            display: flex;
             min-height: 100vh;
+            display: flex;
+            background-color: #f3f4f6
         }
 
         /* サイドバーのスタイル */
         .sidebar-container {
             position: fixed;
-            top: 0;
+            top: 4rem;
             left: 0;
             height: 100%; /* 画面の高さ全体をカバー */
             width: 16rem; /* サイドバーの幅 */
@@ -58,42 +59,20 @@
         }
 
         /* メインコンテンツのスタイル */
-        .main-content {
+        .main-contents {
             flex: 1;
-            margin-left: 16rem; /* サイドバーの幅と一致させる */
+            margin-left: 16rem; /* サイドバーがある時の余白 */
             padding: 6rem 1.5rem 1.5rem;
-            background-color: #f3f4f6; /* グレー */
-            transition: margin-left 0.3s ease; /* スライドアニメーション */
+            background-color: #f3f4f6;
+            transition: margin-left 0.3s ease, width 0.3s ease; /* スムーズなアニメーション */
+            width: calc(100% - 16rem);
         } 
-        .main-content.sidebar-hidden {
-            margin-left: 0; /* サイドバーが隠れた時の余白を0に */
+        .main-contents.sidebar-hidden {
+            margin-left: 0;
         }
-       .navbar{
-            position: fixed;
-            top: 0;
-            left: 16rem; /* サイドバーの幅と一致させる */
-            right: 0;
-            height: 4rem;
-            background-color: #047857; /* ナビゲーションバーの背景色 */
-            color: #facc15; /* テキストの色 */
-            display: flex;
-            align-items: center;
-            padding: 0 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000; /* 高いz-indexで他の要素の上に表示 */
-            transition: left 0.3s ease; /* スライドアニメーション */
-        }
-        .navbar.hidden{
-            left: 0; /* 非表示 */
-        }
-        .navbar a {
-            color: inherit;
-            text-decoration: none;
-            margin-right: 1rem;
-        }
-
+        
         /* レスポンシブ対応 */
-        @media (max-width: 768px) {
+        @media (max-width:900px) {
             .sidebar-container {
                 position: fixed;
                 z-index: 50;
@@ -105,7 +84,7 @@
                 left: 0;
             }
 
-            .main-content {
+            .main-contents {
                 margin-left: 0;
             }
         }
@@ -128,7 +107,7 @@
                 @include('layouts.navigation')
             </div>
             <!-- メインコンテンツ -->
-            <div class="main-content">
+            <div class="main-contents">
                 <main>
                     @yield('content')
                 </main>
@@ -139,14 +118,13 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const sidebar = document.getElementById('sidebar');
-                const mainContent = document.querySelector('.main-content');
-                const navbar = document.querySelector('.navbar');
+                const mainContent = document.querySelector('.main-contents');
         
                 // ハンバーガーボタンを作成
                 const toggleButton = document.createElement('button');
                 toggleButton.innerText = '☰';
                 toggleButton.style.position = 'fixed';
-                toggleButton.style.top = '1rem';
+                toggleButton.style.top = '0.5rem';
                 toggleButton.style.left = '1rem';
                 toggleButton.style.zIndex = '100';
                 toggleButton.style.backgroundColor = '#047857';
@@ -155,6 +133,7 @@
                 toggleButton.style.padding = '0.5rem 1rem';
                 toggleButton.style.fontSize = '1.5rem';
                 toggleButton.style.cursor = 'pointer';
+                toggleButton.style.zIndex = '1100';
         
                 // サイドバー表示/非表示の切り替え
                 toggleButton.addEventListener('click', () => {

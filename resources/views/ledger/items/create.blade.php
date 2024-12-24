@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-6">作業の登録</h1>
+    <h1 class="text-2xl font-bold mb-6">品目の登録</h1>
 
-    <form action="{{ route('tasks.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('ledger.items.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         <div class="mb-4">
             <label for="crop_name" class="block text-gray-700 text-sm font-bold mb-2">作物名</label>
@@ -12,8 +12,8 @@
         </div>
 
         <div class="mb-4">
-            <label for="task_name" class="block text-gray-700 text-sm font-bold mb-2">作業名</label>
-            <input type="text" name="task_name" id="task_name" placeholder="例: 収穫" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <label for="variety_name" class="block text-gray-700 text-sm font-bold mb-2">品種名</label>
+            <input type="text" name="variety_name" id="variety_name" placeholder="例: 桃太郎" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
 
         <div class="flex items-center justify-between">
