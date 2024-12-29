@@ -15,7 +15,7 @@
             </select>
         </div>
         <div class="mb-4">
-            <label for="purchase_date" class="block text-gray-700 text-sm font-bold mb-2">購入日</label>
+            <label for="purchase_date" class="block text-gray-700 text-sm font-bold mb-2">購入日/棚卸日</label>
             <input type="date" name="purchase_date" id="purchase_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700" required>
         </div>
         <div class="mb-4">

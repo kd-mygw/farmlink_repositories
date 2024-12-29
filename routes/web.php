@@ -16,6 +16,7 @@ use App\Http\Controllers\CroppingController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SeedController;
+use App\Http\Controllers\PesticideController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -60,6 +61,16 @@ Route::post('crops/{crop}/templates', [CropController::class, 'updateTemplate'])
 Route::get('/crops/preview/{template}', [CropController::class, 'preview'])->name('crops.preview');
 
 Route::get('/crops/preview/{id}/{template}', [CropController::class, 'preview'])->name('crops.preview');
+
+// 作付関連
+Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
+Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
+Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+
+// 台帳関連
+Route::get('/ledger', function () {
+    return view('ledger.index'); // 台帳のトップページを指すビューを指定
+})->name('ledger.index');
 
 Route::middleware(['auth'])->group(function () {
     // 圃場関連
@@ -118,37 +129,57 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('ledger.products.edit');
         Route::patch('/{product}', [ProductController::class, 'update'])->name('ledger.products.update');
     });
-    Route::get('/ledger', function () {
-        return view('ledger.index'); // 台帳のトップページを指すビューを指定
-    })->name('ledger.index');
+
+    // 資材関連
+    Route::prefix('materials')->group(function () {
+        // 資材カテゴリ一覧ページ
+        Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
     
+        // 種苗
+        Route::prefix('seeds')->group(function () {
+            Route::get('/', [SeedController::class, 'index'])->name('materials.seeds.index');
+            Route::get('/create', [SeedController::class, 'create'])->name('materials.seeds.create');
+            Route::post('/', [SeedController::class, 'store'])->name('materials.seeds.store');
+            Route::get('/{material}/edit', [SeedController::class, 'edit'])->name('materials.seeds.edit');
+            Route::patch('/{material}', [SeedController::class, 'update'])->name('materials.seeds.update');
+        });
     
-    Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
-    Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
-    Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+        // 農薬
+        Route::prefix('pesticides')->group(function () {
+            Route::get('/', [PesticideController::class, 'index'])->name('materials.pesticides.index');
+            Route::get('/create', [PesticideController::class, 'create'])->name('materials.pesticides.create');
+            Route::post('/', [PesticideController::class, 'store'])->name('materials.pesticides.store');
+            Route::get('/{material}/edit', [PesticideController::class, 'edit'])->name('materials.pesticides.edit');
+            Route::patch('/{material}', [PesticideController::class, 'update'])->name('materials.pesticides.update');
+        });
     
-    Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/items/select', [ItemController::class, 'index'])->name('items.select');
-    Route::get('/fields', [FieldController::class, 'index'])->name('fields.index');
-    Route::get('/items/select', [ItemController::class, 'select'])->name('items.select');
+        // 肥料
+        Route::prefix('fertilizers')->group(function () {
+            Route::get('/', [MaterialController::class, 'fertilizersIndex'])->name('materials.fertilizers.index');
+            Route::get('/create', [MaterialController::class, 'fertilizersCreate'])->name('materials.fertilizers.create');
+            Route::post('/', [MaterialController::class, 'fertilizersStore'])->name('materials.fertilizers.store');
+            Route::get('/{material}/edit', [MaterialController::class, 'fertilizersEdit'])->name('materials.fertilizers.edit');
+            Route::patch('/{material}', [MaterialController::class, 'fertilizersUpdate'])->name('materials.fertilizers.update');
+        });
     
-    // 資材管理ページのルート
-    Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-    Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
-    Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+        // 床土
+        Route::prefix('soil')->group(function () {
+            Route::get('/', [MaterialController::class, 'soilIndex'])->name('materials.soil.index');
+            Route::get('/create', [MaterialController::class, 'soilCreate'])->name('materials.soil.create');
+            Route::post('/', [MaterialController::class, 'soilStore'])->name('materials.soil.store');
+            Route::get('/{material}/edit', [MaterialController::class, 'soilEdit'])->name('materials.soil.edit');
+            Route::patch('/{material}', [MaterialController::class, 'soilUpdate'])->name('materials.soil.update');
+        });
     
-    
-    
-    // 記録ページのルート
-    Route::get('/records', [RecordController::class, 'index'])->name('records.index');
-    Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
-    Route::post('/records', [RecordController::class, 'store'])->name('records.store');
-    
-    // 種苗
-    Route::get('/materials/seeds', [SeedController::class, 'index'])->name('materials.seeds.index');
-    Route::get('/materials/seeds/create', [SeedController::class, 'create'])->name('materials.seeds.create');
-    Route::post('/materials/seeds', [SeedController::class, 'store'])->name('materials.seeds.store');
-    
+        // 資材
+        Route::prefix('materials')->group(function () {
+            Route::get('/', [MaterialController::class, 'materialsIndex'])->name('materials.materials.index');
+            Route::get('/create', [MaterialController::class, 'materialsCreate'])->name('materials.materials.create');
+            Route::post('/', [MaterialController::class, 'materialsStore'])->name('materials.materials.store');
+            Route::get('/{material}/edit', [MaterialController::class, 'materialsEdit'])->name('materials.materials.edit');
+            Route::patch('/{material}', [MaterialController::class, 'materialsUpdate'])->name('materials.materials.update');
+        });
+    });
 });
 
 

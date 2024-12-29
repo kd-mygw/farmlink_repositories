@@ -12,9 +12,9 @@
 
     <table class="table-auto w-full bg-white shadow-md rounded">
         <thead>
-            <tr class="bg-green-500 text-white">
+            <tr class="bg-green-500 text-black">
                 <th class="px-4 py-2">品目</th>
-                <th class="px-4 py-2">購入日</th>
+                <th class="px-4 py-2">購入日/棚卸日</th>
                 <th class="px-4 py-2">内容量</th>
                 <th class="px-4 py-2">数量</th>
                 <th class="px-4 py-2">有効期限</th>
@@ -25,8 +25,8 @@
             @forelse ($seeds as $seed)
                 <tr class="border-t">
                     <td class="px-4 py-2">{{ $seed->item->crop_name }}</td>
-                    <td class="px-4 py-2">{{ $seed->purchase_date }}</td>
-                    <td class="px-4 py-2">{{ $seed->content_volume }}</td>
+                    <td class="px-4 py-2">{{ $seed->purchase_date ?? 'なし'}}</td>
+                    <td class="px-4 py-2">{{ $seed->content_volume ?? 'なし'}}</td>
                     <td class="px-4 py-2">{{ $seed->quantity }}</td>
                     <td class="px-4 py-2">{{ $seed->expiry_date ?? 'なし' }}</td>
                     <td class="px-4 py-2">{{ $seed->lot_number ?? 'なし' }}</td>
