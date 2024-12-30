@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesticides', function (Blueprint $table) {
+        Schema::create('fertilizers', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // 農薬名
-            $table->string('active_ingredient')->nullable(); // 有効成分
+            $table->string('name'); // 肥料名
+            $table->string('nutrient')->nullable(); // 栄養素
+            $table->date('purchase_date')->nullable(); // 購入日または棚卸日
             $table->integer('quantity')->default(0); // 数量 デフォルトは0
             $table->decimal('application_rate', 8, 2)->nullable(); // 散布量
+            $table->string('lot_number')->nullable(); // ロット番号
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pesticides');
+        Schema::dropIfExists('fertilizers');
     }
 };

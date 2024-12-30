@@ -17,6 +17,7 @@ use App\Http\Controllers\RecordController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SeedController;
 use App\Http\Controllers\PesticideController;
+use App\Http\Controllers\FertilizerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -155,11 +156,11 @@ Route::middleware(['auth'])->group(function () {
     
         // 肥料
         Route::prefix('fertilizers')->group(function () {
-            Route::get('/', [MaterialController::class, 'fertilizersIndex'])->name('materials.fertilizers.index');
-            Route::get('/create', [MaterialController::class, 'fertilizersCreate'])->name('materials.fertilizers.create');
-            Route::post('/', [MaterialController::class, 'fertilizersStore'])->name('materials.fertilizers.store');
-            Route::get('/{material}/edit', [MaterialController::class, 'fertilizersEdit'])->name('materials.fertilizers.edit');
-            Route::patch('/{material}', [MaterialController::class, 'fertilizersUpdate'])->name('materials.fertilizers.update');
+            Route::get('/', [FertilizerController::class, 'index'])->name('materials.fertilizers.index');
+            Route::get('/create', [FertilizerController::class, 'create'])->name('materials.fertilizers.create');
+            Route::post('/', [FertilizerController::class, 'store'])->name('materials.fertilizers.store');
+            Route::get('/{material}/edit', [FertilizerController::class, 'edit'])->name('materials.fertilizers.edit');
+            Route::patch('/{material}', [FertilizerController::class, 'update'])->name('materials.fertilizers.update');
         });
     
         // 床土
