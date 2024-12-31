@@ -18,6 +18,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SeedController;
 use App\Http\Controllers\PesticideController;
 use App\Http\Controllers\FertilizerController;
+use App\Http\Controllers\SoilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -134,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
     // 資材関連
     Route::prefix('materials')->group(function () {
         // 資材カテゴリ一覧ページ
-        Route::get('/', [MaterialController::class, 'index'])->name('materials.index');
+        Route::get('/', [MaterialController::class, 'materialIndex'])->name('materials.index');
     
         // 種苗
         Route::prefix('seeds')->group(function () {
@@ -164,21 +165,21 @@ Route::middleware(['auth'])->group(function () {
         });
     
         // 床土
-        Route::prefix('soil')->group(function () {
-            Route::get('/', [MaterialController::class, 'soilIndex'])->name('materials.soil.index');
-            Route::get('/create', [MaterialController::class, 'soilCreate'])->name('materials.soil.create');
-            Route::post('/', [MaterialController::class, 'soilStore'])->name('materials.soil.store');
-            Route::get('/{material}/edit', [MaterialController::class, 'soilEdit'])->name('materials.soil.edit');
-            Route::patch('/{material}', [MaterialController::class, 'soilUpdate'])->name('materials.soil.update');
+        Route::prefix('soils')->group(function () {
+            Route::get('/', [SoilController::class, 'index'])->name('materials.soils.index');
+            Route::get('/create', [SoilController::class, 'create'])->name('materials.soils.create');
+            Route::post('/', [SoilController::class, 'store'])->name('materials.soils.store');
+            Route::get('/{material}/edit', [SoilController::class, 'edit'])->name('materials.soils.edit');
+            Route::patch('/{material}', [SoilController::class, 'update'])->name('materials.soils.update');
         });
     
         // 資材
         Route::prefix('materials')->group(function () {
-            Route::get('/', [MaterialController::class, 'materialsIndex'])->name('materials.materials.index');
-            Route::get('/create', [MaterialController::class, 'materialsCreate'])->name('materials.materials.create');
-            Route::post('/', [MaterialController::class, 'materialsStore'])->name('materials.materials.store');
-            Route::get('/{material}/edit', [MaterialController::class, 'materialsEdit'])->name('materials.materials.edit');
-            Route::patch('/{material}', [MaterialController::class, 'materialsUpdate'])->name('materials.materials.update');
+            Route::get('/', [MaterialController::class, 'index'])->name('materials.materials.index');
+            Route::get('/create', [MaterialController::class, 'create'])->name('materials.materials.create');
+            Route::post('/', [MaterialController::class, 'store'])->name('materials.materials.store');
+            Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('materials.materials.edit');
+            Route::patch('/{material}', [MaterialController::class, 'update'])->name('materials.materials.update');
         });
     });
 });
