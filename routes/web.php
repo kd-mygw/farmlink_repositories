@@ -19,6 +19,9 @@ use App\Http\Controllers\SeedController;
 use App\Http\Controllers\PesticideController;
 use App\Http\Controllers\FertilizerController;
 use App\Http\Controllers\SoilController;
+use App\Http\Controllers\HarvestController;
+use App\Http\Controllers\HarvestBatchController;
+use App\Http\Controllers\HarvestLotController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -64,17 +67,18 @@ Route::get('/crops/preview/{template}', [CropController::class, 'preview'])->nam
 
 Route::get('/crops/preview/{id}/{template}', [CropController::class, 'preview'])->name('crops.preview');
 
-// 作付関連
-Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
-Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
-Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
-
-// 台帳関連
-Route::get('/ledger', function () {
-    return view('ledger.index'); // 台帳のトップページを指すビューを指定
-})->name('ledger.index');
-
+// ログインしているユーザー向けのルート設定
 Route::middleware(['auth'])->group(function () {
+    // 作付関連
+    Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
+    Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
+    Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+
+    // 台帳関連
+    Route::get('/ledger', function () {
+        return view('ledger.index'); // 台帳のトップページを指すビューを指定
+    })->name('ledger.index');
+
     // 圃場関連
     Route::prefix('ledger/fields')->group(function () {
         Route::get('/', [FieldController::class, 'index'])->name('ledger.fields.index');
@@ -180,6 +184,30 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/', [MaterialController::class, 'store'])->name('materials.materials.store');
             Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('materials.materials.edit');
             Route::patch('/{material}', [MaterialController::class, 'update'])->name('materials.materials.update');
+        });
+    });
+
+    // 記録関連
+    Route::prefix('records')->group(function(){
+        // 記録ページのトップ
+        Route::get('/',function(){
+            return view('records.index');
+        })->name('record.index');
+
+        // 収穫記録
+        Route::prefix('harvest')->group(function () {
+            Route::get('/', [HarvestController::class, 'index'])->name('record.harvest.index');
+            Route::get('/create', [HarvestController::class, 'create'])->name('record.harvest.create');
+            Route::post('/', [HarvestController::class, 'store'])->name('record.harvest.store');
+            Route::get('/{id}/edit', [HarvestController::class, 'edit'])->name('record.harvest.edit');
+            Route::put('/{id}', [HarvestController::class, 'update'])->name('record.harvest.update');
+            Route::delete('/{id}', [HarvestController::class, 'destroy'])->name('record.harvest.destroy');
+        });
+
+        // 収穫ロット
+        Route::prefix('harvest/lot')->group(function(){
+            Route::get('create',[HarvestLotController::class,'create'])->name('record.harvest.lot.create');
+            Route::post('/',[HarvestLotController::class,'store'])->name('record.harvest.lot.store');
         });
     });
 });

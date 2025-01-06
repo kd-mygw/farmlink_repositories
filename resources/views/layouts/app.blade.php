@@ -98,6 +98,7 @@
                     FARMLINK
                 </a>
                 <ul class="mt-8 space-y-4">
+                    <li><a href="{{route('record.index')}}">記録</a></li>
                     <li><a href="{{ route('ledger.index') }}">台帳</a></li>
                     <li><a href="{{ route('cropping.index') }}">作付</a></li>
                     <li><a href="{{ route('materials.index') }}">資材</a></li>
