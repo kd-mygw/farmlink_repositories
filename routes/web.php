@@ -158,6 +158,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/', [PesticideController::class, 'store'])->name('materials.pesticides.store');
             Route::get('/{material}/edit', [PesticideController::class, 'edit'])->name('materials.pesticides.edit');
             Route::patch('/{material}', [PesticideController::class, 'update'])->name('materials.pesticides.update');
+            Route::get('/search-by-wagri', [PesticideController::class, 'searchByWagri'])->name('materials.pesticides.search-by-wagri');
         });
     
         // 肥料
