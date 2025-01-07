@@ -26,6 +26,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'product_name' => 'required|string|max:255',
             'item_id' => 'required|exists:items,id', // items テーブルの ID を参照
             'packaging' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
@@ -35,6 +36,7 @@ class ProductController extends Controller
         ]);
 
         Product::create([
+            'product_name' => $request->product_name,
             'item_id' => $request->item_id,
             'packaging' => $request->packaging,
             'quantity' => $request->quantity,
@@ -57,6 +59,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
+            'product_name' => 'required|string|max:255',
             'item_id' => 'required|exists:items,id',
             'packaging' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
@@ -66,6 +69,7 @@ class ProductController extends Controller
         ]);
 
         $product->update([
+            'product_name' => $request->product_name,
             'item_id' => $request->item_id,
             'packaging' => $request->packaging,
             'quantity' => $request->quantity,

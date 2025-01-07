@@ -9,6 +9,7 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2 border">ID</th>
                 <th class="px-4 py-2 border">品目</th>
+                <th class="px-4 py-2 border">商品名</th>
                 <th class="px-4 py-2 border">包装容器</th>
                 <th class="px-4 py-2 border">入数</th>
                 <th class="px-4 py-2 border">出荷単位重量</th>
@@ -21,6 +22,7 @@
                 <tr>
                     <td class="px-4 py-2 border">{{ $product->id }}</td>
                     <td class="px-4 py-2 border">{{ $product->item->crop_name }}</td>
+                    <td class="px-4 py-2 border">{{ $product->product_name }}</td>
                     <td class="px-4 py-2 border">{{ $product->packaging }}</td>
                     <td class="px-4 py-2 border">{{ $product->quantity }}</td>
                     <td class="px-4 py-2 border">{{ $product->unit_weight }} {{ $product->unit }}</td>
@@ -34,7 +36,7 @@
     </table>
 
     <div class="mt-6">
-        <a href="{{ route('ledger.products.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('ledger.products.create') }}" class="btn btn-success">
             新規登録
         </a>
     </div>

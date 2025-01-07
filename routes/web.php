@@ -22,6 +22,7 @@ use App\Http\Controllers\SoilController;
 use App\Http\Controllers\HarvestController;
 use App\Http\Controllers\HarvestBatchController;
 use App\Http\Controllers\HarvestLotController;
+use App\Http\Controllers\ShipmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -208,6 +209,16 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('harvest/lot')->group(function(){
             Route::get('create',[HarvestLotController::class,'create'])->name('record.harvest.lot.create');
             Route::post('/',[HarvestLotController::class,'store'])->name('record.harvest.lot.store');
+        });
+
+        // 出荷記録
+        Route::prefix('shipments')->group(function () {
+            Route::get('/', [ShipmentController::class, 'index'])->name('record.shipment.index');
+            Route::get('/create', [ShipmentController::class, 'create'])->name('record.shipment.create');
+            Route::post('/', [ShipmentController::class, 'store'])->name('record.shipment.store');
+            Route::get('/{id}/edit', [ShipmentController::class, 'edit'])->name('record.shipment.edit');
+            Route::put('/{id}', [ShipmentController::class, 'update'])->name('record.shipment.update');
+            Route::delete('/{id}', [ShipmentController::class, 'destroy'])->name('record.shipment.destroy');
         });
     });
 });
