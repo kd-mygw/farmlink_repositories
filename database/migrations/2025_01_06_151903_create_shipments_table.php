@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('crop_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity');
-            $table->string('destination');
-            $table->date('shipment_date');
+            $table->date('date'); // 出荷日
+            $table->unsignedBigInteger('client_id'); // 取引先ID
+            
             $table->timestamps();
         });
     }
