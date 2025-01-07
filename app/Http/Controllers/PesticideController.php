@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesticide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PesticideController extends Controller
 {
@@ -59,5 +60,45 @@ class PesticideController extends Controller
         $pesticide->update($request->all());
 
         return redirect()->route('materials.pesticides.index')->with('success', '農薬が更新されました。');
+    }
+
+    // WAGRI農業情報APIを用いた検索メソッド
+    public function searchByWagri(Request $request)
+    {
+        // 1.ユーザーが入力した検索ワード
+        $query = $request->input('q');
+        if(!$query){
+            // 空文字なら空配列を返す
+            return response()->json([]);
+        }
+
+        // 2.WAGRI農業情報APIのエンドポイント
+        $endpoint = 'https://wagri.naro.go.jp/wagri_api/agriculturalchemical_get/';
+
+        $params = [
+            'chemical_name' => $query,
+        ];
+
+        // 3.外部APIにリクエストを送信
+        $response = Http::get($endpoint, $params);
+        if($response->failed()){
+            return response()->json(['error'=>'検索に失敗しました'], 500);
+        }
+
+        // JSONデータを取得
+        $data = $response->json();
+
+        $items = $data['result'] ?? [];
+
+        // 4.フロントエンドで使いやすい形式に整形
+        $formatted = collect($items)->map(function($item){
+            return [
+                'id' => $item['pesticide_id'] ?? '',
+                'text' => $item['chemical_name'] ?? '',
+            ];
+        })->all();
+
+        // 5.整形したデータをJSON形式で返す
+        return response()->json($formatted);
     }
 }
