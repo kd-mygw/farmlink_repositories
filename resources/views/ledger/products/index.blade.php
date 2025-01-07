@@ -1,43 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-6">商品一覧</h1>
+<div class="ledger-container">
+    <div class="title-container">
+        <h1 class="ledger-title">商品一覧</h1>
+    </div>
 
-    <table class="table-auto w-full border">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2 border">ID</th>
-                <th class="px-4 py-2 border">品目</th>
-                <th class="px-4 py-2 border">商品名</th>
-                <th class="px-4 py-2 border">包装容器</th>
-                <th class="px-4 py-2 border">入数</th>
-                <th class="px-4 py-2 border">出荷単位重量</th>
-                <th class="px-4 py-2 border">単価</th>
-                <th class="px-4 py-2 border">操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($products as $product)
+    <div class="ledger-table-container">
+        <table class="ledger-table">
+            <thead>
                 <tr>
-                    <td class="px-4 py-2 border">{{ $product->id }}</td>
-                    <td class="px-4 py-2 border">{{ $product->item->crop_name }}</td>
-                    <td class="px-4 py-2 border">{{ $product->product_name }}</td>
-                    <td class="px-4 py-2 border">{{ $product->packaging }}</td>
-                    <td class="px-4 py-2 border">{{ $product->quantity }}</td>
-                    <td class="px-4 py-2 border">{{ $product->unit_weight }} {{ $product->unit }}</td>
-                    <td class="px-4 py-2 border">{{ $product->price }}</td>
-                    <td class="px-4 py-2 border">
-                        <a href="{{ route('ledger.products.edit', $product->id) }}" class="text-blue-500">編集</a>
-                    </td>
+                    <th>ID</th>
+                    <th>品目</th>
+                    <th>包装容器</th>
+                    <th>入数</th>
+                    <th>出荷単位重量</th>
+                    <th>単価</th>
+                    <th>操作</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>{{ $product->id }}</td>
+                        <td>{{ $product->item->crop_name }}</td>
+                        <td>{{ $product->packaging }}</td>
+                        <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->unit_weight }} {{ $product->unit }}</td>
+                        <td>{{ $product->price }}</td>
+                        <td>
+                            <a href="{{ route('ledger.products.edit', $product->id) }}" class="btn-primary">編集</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-    <div class="mt-6">
-        <a href="{{ route('ledger.products.create') }}" class="btn btn-success">
-            新規登録
+    
+
+    <div class="ledger-actions">
+        <a href="{{ route('ledger.products.create') }}" class="btn-success">
+            新規商品登録
         </a>
     </div>
 </div>

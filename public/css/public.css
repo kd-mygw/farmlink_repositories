@@ -112,8 +112,9 @@
           background-color: rgba(0, 0, 0, 0.1); /* 半透明の黒背景でテキストを見やすく */
       }
       .hero h1 {
-          font-size: 2rem;
+          font-size: 1.3rem;
           margin-bottom: 0.5rem;
+          background-color: #999999;
       }
       .badge {
           display: inline-block;
