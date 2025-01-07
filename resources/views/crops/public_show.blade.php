@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="container">
+<div class="container default-container">
     <!-- Header -->
     {{-- <header>
         <div class="logo">FARM LINK</div>
@@ -37,7 +37,7 @@
         </div>
     </section>
             <!-- Farmer Information -->
-            <section class="section">
+    <section class="section">
         <h2 class="section-title">農家の一言</h2>
         <div class="card">
             <div class="farmer-profile">
