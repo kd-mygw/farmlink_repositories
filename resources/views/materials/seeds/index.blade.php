@@ -1,42 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-6">種苗一覧</h1>
-
-    <div class="mb-4">
-        <a href="{{ route('materials.seeds.create') }}" class="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded">
-            + 種苗を登録
+<div class="materials-container">
+    <div class="title-container">
+        <h1 class="materials-title">種苗一覧</h1>
+    </div>
+    <div class="materials-table-container">
+        <table class="materials-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>品目</th>
+                    <th>購入日/棚卸日</th>
+                    <th>内容量</th>
+                    <th>数量</th>
+                    <th>有効期限</th>
+                    <th>ロット番号</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($seeds as $seed)
+                <tr>
+                    <td>{{ $seed->id }}</td>
+                    <td>{{ $seed->item->crop_name }}</td>
+                    <td>{{ $seed->purchase_date ?? 'なし'}}</td>
+                    <td>{{ $seed->content_volume ?? 'なし'}}</td>
+                    <td>{{ $seed->quantity }}</td>
+                    <td>{{ $seed->expiry_date ?? 'なし' }}</td>
+                    <td>{{ $seed->lot_number ?? 'なし' }}</td>
+                    <td>
+                        <a href="{{ route('materials.seeds.edit', $seed->id) }}" class="btn-primary">編集</a>
+                    </td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center py-4">登録された種苗がありません。</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+    <div class="materials-actions">
+        <a href="{{ route('materials.seeds.create') }}" class="btn-success">
+            新規登録
         </a>
     </div>
 
-    <table class="table-auto w-full bg-white shadow-md rounded">
-        <thead>
-            <tr class="bg-green-500 text-black">
-                <th class="px-4 py-2">品目</th>
-                <th class="px-4 py-2">購入日/棚卸日</th>
-                <th class="px-4 py-2">内容量</th>
-                <th class="px-4 py-2">数量</th>
-                <th class="px-4 py-2">有効期限</th>
-                <th class="px-4 py-2">ロット番号</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($seeds as $seed)
-                <tr class="border-t">
-                    <td class="px-4 py-2">{{ $seed->item->crop_name }}</td>
-                    <td class="px-4 py-2">{{ $seed->purchase_date ?? 'なし'}}</td>
-                    <td class="px-4 py-2">{{ $seed->content_volume ?? 'なし'}}</td>
-                    <td class="px-4 py-2">{{ $seed->quantity }}</td>
-                    <td class="px-4 py-2">{{ $seed->expiry_date ?? 'なし' }}</td>
-                    <td class="px-4 py-2">{{ $seed->lot_number ?? 'なし' }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="6" class="text-center py-4">登録された種苗がありません。</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+    
 </div>
 @endsection
