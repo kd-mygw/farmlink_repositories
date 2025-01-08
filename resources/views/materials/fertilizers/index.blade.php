@@ -1,37 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="contaienr mx-auto px-4">
-  <h1 class="text-2xl font-bold mb-6">肥料一覧</h1>
-
-  <table class="table-auto w-full border">
-    <thead>
-      <tr class="bg-gray-200">
-        <th class="px-4 py-2">肥料名</th>
-        <th class="px-4 py-2">含有成分</th>
-        <th class="px-4 py-2">購入日</th>
-        <th class="px-4 py-2">数量</th>
-        <th class="px-4 py-2">使用量</th>
-        <th class="px-4 py-2">ロット番号</th>
-      </tr>
-    </thead>
-    <tbody>
-      @forelse ($fertilizers as $fertilizer)
+<div class="materials-container">
+  <div class="title-container">
+    <h1 class="materials-title">肥料一覧</h1>
+  </div>
+  <div class="materials-table-container">
+    <table class="materials-table">
+      <thead>
         <tr>
-          <td class="border px-4 py-2">{{ $fertilizer->name }}</td>
-          <td class="border px-4 py-2">{{ $fertilizer->nutrient ?? 'なし' }}</td>
-          <td class="border px-4 py-2">{{ $fertilizer->purchase_date ?? 'なし' }}</td>
-          <td class="border px-4 py-2">{{ $fertilizer->quantity }}</td>
-          <td class="border px-4 py-2">{{ $fertilizer->application_rate ?? 'なし' }}</td>
-          <td class="border px-4 py-2">{{ $fertilizer->lot_number ?? 'なし' }}</td>
+          <th>ID</th>
+          <th>肥料名</th>
+          <th>含有成分</th>
+          <th>購入日</th>
+          <th>数量</th>
+          <th>使用量</th>
+          <th>ロット番号</th>
+          <th>操作</th>
         </tr>
-      @empty
-        <tr>
-          <td colspan="6" class="text-center py-4">登録された肥料がありません。</td>
-        </tr>
-      @endforelse
-    </tbody>
-  </table>
-  <a href="{{route('materials.fertilizers.create')}}" class="bg-green-500 text-black px-4 py-2 rounded mt-4 inline-block">新規登録</a>
+      </thead>
+      <tbody>
+        @forelse ($fertilizers as $fertilizer)
+          <tr>
+            <td>{{ $fertilizer->id }}</td>
+            <td>{{ $fertilizer->name }}</td>
+            <td>{{ $fertilizer->nutrient ?? 'なし' }}</td>
+            <td>{{ $fertilizer->purchase_date ?? 'なし' }}</td>
+            <td>{{ $fertilizer->quantity }}</td>
+            <td>{{ $fertilizer->application_rate ?? 'なし' }}</td>
+            <td>{{ $fertilizer->lot_number ?? 'なし' }}</td>
+            <td>
+              {{-- <a href="{{ route('materials.fertilizer.edit', $fertilizer->id) }}" class="btn-primary">編集</a> --}}
+            </td>
+          </tr>
+        @empty
+          <tr>
+            <td colspan="6" class="text-center py-4">登録された肥料がありません。</td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+  </div>
+  <div class="materials-actions">
+    <a href="{{route('materials.fertilizers.create')}}" class="btn-success">新規登録</a>
+  </div>
 </div>
 @endsection
