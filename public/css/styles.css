@@ -18,7 +18,6 @@ body {
 .header {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +25,18 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 .header-left h1 {
@@ -33,6 +44,21 @@ body {
   font-weight: bold;
   margin-right: 20px;
 }
+.header-bg {
+  background: linear-gradient(90deg, #857e2f, #38a169); /* 緑のグラデーション */
+  border-bottom: 2px solid #276749; /* 濃い緑でボーダーを追加 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 下方向に柔らかな影 */
+}
+
+.header-bg a {
+  color: #f0fff4; /* 白に近い緑でテキストのコントラストを高める */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストに影を追加 */
+}
+
+.header-bg a:hover {
+  color: #c6f6d5; /* ホバー時のライトグリーン */
+}
+
 
 .top-link {
   font-size: 1rem;
@@ -95,16 +121,30 @@ body {
 }
 
 .feature {
-  background: #f9fafb;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   text-align: center;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .icon {
   font-size: 2rem;
   margin-bottom: 10px;
+  animation: popUp 0.8s ease-out;
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1; 
+    transform: scale(1);
+  }
 }
 
 .feature h3 {
@@ -131,433 +171,143 @@ body {
 
 .start-button:hover {
   background: #065f46;
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-animation.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 /* 登録画面のデザイン */
 /* Custom CSS for Crop Registration Page */
-
+/* 全体背景 */
 .crop-body {
   font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #60a5fa20, #10b98120);
+  background: linear-gradient(to bottom right, #f3f8e0, #d4e8d0);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
-}
-
-.crop-container {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* コンテナ */
+.crop-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 800px;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+/* ヘッダー */
 .crop-header {
-  color: #2e8b57;
-  text-align: center;
-  margin-bottom: 20px;
+  font-family:  sans-serif;
   font-size: 2rem;
   font-weight: bold;
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
+.crop-header::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: #66bb6a;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* フォーム */
 .crop-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
 .crop-form-label {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  color: #555;
+  color: #1b5e20;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-.crop-form-control {
-  border: 2px solid #2e8b57;
-  border-radius: 25px;
-  padding: 10px;
-  transition: border-color 0.3s;
+.crop-form-control,
+.crop-textarea {
   width: 100%;
-  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 2px solid #c8e6c9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9fff9;
 }
 
-.crop-form-control:focus {
-  border-color: #66cdaa;
+.crop-form-control:focus,
+.crop-textarea:focus {
   outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
-}
-
-.crop-btn-primary {
-  background-color: #2e8b57;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.crop-btn-primary:hover {
-  background-color: #66cdaa;
-  transform: scale(1.05);
-}
-
-.crop-btn-primary:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
+  border-color: #66bb6a;
+  box-shadow: 0 0 8px rgba(102, 187, 106, 0.5);
 }
 
 .crop-textarea {
-  border-radius: 10px;
   height: 100px;
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #2e8b57;
-  transition: border-color 0.3s;
 }
 
-.crop-textarea:focus {
-  border-color: #66cdaa;
-  outline: none;
-  box-shadow: 0 0 8px rgba(102, 205, 170, 0.5);
-}
-
-.crop-label {
-  color: #2e8b57;
-  font-weight: bold;
-}
-
-.crop-card {
+/* ボタン */
+.crop-btn-primary {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 15px;
-  background-color: #f9f9f9;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.crop-card-body {
-  padding: 20px;
-}
-
-.crop-image-upload-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #2e8b57;
+  border-radius: 25px;
   font-weight: bold;
-}
-
-.crop-image-upload {
-  border: 2px dashed #2e8b57;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.crop-image-upload:hover {
-  background-color: #f0fff0;
-}
-
-.crop-file-input {
-  display: none;
-}
-
-.crop-text-secondary {
-  color: #6c757d;
-}
-
-.crop-text-success {
-  color: #2e8b57;
-}
-
-.crop-textarea::placeholder, .crop-form-control::placeholder {
-  color: #aaa;
-}
-
-@media (max-width: 768px) {
-  .crop-container {
-      padding: 10px;
-  }
-  .crop-btn-primary {
-      width: 100%;
-      padding: 15px;
-  }
-}
-
-/* 管理画面のデザイン */
-
-.crop-management-body {
-  font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
-.crop-management-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.crop-management-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.crop-management-header h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #374151;
-}
-
-.crop-management-header a {
-  background-color: #59986b;
-  color: #ffffff;
-  padding: 10px 20px;
   font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  /* border-radius: 25px; */
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 1rem auto 0;
 }
 
-.crop-management-header a:hover {
-  background-color: #0a862d;
-  transform: scale(1.05);
+.crop-btn-primary:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.crop-management-table {
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-  border: 1px solid #e5e7eb;
+/* 削除テキストのスタイル */
+.image-delete-label {
+  font-family: 'PencilKaisho', sans-serif; /* 例: 特定のフォント */
+  font-size: 1rem; /* フォントサイズ */
+  font-weight: bold; /* フォントの太さ */
+  color: #2e7d32; /* 色 */
 }
 
-.crop-management-table th,
-.crop-management-table td {
-  padding: 15px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #374151;
-}
-
-.crop-management-table th {
-  background-color: #f9fafb;
-  font-weight: bold;
-}
-
-.crop-management-table tr:hover {
-  background-color: #f3f4f6;
-}
-
-.crop-management-action-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.crop-management-action-buttons a,
-.crop-management-action-buttons button {
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-decoration: none;
-  /* color: #ffffff; */
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.crop-management-action-buttons .edit-button {
-  background-color: #fbbf24;
-}
-
-.crop-management-action-buttons .edit-button:hover {
-  background-color: #f59e0b;
-  transform: scale(1.05);
-}
-
-.crop-management-action-buttons .delete-button {
-  background-color: #ef4444;
-}
-
-.crop-management-action-buttons .delete-button:hover {
-  background-color: #dc2626;
-  transform: scale(1.05);
-}
-
-.crop-management-action-buttons .qr-code-button {
-  background-color: #10b981;
-}
-
-.crop-management-action-buttons .qr-code-button:hover {
-  background-color: #059669;
-  transform: scale(1.05);
-}
-
-.crop-management-success-message {
-  background-color: #d1fae5;
-  color: #065f46;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .crop-management-container {
-      padding: 20px;
+/* アニメーション */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  .crop-management-header h1 {
-      font-size: 1.5rem;
-  }
-  .crop-management-header a {
-      padding: 8px 15px;
-  }
-  .crop-management-table th,
-  .crop-management-table td {
-      padding: 10px;
-  }
-  .crop-management-action-buttons {
-      flex-direction: column;
-      gap: 5px;
-  }
-}
-
-/* 消費者側のデザイン */
-
-.consumer-body {
-  font-family: 'Figtree', sans-serif;
-  background: linear-gradient(to bottom, #f1f1f1, #ffffff);
-  margin: 0;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  min-height: 100vh;
-}
-
-.consumer-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.consumer-header {
-  text-align: center;
-  color: #2e8b57;
-  margin-bottom: 30px;
-}
-
-.consumer-header h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.consumer-header h2 {
-  font-size: 1.5rem;
-  color: #374151;
-}
-
-.consumer-image {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.consumer-card {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.consumer-card-body {
-  padding: 15px 0;
-}
-
-.consumer-card-title {
-  color: #000000;
-  font-weight: bold;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.consumer-card-content {
-  background: #CBEBC9;
-  color: #374151; /*文字の色*/
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: background 0.3s;
-  line-height: 1.6;
-  text-align: center;
-  font-size: 15px;  /*文字の大きさ*/
-  font-weight: 700; /*文字の太さ*/
-}
-
-.consumer-card-content:hover {
-  background: #e5f9e7;
-}
-
-.consumer-video {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 15px;
-}
-
-.consumer-section {
-  margin-bottom: 30px;
-}
-
-.consumer-icon {
-  color: #2e8b57;
-  margin-right: 10px;
-  font-size: 1.5rem;
-}
-
-.consumer-text {
-  color: #374151;
-}
-
-@media (max-width: 768px) {
-  .consumer-header h1 {
-    font-size: 2rem;
-  }
-  .consumer-header h2 {
-    font-size: 1.2rem;
-  }
-  .consumer-card-title {
-    font-size: 1.25rem;
-  }
-  .consumer-card-content {
-    padding: 10px;
-  }
-  .consumer-container {
-    padding: 15px;
-  }
-  .consumer-video {
-    margin-top: 10px;
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
 }
