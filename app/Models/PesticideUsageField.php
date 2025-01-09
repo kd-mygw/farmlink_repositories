@@ -50,7 +50,7 @@ class PesticideUsageField extends Model
     }
 
     // リレーション: 使用機械
-    public function machine()
+    public function equipment()
     {
         return $this->belongsTo(Equipment::class);
     }

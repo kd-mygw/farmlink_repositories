@@ -10,21 +10,58 @@ use App\Models\Soil;
 use App\Models\Pesticide;
 use App\Models\Worker;
 use App\Models\Equipment;
+use App\Models\PesticideUsageField;
+use App\Models\PesticideUsageSeed;
+use App\Models\PesticideUsageSoil;
 
 class PesticideUsageController extends Controller
 {
     public function index()
     {
-        // 各プルダウン用のデータを取得
-        $croppings = Cropping::all();
-        $fields    = Field::all();
-        $seeds     = Seed::all();
-        $soils     = Soil::all();
-        $pesticides = Pesticide::all();
-        $workers   = Worker::all();
-        $equipments  = Equipment::all();
+        // 圃場用の一覧
+        $fieldUsages = PesticideUsageField::with(['cropping','field','pesticide','worker','equipment'])->get();
+        // 種苗用の一覧
+        $seedUsages = PesticideUsageSeed::with(['cropping','seed','pesticide','worker','equipment'])->get();
+        // 床土用の一覧
+        $soilUsages = PesticideUsageSoil::with(['cropping','soil','pesticide','worker','equipment'])->get();
 
-        return view('records.pesticide_usage.index', compact('croppings', 'fields', 'seeds', 'soils', 'pesticides', 'workers', 'equipments'));
+        return view('records.pesticide_usage.index', compact('fieldUsages','seedUsages','soilUsages'));
+    }
+
+    // 圃場用の新規登録フォーム
+    public function createField()
+    {
+        $croppings = Cropping::all();
+        $fields = Field::all();
+        $pesticides = Pesticide::all();
+        $workers = Worker::all();
+        $equipments = Equipment::all();
+
+        return view('records.pesticide_usage.create_field', compact('croppings','fields','pesticides','workers','equipments')); 
+    }
+
+    // 種苗用の新規登録フォーム
+    public function createSeed()
+    {
+        $croppings = Cropping::all();
+        $seeds = Seed::all();
+        $pesticides = Pesticide::all();
+        $workers = Worker::all();
+        $equipments = Equipment::all();
+
+        return view('records.pesticide_usage.create_seed', compact('croppings','seeds','pesticides','workers','equipments')); 
+    }
+
+    // 床土用の新規登録フォーム
+    public function createSoil()
+    {
+        $croppings = Cropping::all();
+        $soils = Soil::all();
+        $pesticides = Pesticide::all();
+        $workers = Worker::all();
+        $equipments = Equipment::all();
+
+        return view('records.pesticide_usage.create_soil', compact('croppings','soils','pesticides','workers','equipments')); 
     }
 
     // 圃場: 登録
@@ -38,13 +75,13 @@ class PesticideUsageController extends Controller
             'dilution'     => 'required|numeric|min:1', 
             'usage_amount' => 'required|numeric|min:0.01',
             'worker_id'    => 'nullable|exists:workers,id',
-            'equipment_id'   => 'nullable|exists:equipments,id',
+            'equipment_id'   => 'nullable|exists:equipment,id',
             'memo'         => 'nullable|string',
         ]);
 
         // 例: PesticideUsageFieldモデルがあると仮定
         // DB保存
-        \App\Models\PesticideUsageField::create([
+        PesticideUsageField::create([
             'date'         => $request->date,
             'cropping_id'  => $request->cropping_id,
             'field_id'     => $request->field_id,
@@ -70,11 +107,11 @@ class PesticideUsageController extends Controller
             'dilution'     => 'required|numeric|min:1', 
             'usage_amount' => 'required|numeric|min:0.01',
             'worker_id'    => 'nullable|exists:workers,id',
-            'equipment_id'   => 'nullable|exists:equipments,id',
+            'equipment_id'   => 'nullable|exists:equipment,id',
             'memo'         => 'nullable|string',
         ]);
 
-        \App\Models\PesticideUsageSeed::create([
+        PesticideUsageSeed::create([
             // ... 同様に保存
             'date'         => $request->date,
             'cropping_id'  => $request->cropping_id,
@@ -101,11 +138,11 @@ class PesticideUsageController extends Controller
             'dilution'     => 'required|numeric|min:1', 
             'usage_amount' => 'required|numeric|min:0.01',
             'worker_id'    => 'nullable|exists:workers,id',
-            'equipment_id'   => 'nullable|exists:equipments,id',
+            'equipment_id'   => 'nullable|exists:equipment,id',
             'memo'         => 'nullable|string',
         ]);
 
-        \App\Models\PesticideUsageSoil::create([
+        PesticideUsageSoil::create([
             // ... 同様に保存
             'date'         => $request->date,
             'cropping_id'  => $request->cropping_id,
