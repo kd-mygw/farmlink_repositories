@@ -31,15 +31,15 @@
                 <span class="record-card-title">農薬</span>
             </a>
         </div>
-        {{--<div class="record-card">
-            <a href="{{ route('record.fertilizer.index') }}">
+        <div class="record-card">
+            <a href="{{ route('record.fertilizer_usage.index') }}">
                 <svg class="record-card-icon" viewBox="0 0 24 24">
                     <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
                 </svg>
                 <span class="record-card-title">肥料</span>
             </a>
         </div>
-        <div class="record-card">
+        {{--<div class="record-card">
           <a href="{{route('record.task.index')}}">
             <svg class="record-card-icon" viewBox="0 0 24 24">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>

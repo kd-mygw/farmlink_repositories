@@ -13,24 +13,28 @@ return new class extends Migration
     {
         Schema::create('records_fertilizers_fields', function (Blueprint $table) {
             $table->id();
+            $table->date('date');                        // 使用日
+            $table->foreignId('cropping_id')             // 作付ID
+                  ->constrained('croppings')
+                  ->cascadeOnDelete();
+            $table->foreignId('field_id')                // 圃場ID
+                  ->constrained('fields')
+                  ->cascadeOnDelete();
+            $table->foreignId('pesticide_id')            // 農薬ID
+                  ->constrained('pesticides')
+                  ->cascadeOnDelete();
+            $table->decimal('usage_amount', 8, 2);       // 使用量
+            $table->string('unit');                      // 単位
+            $table->foreignId('worker_id')               // 作業員ID
+                  ->nullable()
+                  ->constrained('workers')
+                  ->nullOnDelete();
+            $table->foreignId('equipment_id')              // 使用機械ID
+                  ->nullable()
+                  ->constrained('equipment')
+                  ->nullOnDelete();
+            $table->text('memo')->nullable();            // メモ
             $table->timestamps();
-
-            $table->date('date'); // 日付
-            $table->unsignedBigInteger('cropping_id'); // 作付ID
-            $table->string('fields_name'); // 圃場名
-            $table->string('fertilizers_name'); // 肥料名
-            $table->unsigedInteger('quantity'); // 肥料の量
-            $table->string('unit'); // 単位(mg,g,kg)
-            $table->string('farmer_name'); // 作業員
-            $table->string('machine'); // 使用機械
-            $table->text('memo')->nullable(); // メモ
-
-
-            $table->foreign('cropping_id')->references('id')->on('croppings')->onDelete('cascade');
-            $table->foreign('fields_name')->references('name')->on('fields')->onDelete('cascade');
-            $table->foreign('fertilizers_name')->references('name')->on('fertilizers')->onDelete('cascade');
-            $table->foreign('farmer_name')->references('name')->on('workers')->onDelete('cascade');
-            $table->foreign('machine')->references('name')->on('equipment')->onDelete('cascade');
         });
     }
 
@@ -42,3 +46,4 @@ return new class extends Migration
         Schema::dropIfExists('records_fertilizers_fields');
     }
 };
+
