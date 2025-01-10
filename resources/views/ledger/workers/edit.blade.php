@@ -1,20 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>作業員編集</h1>
-    <form action="{{ route('ledger.workers.update', $worker->id) }}" method="POST">
+<div class="field-registration-container">
+    <h1 class="field-registration-title">作業員編集</h1>
+    <form action="{{ route('ledger.workers.update', $worker->id) }}" method="POST" class="field-registration-form">
         @csrf
         @method('PATCH')
-        <div class="mb-3">
-            <label for="name" class="form-label">名前</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ $worker->name }}" required>
+        <div class="form-group">
+            <label for="name">名前</label>
+            <input type="text" name="name" id="name" class="form-input" value="{{ $worker->name }}" required>
         </div>
-        <div class="mb-3">
-            <label for="kana" class="form-label">フリガナ</label>
-            <input type="text" name="kana" id="kana" class="form-control" value="{{ $worker->kana }}" required>
+        <div class="form-group">
+            <label for="kana">フリガナ</label>
+            <input type="text" name="kana" id="kana" class="form-input" value="{{ $worker->kana }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">更新</button>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">更新</button>
+            <a href="{{ route('ledger.workers.index')}}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                キャンセル
+            </a>
+        </div>
+        
     </form>
 </div>
 @endsection

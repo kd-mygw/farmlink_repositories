@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <label for="unit_price">取引単価</label>
-            <input type="number" step="0.01" name="unit_price" id="unit_price" placeholder="例: 500000.00" class="form-input">
+            <input type="number" step="1" name="unit_price" id="unit_price" placeholder="例: 500000.00" class="form-input">
         </div>
 
         <div class="form-actions">

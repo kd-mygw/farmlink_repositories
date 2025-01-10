@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>種別</th>
                     <th>圃場名</th>
                     <th>面積</th>
                     <th>単位</th>
@@ -22,6 +23,7 @@
                 @foreach ($fields as $field)
                 <tr>
                     <td>{{ $field->id }}</td>
+                    <td>{{ $field->type }}</td>
                     <td>{{ $field->name }}</td>
                     <td>{{ $field->area }}</td>
                     <td>{{ $field->area_unit }}</td>
