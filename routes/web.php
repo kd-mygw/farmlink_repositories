@@ -23,6 +23,7 @@ use App\Http\Controllers\HarvestController;
 use App\Http\Controllers\HarvestBatchController;
 use App\Http\Controllers\HarvestLotController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\PesticideUsageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -221,6 +222,22 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/{id}', [ShipmentController::class, 'update'])->name('record.shipment.update');
             Route::delete('/{id}', [ShipmentController::class, 'destroy'])->name('record.shipment.destroy');
         });
+        
+        // 農薬使用記録
+        Route::get('pesticide-usage', [PesticideUsageController::class, 'index'])->name('record.pesticide_usage.index');
+
+        // 各種　createフォーム
+        Route::get('pesticide-usage/create-field',[PesticideUsageController::class, 'createField'])->name('record.pesticide_usage.createField');
+        Route::get('pesticide-usage/create-seed',[PesticideUsageController::class,'createSeed'])->name('record.pesticide_usage.createSeed');
+        Route::get('pesticide-usage/create-soil',[PesticideUsageController::class,'createSoil'])->name('record.pesticide_usage.createSoil');
+
+        // 圃場用の保存
+        Route::post('pesticide-usage/field', [PesticideUsageController::class, 'storeField'])->name('record.pesticide_usage.storeField');
+        // 種苗用の保存
+        Route::post('pesticide-usage/seed',  [PesticideUsageController::class, 'storeSeed'])->name('record.pesticide_usage.storeSeed');
+        // 床土用の保存
+        Route::post('pesticide-usage/soil',  [PesticideUsageController::class, 'storeSoil'])->name('record.pesticide_usage.storeSoil');
+
     });
 });
 
