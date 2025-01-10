@@ -24,6 +24,7 @@ use App\Http\Controllers\HarvestBatchController;
 use App\Http\Controllers\HarvestLotController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\PesticideUsageController;
+use App\Http\Controllers\FertilizerUsageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
