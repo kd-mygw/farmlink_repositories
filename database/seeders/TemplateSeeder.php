@@ -34,6 +34,14 @@ class TemplateSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'ブラウンテンプレート',
+                'blade_file' => 'public.browntpl',
+                'preview_image' => '/images/templates/simple.png',
+                'preview_url' => '/crops/preview/{id}/corn',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
