@@ -52,10 +52,6 @@
                     <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>
                 </tr>
                 @endforeach
-                {{--<tr>
-                    <td colspan="6" class="border px-4 py-2 text-center">肥料データがありません</td>
-                </tr>
-                @endforelse--}}
             </tbody>
         </table>
     </div>
@@ -126,28 +122,28 @@
 
 @push('scripts')
 <script>
-document.addEventLintener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('#usageTabs button');
     const tabContents = document.querySelectorAll('.tab-content');
-    const createButton = documnt.getElementById('createButton');
+    const createButton = document.getElementById('createButton');
 
     function showTabContent(targetId) {
         // 1.他のタブを非表示
         tabContents.forEach(content => {
-            content.classlist.add('hidden');
+            content.classList.add('hidden');
         });
         // 2.対象タブだけ表示
-        document.getElemntById(targetId).classList.remove('hidden');
+        document.getElementById(targetId).classList.remove('hidden');
 
         // 3.ボタンのスタイル変更
         tabButtons.forEach(btn => {
-            if (btn.dataset.targt === targetId) {
-                btn.classlist.add('border-blue-500', 'text-blue-500');
+            if (btn.dataset.target === targetId) {
+                btn.classList.add('border-blue-500', 'text-blue-500');
             }
         });
 
         // 4.新規登録ボタンのリンク先をタブに合わせて変更
-        if (targetId === 'fildList') {
+        if (targetId === 'fieldList') {
             createButton.href = "{{ route('record.fertilizer_usage.createField') }}";
         } else if (targetId === 'seedList') {
             createButton.href = "{{ route('record.fertilizer_usage.createSeed') }}";
@@ -157,8 +153,8 @@ document.addEventLintener('DOMContentLoaded', function() {
     }
 
     tabButtons.forEach(btn => {
-        btn.addEvenListener('click', () => {
-            showTabContents(btn.dataset.target);
+        btn.addEventListener('click', () => {
+            showTabContent(btn.dataset.target);
         });
     });
 
