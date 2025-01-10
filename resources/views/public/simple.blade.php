@@ -19,6 +19,7 @@
             <button class="prev">&lt;</button>
             <button class="next">&gt;</button>
         </div>
+        
         <div class="hero-content">
             <h1>{{ $crop->product_name }} -{{ $crop->name }}-</h1>
             @if (str_contains($crop->cultivation_method, '有機栽培'))
@@ -147,3 +148,4 @@
         }, 5000); // 5秒ごとにスライド
     });
  </script>
+ 
