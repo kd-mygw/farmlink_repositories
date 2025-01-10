@@ -238,6 +238,9 @@ Route::middleware(['auth'])->group(function () {
         // 床土用の保存
         Route::post('pesticide-usage/soil',  [PesticideUsageController::class, 'storeSoil'])->name('record.pesticide_usage.storeSoil');
 
+
+        // 肥料使用記録
+        Route::get('fertilizer-usage', [FertilizerUsageController::class, 'index'])->name('record.fertilizer_usage.index');
     });
 });
 
