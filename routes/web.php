@@ -242,6 +242,18 @@ Route::middleware(['auth'])->group(function () {
 
         // 肥料使用記録
         Route::get('fertilizer-usage', [FertilizerUsageController::class, 'index'])->name('record.fertilizer_usage.index');
+
+        // 各種　createフォーム
+        Route::get('fertilizer-usage/create-field',[FertilizerUsageController::class, 'createField'])->name('record.fertilizer_usage.createField');
+        Route::get('fertilizer-usage/create-seed',[FertilizerUsageController::class,'createSeed'])->name('record.fertilizer_usage.createSeed');
+        Route::get('fertilizer-usage/create-soil',[FertilizerUsageController::class,'createSoil'])->name('record.fertilizer_usage.createSoil');
+
+        // 圃場用の保存
+        Route::post('fertilizer-usage/field', [FertilizerUsageController::class, 'storeField'])->name('record.fertilizer_usage.storeField');
+        // 種苗用の保存
+        Route::post('fertilizer-usage/seed',  [FertilizerUsageController::class, 'storeSeed'])->name('record.fertilizer_usage.storeSeed');
+        // 床土用の保存
+        Route::post('fertilizer-usage/soil',  [FertilizerUsageController::class, 'storeSoil'])->name('record.fertilizer_usage.storeSoil');
     });
 });
 

@@ -10,7 +10,7 @@ class FertilizerUsageField extends Model
     use HasFactory;
 
     //
-    protected $table = 'recodes_fertilizers_fields';
+    protected $table = 'records_fertilizers_fields';
     //
     protected $fillable = [
         'date',
