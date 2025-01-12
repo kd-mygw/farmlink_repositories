@@ -13,14 +13,12 @@
 
         <!-- 品目選択ボタン -->
         <div class="mb-4">
-            <label for="item_id" class="block text-gray-700 text-sm font-bold mb-2">品目</label>
-            <div class="flex items-center">
-                <input type="hidden" name="item_id" id="item_id" value="{{ old('item_id', request('item_id')) }}">
-                <span id="selected_item_name" class="text-gray-600 italic">
-                    {{ request('item_name', '未選択') }}
-                </span>
-                <a href="{{ route('items.select', ['redirect_to' => route('cropping.create')]) }}" class="ml-4 text-blue-500 underline">品目を選択する</a>
-            </div>
+            <label for="item" class="block text-gray-700 text-sm font-bold mb-2">品目名</label>
+            <select name="item_id" id="item" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700">
+                @foreach ($items as $item)
+                    <option value="{{ $item->id }}">{{ $item->crop_name }}({{ $item->variety_name}})</option>
+                @endforeach
+            </select>
         </div>
                 
         <div class="mb-4">
