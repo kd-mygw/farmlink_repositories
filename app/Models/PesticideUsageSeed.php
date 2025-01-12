@@ -48,7 +48,7 @@ class PesticideUsageSeed extends Model
     }
 
     // 使用機械
-    public function machine()
+    public function equipment()
     {
         return $this->belongsTo(Equipment::class);
     }
