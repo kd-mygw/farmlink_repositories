@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PesticideUsageSoil extends Model
+class FertilizerUsageField extends Model
 {
     use HasFactory;
 
-    protected $table = 'pesticide_usage_soils';
-
+    //
+    protected $table = 'recodes_fertilizers_fields';
+    //
     protected $fillable = [
         'date',
         'cropping_id',
-        'soil_id',
-        'pesticide_id',
-        'dilution',
+        'field_id',
+        'fertilizer_id',
         'usage_amount',
+        'unit',
         'worker_id',
         'equipment_id',
         'memo',
@@ -29,16 +30,16 @@ class PesticideUsageSoil extends Model
         return $this->belongsTo(Cropping::class);
     }
 
-    // 床土
-    public function soil()
+    // 圃場
+    public function field()
     {
-        return $this->belongsTo(Soil::class);
+        return $this->belongsTo(Field::class);
     }
 
-    // 農薬
-    public function pesticide()
+    // 肥料
+    public function fertilizer()
     {
-        return $this->belongsTo(Pesticide::class);
+        return $this->belongsTo(Fertiliser::class);
     }
 
     // 作業員
