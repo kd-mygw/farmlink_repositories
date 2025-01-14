@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-6">品目の登録</h1>
+<div class="field-registration-container">
+    <h1 class="field-registration-title">品目の登録</h1>
 
-    <form action="{{ route('ledger.items.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('ledger.items.store') }}" method="POST" class="field-registration-form">
         @csrf
-        <div class="mb-4">
-            <label for="crop_name" class="block text-gray-700 text-sm font-bold mb-2">作物名</label>
-            <input type="text" name="crop_name" id="crop_name" placeholder="例: トマト" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <div class="form-group">
+            <label for="crop_name">作物名</label>
+            <input type="text" name="crop_name" id="crop_name" placeholder="例: トマト" class="form-input">
         </div>
 
-        <div class="mb-4">
-            <label for="variety_name" class="block text-gray-700 text-sm font-bold mb-2">品種名</label>
-            <input type="text" name="variety_name" id="variety_name" placeholder="例: 桃太郎" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <div class="form-group">
+            <label for="variety_name">品種名</label>
+            <input type="text" name="variety_name" id="variety_name" placeholder="例: 桃太郎" class="form-input">
         </div>
 
-        <div class="flex items-center justify-between">
-            <button type="submit" class="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">
                 登録
             </button>
         </div>

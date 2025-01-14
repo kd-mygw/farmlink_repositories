@@ -10,11 +10,11 @@ class Equipment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'model',
-        'manufacturer',
-        'fuel_type',
-        'acquisition_date',
-        'unit_price',
+        'name', // 機械設備名
+        'model', // 型式
+        'manufacturer', // メーカー
+        'fuel_type', // 燃料種別
+        'acquisition_date', // 取得日
+        'unit_price', // 取得価格
     ];
 }

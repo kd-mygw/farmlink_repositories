@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
     <link rel="stylesheet" href="{{ asset('css/management-screen.css')}}">
     <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/ledger.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/ledger_create.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/materials.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">        
 
     <!-- Scripts -->
@@ -98,6 +101,7 @@
                     FARMLINK
                 </a>
                 <ul class="mt-8 space-y-4">
+                    <li><a href="{{route('record.index')}}">記録</a></li>
                     <li><a href="{{ route('ledger.index') }}">台帳</a></li>
                     <li><a href="{{ route('cropping.index') }}">作付</a></li>
                     <li><a href="{{ route('materials.index') }}">資材</a></li>
@@ -110,6 +114,7 @@
             <div class="main-contents">
                 <main>
                     @yield('content')
+                    @stack('scripts')
                 </main>
             </div>
         </div>

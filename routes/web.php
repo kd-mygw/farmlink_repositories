@@ -16,6 +16,15 @@ use App\Http\Controllers\CroppingController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SeedController;
+use App\Http\Controllers\PesticideController;
+use App\Http\Controllers\FertilizerController;
+use App\Http\Controllers\SoilController;
+use App\Http\Controllers\HarvestController;
+use App\Http\Controllers\HarvestBatchController;
+use App\Http\Controllers\HarvestLotController;
+use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\PesticideUsageController;
+use App\Http\Controllers\FertilizerUsageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -61,7 +70,18 @@ Route::get('/crops/preview/{template}', [CropController::class, 'preview'])->nam
 
 Route::get('/crops/preview/{id}/{template}', [CropController::class, 'preview'])->name('crops.preview');
 
+// ログインしているユーザー向けのルート設定
 Route::middleware(['auth'])->group(function () {
+    // 作付関連
+    Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
+    Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
+    Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+
+    // 台帳関連
+    Route::get('/ledger', function () {
+        return view('ledger.index'); // 台帳のトップページを指すビューを指定
+    })->name('ledger.index');
+
     // 圃場関連
     Route::prefix('ledger/fields')->group(function () {
         Route::get('/', [FieldController::class, 'index'])->name('ledger.fields.index');
@@ -118,37 +138,113 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('ledger.products.edit');
         Route::patch('/{product}', [ProductController::class, 'update'])->name('ledger.products.update');
     });
-    Route::get('/ledger', function () {
-        return view('ledger.index'); // 台帳のトップページを指すビューを指定
-    })->name('ledger.index');
+
+    // 資材関連
+    Route::prefix('materials')->group(function () {
+        // 資材カテゴリ一覧ページ
+        Route::get('/', [MaterialController::class, 'materialIndex'])->name('materials.index');
     
+        // 種苗
+        Route::prefix('seeds')->group(function () {
+            Route::get('/', [SeedController::class, 'index'])->name('materials.seeds.index');
+            Route::get('/create', [SeedController::class, 'create'])->name('materials.seeds.create');
+            Route::post('/', [SeedController::class, 'store'])->name('materials.seeds.store');
+            Route::get('/{material}/edit', [SeedController::class, 'edit'])->name('materials.seeds.edit');
+            Route::patch('/{material}', [SeedController::class, 'update'])->name('materials.seeds.update');
+        });
     
-    Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
-    Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
-    Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+        // 農薬
+        Route::prefix('pesticides')->group(function () {
+            Route::get('/', [PesticideController::class, 'index'])->name('materials.pesticides.index');
+            Route::get('/create', [PesticideController::class, 'create'])->name('materials.pesticides.create');
+            Route::post('/', [PesticideController::class, 'store'])->name('materials.pesticides.store');
+            Route::get('/{material}/edit', [PesticideController::class, 'edit'])->name('materials.pesticides.edit');
+            Route::patch('/{material}', [PesticideController::class, 'update'])->name('materials.pesticides.update');
+            Route::get('/search-by-wagri', [PesticideController::class, 'searchByWagri'])->name('materials.pesticides.search-by-wagri');
+        });
     
-    Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/items/select', [ItemController::class, 'index'])->name('items.select');
-    Route::get('/fields', [FieldController::class, 'index'])->name('fields.index');
-    Route::get('/items/select', [ItemController::class, 'select'])->name('items.select');
+        // 肥料
+        Route::prefix('fertilizers')->group(function () {
+            Route::get('/', [FertilizerController::class, 'index'])->name('materials.fertilizers.index');
+            Route::get('/create', [FertilizerController::class, 'create'])->name('materials.fertilizers.create');
+            Route::post('/', [FertilizerController::class, 'store'])->name('materials.fertilizers.store');
+            Route::get('/{material}/edit', [FertilizerController::class, 'edit'])->name('materials.fertilizers.edit');
+            Route::patch('/{material}', [FertilizerController::class, 'update'])->name('materials.fertilizers.update');
+        });
     
-    // 資材管理ページのルート
-    Route::get('/materials', [MaterialController::class, 'index'])->name('materials.index');
-    Route::get('/materials/create', [MaterialController::class, 'create'])->name('materials.create');
-    Route::post('/materials', [MaterialController::class, 'store'])->name('materials.store');
+        // 床土
+        Route::prefix('soils')->group(function () {
+            Route::get('/', [SoilController::class, 'index'])->name('materials.soils.index');
+            Route::get('/create', [SoilController::class, 'create'])->name('materials.soils.create');
+            Route::post('/', [SoilController::class, 'store'])->name('materials.soils.store');
+            Route::get('/{material}/edit', [SoilController::class, 'edit'])->name('materials.soils.edit');
+            Route::patch('/{material}', [SoilController::class, 'update'])->name('materials.soils.update');
+        });
     
-    
-    
-    // 記録ページのルート
-    Route::get('/records', [RecordController::class, 'index'])->name('records.index');
-    Route::get('/records/create', [RecordController::class, 'create'])->name('records.create');
-    Route::post('/records', [RecordController::class, 'store'])->name('records.store');
-    
-    // 種苗
-    Route::get('/materials/seeds', [SeedController::class, 'index'])->name('materials.seeds.index');
-    Route::get('/materials/seeds/create', [SeedController::class, 'create'])->name('materials.seeds.create');
-    Route::post('/materials/seeds', [SeedController::class, 'store'])->name('materials.seeds.store');
-    
+        // 資材
+        Route::prefix('materials')->group(function () {
+            Route::get('/', [MaterialController::class, 'index'])->name('materials.materials.index');
+            Route::get('/create', [MaterialController::class, 'create'])->name('materials.materials.create');
+            Route::post('/', [MaterialController::class, 'store'])->name('materials.materials.store');
+            Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('materials.materials.edit');
+            Route::patch('/{material}', [MaterialController::class, 'update'])->name('materials.materials.update');
+        });
+    });
+
+    // 記録関連
+    Route::prefix('records')->group(function(){
+        // 記録ページのトップ
+        Route::get('/',function(){
+            return view('records.index');
+        })->name('record.index');
+
+        // 収穫記録
+        Route::prefix('harvest')->group(function () {
+            Route::get('/', [HarvestController::class, 'index'])->name('record.harvest.index');
+            Route::get('/create', [HarvestController::class, 'create'])->name('record.harvest.create');
+            Route::post('/', [HarvestController::class, 'store'])->name('record.harvest.store');
+            Route::get('/{id}/edit', [HarvestController::class, 'edit'])->name('record.harvest.edit');
+            Route::put('/{id}', [HarvestController::class, 'update'])->name('record.harvest.update');
+            Route::delete('/{id}', [HarvestController::class, 'destroy'])->name('record.harvest.destroy');
+        });
+
+        // 収穫ロット
+        Route::prefix('harvest/lot')->group(function(){
+            Route::get('create',[HarvestLotController::class,'create'])->name('record.harvest.lot.create');
+            Route::post('/',[HarvestLotController::class,'store'])->name('record.harvest.lot.store');
+        });
+
+        // 出荷記録
+        Route::prefix('shipments')->group(function () {
+            Route::get('/', [ShipmentController::class, 'index'])->name('record.shipment.index');
+            Route::get('/create', [ShipmentController::class, 'create'])->name('record.shipment.create');
+            Route::post('/', [ShipmentController::class, 'store'])->name('record.shipment.store');
+            Route::get('/{id}/edit', [ShipmentController::class, 'edit'])->name('record.shipment.edit');
+            Route::put('/{id}', [ShipmentController::class, 'update'])->name('record.shipment.update');
+            Route::delete('/{id}', [ShipmentController::class, 'destroy'])->name('record.shipment.destroy');
+        });
+        
+        ROute::prefix('pesticide_usage')->group(function(){
+                        // 農薬使用記録
+            Route::get('/', [PesticideUsageController::class, 'index'])->name('record.pesticide_usage.index');
+
+            // 各種　createフォーム
+            Route::get('create-field',[PesticideUsageController::class, 'createField'])->name('record.pesticide_usage.createField');
+            Route::get('create-seed',[PesticideUsageController::class,'createSeed'])->name('record.pesticide_usage.createSeed');
+            Route::get('create-soil',[PesticideUsageController::class,'createSoil'])->name('record.pesticide_usage.createSoil');
+
+            // 圃場用の保存
+            Route::post('field', [PesticideUsageController::class, 'storeField'])->name('record.pesticide_usage.storeField');
+            // 種苗用の保存
+            Route::post('seed',  [PesticideUsageController::class, 'storeSeed'])->name('record.pesticide_usage.storeSeed');
+            // 床土用の保存
+            Route::post('soil',  [PesticideUsageController::class, 'storeSoil'])->name('record.pesticide_usage.storeSoil');
+        });
+
+
+        // 肥料使用記録
+        Route::get('fertilizer-usage', [FertilizerUsageController::class, 'index'])->name('record.fertilizer_usage.index');
+    });
 });
 
 

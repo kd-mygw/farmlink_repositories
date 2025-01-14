@@ -47,14 +47,18 @@ class FieldController extends Controller
     public function update(Request $request, Field $field)
     {
         $request->validate([
+            'type' => 'required|string',
             'name' => 'required|string|max:255',
             'area' => 'required|numeric',
+            'area_unit' => 'required|string',
             'ownership' => 'required|string',
         ]);
 
         $field->update([
+            'type' => $request->type,
             'name' => $request->name,
             'area' => $request->area,
+            'area_unit' => $request->area_unit,
             'ownership' => $request->ownership,
         ]);
 

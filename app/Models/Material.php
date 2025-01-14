@@ -11,7 +11,11 @@ class Material extends Model
 
     protected $fillable = [
         'name',
-        'description',
+        'purchased_date',
+        'content_volume',
+        'unit',
         'quantity',
+        'purchase_price',
+        'supplier',
     ];
 }

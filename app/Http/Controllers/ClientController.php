@@ -35,7 +35,7 @@ class ClientController extends Controller
             'app_registered_name' => $request->app_registered_name,
         ]);
 
-        return redirect()->route('ledger.clients')->with('success', '取引先が登録されました。');
+        return redirect()->route('ledger.clients.index')->with('success', '取引先が登録されました。');
     }
 
     public function edit(Client $client)

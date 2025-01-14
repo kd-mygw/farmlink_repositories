@@ -9,11 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    // 収穫記録テーブル
     public function up(): void
     {
-        Schema::create('seeds', function (Blueprint $table) {
+        Schema::create('harvests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('cropping_id'); // 作付ID
+            $table->date('harvest_date'); // 収穫日
+            $table->text('notes')->nullable(); // 備考
             $table->timestamps();
+
+            $table->foreign('cropping_id')->references('id')->on('croppings')->onDelete('cascade');
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('seeds');
+        Schema::dropIfExists('harvests');
     }
 };

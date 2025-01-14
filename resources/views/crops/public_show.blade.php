@@ -90,7 +90,7 @@
         <!-- Recommended Recipes -->
         <section class="section">
             @if (!empty($crop->cooking_tips))
-            <h2 class="section-title">農家おすすめの調理法</h2>
+            <h2 class="section-title">おいしい食べ方</h2>
             <div class="card">
                 @if ($crop->recipe_image)
                     <img src="{{ asset('storage/' . $crop->recipe_image) }}" alt="おすすめレシピ" class="recipe-image">
@@ -114,6 +114,9 @@
             @endif
         </section>        
     </main>
+</div>
+<div class="g-map">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8405960914815!2d139.76588025282885!3d35.6809268055874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1681002171900!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 @endsection
 
@@ -151,3 +154,4 @@
         }, 5000); // 5秒ごとにスライド
     });
  </script>
+ 
