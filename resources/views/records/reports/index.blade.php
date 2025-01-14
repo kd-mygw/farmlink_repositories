@@ -27,10 +27,10 @@
                 @foreach($reports as $report)
                     <tr>
                         <td class="border px-4 py-2">{{ $report->date }}</td>
-                        <td class="border px-4 py-2">{{ $report->workers->name }}</td>
+                        <td class="border px-4 py-2">{{ optional($report->worker)->name ?? '未設定' }}</td>
                         <td class="border px-4 py-2">{{ $report->start_time}}</td>
                         <td class="border px-4 py-2">{{ $report->end_time}}</td>
-                        <td class="border px-4 py-2">{{ $report->tasks->task_name }}</td>
+                        <td class="border px-4 py-2">{{ optional($report->task)->task_name ?? '未設定' }}</td>
                         <td class="border px-4 py-2">{{ $report->memo }}</td>
                     </tr>
                 @endforeach

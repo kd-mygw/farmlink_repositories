@@ -22,7 +22,7 @@ class MemoController extends Controller
         // フォームで選択する作業員情報を取得
         $workers = Worker::all();   // 作業員
 
-        return view('recodes.memos.create',compsct('workers'));
+        return view('records.memos.create',compact('workers'));
     }
 
     public function store(Request $request)
@@ -33,13 +33,13 @@ class MemoController extends Controller
             'memo'      =>'required|string',
         ]);
 
-        Memo::crate([
+        Memo::create([
             'date'=>$request->date,
             'worker_id'=>$request->worker_id,
             'memo'=>$request->memo,
         ]);
 
-        return redirect()->route('recode.memo.index')->with('succes','メモを登録しました。');
+        return redirect()->route('record.memo.index')->with('succes','メモを登録しました。');
     }
 
 

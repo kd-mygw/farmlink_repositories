@@ -10,7 +10,7 @@ class Report extends Model
     use HasFactory;
     
     // テーブル名
-    protected $table = 'report';
+    protected $table = 'reports';
 
     // 
     protected $fillable = [
@@ -18,19 +18,19 @@ class Report extends Model
         'worker_id',
         'start_time',
         'end_time',
-        'task_name',
+        'task_id',
         'memo',
     ];
 
     // リレーション：作業員
     public function worker()
     {
-        return $this->belongsTo(Worker::class);
+        return $this->belongsTo(Worker::class,'worker_id');
     }
     // リレーション：作業内容
     public function task()
     {
-        return $this->belongsTo(Task::class);
+        return $this->belongsTo(Task::class,'task_id');
     }
 
 }

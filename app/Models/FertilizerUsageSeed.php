@@ -33,13 +33,13 @@ class FertilizerUsageSeed extends Model
     // 種苗
     public function seed()
     {
-        return $this->belongsTo(seed::class);
+        return $this->belongsTo(Seed::class);
     }
 
     // 肥料
     public function fertilizer()
     {
-        return $this->belongsTo(Fertiliser::class);
+        return $this->belongsTo(Fertilizer::class);
     }
 
     // 作業員
