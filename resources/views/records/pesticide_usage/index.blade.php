@@ -7,25 +7,42 @@
 
     {{-- タブボタン --}}
     <div class="mb-4 flex border-b" id="usageTabs">
-        <button class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
-                data-target="fieldList">圃場</button>
-        <button class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
-                data-target="seedList">種苗</button>
-        <button class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
-                data-target="soilList">床土</button>
+        <button
+            type="button"
+            class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
+            data-target="fieldList"
+        >
+            圃場
+        </button>
+        <button
+            type="button"
+            class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
+            data-target="seedList"
+        >
+            種苗
+        </button>
+        <button
+            type="button"
+            class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
+            data-target="soilList"
+        >
+            床土
+        </button>
     </div>
 
     {{-- 新規登録ボタン (タブごとにリンクを切り替える) --}}
     <div class="mb-6 text-right">
-        {{-- デフォルトは圃場リンクを表示。JSでタブ切り替え時に href を差し替える --}}
-        <a id="createButton" href="{{ route('record.pesticide_usage.createField') }}"
-           class="btn btn-success">
+        <a
+            id="createButton"
+            href="{{ route('record.pesticide_usage.createField') }}"
+            class="btn btn-success"
+        >
             新規登録
         </a>
     </div>
 
     {{-- 圃場一覧 --}}
-    <div id="fieldList" class="tab-content hidden">
+    <div id="fieldList" class="tab-content hidden transition-all duration-300 opacity-0">
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -40,7 +57,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($fieldUsages as $usage)
+                @forelse($fieldUsages as $usage)
                 <tr>
                     <td class="border px-4 py-2">{{ $usage->date }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->cropping)->name }}</td>
@@ -51,13 +68,19 @@
                     <td class="border px-4 py-2">{{ optional($usage->worker)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>
                 </tr>
-                @endforeach
+                @empty
+                  <tr>
+                    <td colspan="8">
+                      データがありません
+                    </td>
+                  </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
     {{-- 種苗一覧 --}}
-    <div id="seedList" class="tab-content hidden">
+    <div id="seedList" class="tab-content hidden transition-all duration-300 opacity-0">
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -74,14 +97,24 @@
             <tbody>
                 @foreach($seedUsages as $usage)
                 <tr>
-                    <td class="border px-4 py-2">{{ $usage->date }}</td>
-                    <td class="border px-4 py-2">{{ optional($usage->cropping)->name }}</td>
-                    <td class="border px-4 py-2">{{ optional($usage->seed)->name }}</td>
-                    <td class="border px-4 py-2">{{ optional($usage->pesticide)->name }}</td>
-                    <td class="border px-4 py-2 text-right">{{ $usage->dilution }}</td>
-                    <td class="border px-4 py-2 text-right">{{ $usage->usage_amount }}</td>
-                    <td class="border px-4 py-2">{{ optional($usage->worker)->name }}</td>
-                    <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>
+                  <td class="border px-4 py-2">{{ $usage->date }}</td>
+                  <td class="border px-4 py-2">{{ optional($usage->cropping)->name }}</td>
+                  
+                  <td class="border px-4 py-2">
+                      @php
+                          $seedItem = optional($usage->seed)->item;
+                      @endphp
+                      {{ optional($seedItem)->crop_name }}
+                      @if(optional($seedItem)->variety_name)
+                          ({{ optional($seedItem)->variety_name }})
+                      @endif
+                  </td>
+                  
+                  <td class="border px-4 py-2">{{ optional($usage->pesticide)->name }}</td>
+                  <td class="border px-4 py-2 text-right">{{ $usage->dilution }}</td>
+                  <td class="border px-4 py-2 text-right">{{ $usage->usage_amount }}</td>
+                  <td class="border px-4 py-2">{{ optional($usage->worker)->name }}</td>
+                  <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>      
                 </tr>
                 @endforeach
             </tbody>
@@ -89,7 +122,7 @@
     </div>
 
     {{-- 床土一覧 --}}
-    <div id="soilList" class="tab-content hidden">
+    <div id="soilList" class="tab-content hidden transition-all duration-300 opacity-0">
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -130,19 +163,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const createButton = document.getElementById('createButton');
 
     function showTabContent(targetId) {
-        // 1. 他のタブを非表示
+        // 1. 他のタブを非表示 & アニメーション用クラスをリセット
         tabContents.forEach(content => {
-            content.classList.add('hidden');
+            content.classList.add('hidden', 'opacity-0');
+            content.classList.remove('opacity-100');
         });
-        // 2. 対象タブだけ表示
-        document.getElementById(targetId).classList.remove('hidden');
 
-        // 3. ボタンのスタイル変更 (border-blue-500などを付け外し)
+        // 2. 対象タブだけ表示 & フェードイン
+        const activeTab = document.getElementById(targetId);
+        activeTab.classList.remove('hidden');
+        setTimeout(() => {
+            activeTab.classList.remove('opacity-0');
+            activeTab.classList.add('opacity-100');
+        }, 10);
+
+        // 3. ボタンのスタイルを変更
         tabButtons.forEach(btn => {
             if (btn.dataset.target === targetId) {
-                btn.classList.add('border-blue-500', 'text-blue-500');
+                // アクティブタブのボタンに色を付ける
+                btn.classList.add('border-blue-500', 'text-blue-500', 'font-bold', 'bg-blue-100');
             } else {
-                btn.classList.remove('border-blue-500', 'text-blue-500');
+                btn.classList.remove('border-blue-500', 'text-blue-500', 'font-bold', 'bg-blue-100');
             }
         });
 
@@ -156,13 +197,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // タブクリック時イベント
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             showTabContent(btn.dataset.target);
         });
     });
 
-    // 初期表示: 圃場タブ
+    // 初期表示: 圃場タブを開く
     showTabContent('fieldList');
 });
 </script>

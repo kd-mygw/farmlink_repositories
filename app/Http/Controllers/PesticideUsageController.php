@@ -43,8 +43,9 @@ class PesticideUsageController extends Controller
     // 種苗用の新規登録フォーム
     public function createSeed()
     {
+        $seeds = Seed::with('item')->get();
+
         $croppings = Cropping::all();
-        $seeds = Seed::all();
         $pesticides = Pesticide::all();
         $workers = Worker::all();
         $equipments = Equipment::all();
