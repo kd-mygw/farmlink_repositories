@@ -21,13 +21,13 @@ class FertilizerUsageController extends Controller
     public function index()
     {
         // 圃場用一覧
-        $fieldUsages = FertilizerUsageField::with(['cropping', 'field', 'pesticide', 'worker', 'equipment'])->get();
+        $fieldUsages = FertilizerUsageField::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
         // 種苗用の一覧
-        $seedUsages = FErtilizerUsageSeed::with(['cropping', 'field', 'pesticide', 'worker', 'equipment'])->get();
+        $seedUsages = FErtilizerUsageSeed::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
         // 床土用の一覧
-        $soilUsages = FertilizerUsageSoil::with(['cropping', 'field', 'pesticide', 'worker', 'equipment'])->get();
+        $soilUsages = FertilizerUsageSoil::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
 
-        return view('records.fertilizers_usage.index', compact('fieldUsages', 'seedUsages', 'soilUsages'));
+        return view('records.fertilizer_usage.index', compact('fieldUsages', 'seedUsages', 'soilUsages'));
     }
 
     // 圃場用の新規登録
@@ -39,7 +39,7 @@ class FertilizerUsageController extends Controller
         $workers = Worker::all();
         $equipments = Equipment::all();
 
-        return view('records.fertilizers_usage.create_field', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
+        return view('records.fertilizer_usage.create_field', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
     }
 
     // 種苗用の新規登録
@@ -51,7 +51,7 @@ class FertilizerUsageController extends Controller
         $workers = Worker::all();
         $equipments = Equipment::all();
 
-        return view('records.fertilizers_usage.create_seed', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
+        return view('records.fertilizer_usage.create_seed', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
     }
 
     // 床土用の新規登録
@@ -63,30 +63,30 @@ class FertilizerUsageController extends Controller
         $workers = Worker::all();
         $equipments = Equipment::all();
 
-        return view('records.fertilizers_usage.create_soil', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
+        return view('records.fertilizer_usage.create_soil', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
     }
 
     // 圃場:登録
-    public function storeField(Request $reqest)
+    public function storeField(Request $request)
     {
         $request->validate([
-            'date'        =>'required|date',
-            'cropping_id' =>'required|exists:croppings,id',
-            'field_id'    =>'required|exists:fields,id',
-            'fertilizer_i'=>'required|exists:fertilizers,id',
-            'usage_amount'=>'required|numeric|min:0.01',
-            'unit'        =>'required|string',
-            'worker_id'   =>'nullable|exists:workers,id',
-            'equipment_id'=>'nullable|exits:equipment,id',
-            'memo'        =>'nullable|string',
+            'date'         =>'required|date',
+            'cropping_id'  =>'required|exists:croppings,id',
+            'field_id'     =>'required|exists:fields,id',
+            'fertilizer_id'=>'required|exists:fertilizers,id',
+            'usage_amount' =>'required|numeric|min:0.01',
+            'unit'         =>'required|string',
+            'worker_id'    =>'nullable|exists:workers,id',
+            'equipment_id' =>'nullable|exists:equipment,id',
+            'memo'         =>'nullable|string',
         ]);
 
         // DB保存
-        FErtilizerUsageField::create([
+        FertilizerUsageField::create([
             'date'         =>$request->date,
-            'cropping'     =>$request->cropping_id,
+            'cropping_id'  =>$request->cropping_id,
             'field_id'     =>$request->field_id,
-            'fertilizer_id'=>$requst->fertilizer_id,
+            'fertilizer_id'=>$request->fertilizer_id,
             'usage_amount' =>$request->usage_amount,
             'unit'         =>$request->unit,
             'worker_id'    =>$request->worker_id,
@@ -94,30 +94,30 @@ class FertilizerUsageController extends Controller
             'memo'         =>$request->memo,
         ]);
 
-        return redirect()->route('record.fertilizers_usage.index')->with('success','圃場への肥料情報を登録しました。');
+        return redirect()->route('record.fertilizer_usage.index')->with('success','圃場への肥料情報を登録しました。');
     }
 
     // 種苗:登録
-    public function storeSeed(Request $reqest)
+    public function storeSeed(Request $request)
     {
         $request->validate([
-            'date'        =>'required|date',
-            'cropping_id' =>'required|exists:croppings,id',
-            'field_id'    =>'required|exists:fields,id',
-            'fertilizer_i'=>'required|exists:fertilizers,id',
-            'usage_amount'=>'required|numeric|min:0.01',
-            'unit'        =>'required|string',
-            'worker_id'   =>'nullable|exists:workers,id',
-            'equipment_id'=>'nullable|exits:equipment,id',
-            'memo'        =>'nullable|string',
+            'date'         =>'required|date',
+            'cropping_id'  =>'required|exists:croppings,id',
+            'field_id'     =>'required|exists:fields,id',
+            'fertilizer_id'=>'required|exists:fertilizers,id',
+            'usage_amount' =>'required|numeric|min:0.01',
+            'unit'         =>'required|string',
+            'worker_id'    =>'nullable|exists:workers,id',
+            'equipment_id' =>'nullable|exists:equipment,id',
+            'memo'         =>'nullable|string',
         ]);
 
         // DB保存
-        FErtilizerUsageSeed::create([
+        FertilizerUsageSeed::create([
             'date'         =>$request->date,
-            'cropping'     =>$request->cropping_id,
+            'cropping_id'  =>$request->cropping_id,
             'field_id'     =>$request->field_id,
-            'fertilizer_id'=>$requst->fertilizer_id,
+            'fertilizer_id'=>$request->fertilizer_id,
             'usage_amount' =>$request->usage_amount,
             'unit'         =>$request->unit,
             'worker_id'    =>$request->worker_id,
@@ -125,30 +125,30 @@ class FertilizerUsageController extends Controller
             'memo'         =>$request->memo,
         ]);
 
-        return redirect()->route('record.fertilizers_usage.index')->with('success','種苗への肥料情報を登録しました。');
+        return redirect()->route('record.fertilizer_usage.index')->with('success','種苗への肥料情報を登録しました。');
     }
 
     // 床土:登録
-    public function storeSoil(Request $reqest)
+    public function storeSoil(Request $request)
     {
         $request->validate([
-            'date'        =>'required|date',
-            'cropping_id' =>'required|exists:croppings,id',
-            'field_id'    =>'required|exists:fields,id',
-            'fertilizer_i'=>'required|exists:fertilizers,id',
-            'usage_amount'=>'required|numeric|min:0.01',
-            'unit'        =>'required|string',
-            'worker_id'   =>'nullable|exists:workers,id',
-            'equipment_id'=>'nullable|exits:equipment,id',
-            'memo'        =>'nullable|string',
+            'date'         =>'required|date',
+            'cropping_id'  =>'required|exists:croppings,id',
+            'field_id'     =>'required|exists:fields,id',
+            'fertilizer_id'=>'required|exists:fertilizers,id',
+            'usage_amount' =>'required|numeric|min:0.01',
+            'unit'         =>'required|string',
+            'worker_id'    =>'nullable|exists:workers,id',
+            'equipment_id' =>'nullable|exists:equipment,id',
+            'memo'         =>'nullable|string',
         ]);
 
         // DB保存
-        FErtilizerUsageSoil::create([
+        FertilizerUsageSoil::create([
             'date'         =>$request->date,
-            'cropping'     =>$request->cropping_id,
+            'cropping_id'  =>$request->cropping_id,
             'field_id'     =>$request->field_id,
-            'fertilizer_id'=>$requst->fertilizer_id,
+            'fertilizer_id'=>$request->fertilizer_id,
             'usage_amount' =>$request->usage_amount,
             'unit'         =>$request->unit,
             'worker_id'    =>$request->worker_id,
@@ -156,6 +156,6 @@ class FertilizerUsageController extends Controller
             'memo'         =>$request->memo,
         ]);
 
-        return redirect()->route('record.fertilizers_usage.index')->with('success','床土への肥料情報を登録しました。');
+        return redirect()->route('record.fertilizer_usage.index')->with('success','床土への肥料情報を登録しました。');
     }
 }

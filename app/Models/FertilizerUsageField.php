@@ -11,6 +11,7 @@ class FertilizerUsageField extends Model
 
     //
     protected $table = 'records_fertilizers_fields';
+
     //
     protected $fillable = [
         'date',
@@ -39,7 +40,7 @@ class FertilizerUsageField extends Model
     // 肥料
     public function fertilizer()
     {
-        return $this->belongsTo(Fertiliser::class);
+        return $this->belongsTo(Fertilizer::class);
     }
 
     // 作業員
