@@ -25,6 +25,8 @@ use App\Http\Controllers\HarvestLotController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\PesticideUsageController;
 use App\Http\Controllers\FertilizerUsageController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\MemoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -244,6 +246,30 @@ Route::middleware(['auth'])->group(function () {
 
         // 肥料使用記録
         Route::get('fertilizer-usage', [FertilizerUsageController::class, 'index'])->name('record.fertilizer_usage.index');
+
+        // 各種　createフォーム
+        Route::get('fertilizer-usage/create-field',[FertilizerUsageController::class, 'createField'])->name('record.fertilizer_usage.createField');
+        Route::get('fertilizer-usage/create-seed',[FertilizerUsageController::class,'createSeed'])->name('record.fertilizer_usage.createSeed');
+        Route::get('fertilizer-usage/create-soil',[FertilizerUsageController::class,'createSoil'])->name('record.fertilizer_usage.createSoil');
+
+        // 圃場用の保存
+        Route::post('fertilizer-usage/field', [FertilizerUsageController::class, 'storeField'])->name('record.fertilizer_usage.storeField');
+        // 種苗用の保存
+        Route::post('fertilizer-usage/seed',  [FertilizerUsageController::class, 'storeSeed'])->name('record.fertilizer_usage.storeSeed');
+        // 床土用の保存
+        Route::post('fertilizer-usage/soil',  [FertilizerUsageController::class, 'storeSoil'])->name('record.fertilizer_usage.storeSoil');
+
+        // 記録画面　作業員日報
+        Route::get('report', [ReportController::class, 'index'])->name('record.report.index');
+        Route::get('report/create', [ReportController::class, 'create'])->name('record.report.create');
+        Route::post('report/store', [ReportController::class, 'store'])->name('record.report.store');
+        // 編集、削除追加する
+
+        // 記録画面　メモ
+        Route::get('memo', [MemoController::class, 'index'])->name('record.memo.index');
+        Route::get('memo/create', [MemoController::class, 'create'])->name('record.memo.create');
+        Route::post('mome/store', [MemoController::class, 'store'])->name('record.memo.store');
+        // 編集、削除追加する
     });
 });
 
