@@ -19,7 +19,7 @@
         <div class="form-group">
             <label for="content_volume">内容量</label>
             <div class="flex">
-                <input type="number" step="0.01" name="content_volume" id="content_volume" class="form-input">
+                <input type="number" name="content_volume" id="content_volume" class="form-input">
                 <select name="unit" id="unit" class="form-select">
                     <option value="個">個</option>
                     <option value="本">本</option>
