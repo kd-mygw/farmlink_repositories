@@ -30,7 +30,7 @@
             <td>{{ $fertilizer->application_rate ?? 'なし' }}</td>
             <td>{{ $fertilizer->lot_number ?? 'なし' }}</td>
             <td>
-              {{-- <a href="{{ route('materials.fertilizer.edit', $fertilizer->id) }}" class="btn-primary">編集</a> --}}
+              <a href="{{ route('materials.fertilizers.edit', $fertilizer->id) }}" class="btn-primary">編集</a>
             </td>
           </tr>
         @empty

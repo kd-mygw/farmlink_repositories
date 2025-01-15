@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="crop-management-body">
-    <div class="crop-management-container">
-        <div class="crop-management-header">
-            <h1>農作物一覧</h1>
-            <a href="{{ route('crops.create') }}" class="create-button">新規農作物を登録</a>
+<div class="ledger-container">
+        <div class="title-container">
+            <h1 class="ledger-title">商品一覧</h1>
         </div>
 
         <!-- 検索バー -->
@@ -23,8 +21,8 @@
         @endif
 
         <!-- テーブル -->
-        <div class="crop-manager">
-            <table class="crop-management-table">
+        <div class="ledger-table-container">
+            <table class="ledger-table">
                 <thead>
                     <tr>
                         <th>商品名</th>
@@ -62,11 +60,13 @@
                 </tbody>
             </table>
         </div>
+        <div class="ledger-actions">
+            <a href="{{ route('crops.create') }}" class="btn-success">商品登録</a>
+        </div>
 
         <!-- ページネーション -->
         <div class="pagination-links">
             {{ $crops->links() }}
         </div>
-    </div>
 </div>
 @endsection

@@ -13,6 +13,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CroppingController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SeedController;
@@ -52,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('crops', CropController::class);
 });
 
+Route::get('/api/croppings/{cropping}/info', [CroppingController::class, 'info'])->name('info');
+
 // QRコード生成用のルート
 Route::middleware(['auth'])->group(function () {
     Route::get('crops/{crop}/generate-qr', [QRCodeController::class, 'create'])->name('qr.create');
@@ -78,6 +81,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cropping',[CroppingController::class, 'index'])->name('cropping.index');
     Route::get('/cropping/create',[CroppingController::class, 'create'])->name('cropping.create');
     Route::post('/cropping',[CroppingController::class, 'store'])->name('cropping.store');
+    Route::get('/cropping/{cropping}/edit',[CroppingController::class, 'edit'])->name('cropping.edit');
+    Route::patch('/cropping/{cropping}',[CroppingController::class, 'update'])->name('cropping.update');
 
     // 台帳関連
     Route::get('/ledger', function () {
@@ -271,6 +276,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('mome/store', [MemoController::class, 'store'])->name('record.memo.store');
         // 編集、削除追加する
     });
+
+    Route::get('/data',[DataController::class, 'index'])->name('data.index');
 });
 
 

@@ -10,7 +10,7 @@
             <label for="item_id">品目</label>
             <select name="item_id" id="item_id" class="form-select">
                 @foreach ($items as $item)
-                    <option value="{{ $item->id }}">{{ $item->crop_name }}</option>
+                    <option value="{{ $item->id }}">{{ $item->crop_name }}({{ $item->variety_name}})</option>
                 @endforeach
             </select>
         </div>
