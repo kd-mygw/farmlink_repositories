@@ -12,7 +12,9 @@ class ReportController extends Controller
     // 一覧表示
     public function index()
     {
+
         $reports = Report::with(['worker', 'task'])->get();
+
 
         return view('records.reports.index',compact('reports'));
     }
@@ -30,20 +32,24 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+
             'date'      => 'required|date',
             'worker_id' => 'required|exists:workers,id',
             'start_time'=> 'required|date_format:H:i',
             'end_time'  => 'required|date_format:H:i',
             'task_id'   => 'required|exists:tasks,id',
             'memo'      => 'nullable|string',
+
         ]);
 
         Report::create([
             'date'      =>$request->date,
+
             'worker_id' =>$request->worker_id,
             'start_time'=>$request->start_time,
             'end_time'  =>$request->end_time,
             'task_id'   =>$request->task_id,
+
             'memo'      =>$request->memo,
         ]);
 

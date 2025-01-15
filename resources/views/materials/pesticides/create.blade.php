@@ -51,7 +51,7 @@
 
         {{-- 数量 --}}
         <div class="form-group">
-            <label for="quantity">数量</label>
+            <label for="quantity">内容量</label>
             <input type="number" 
                    name="quantity" 
                    id="quantity"
@@ -60,9 +60,19 @@
                    required>
         </div>
 
+        {{-- 単位 --}}
+        <div class="form-group">
+            <select name="quantity_unit" id="quantity_unit" class="form-select w-1/2">
+                <option value="g" {{ old('quantity_unit') == 'g' ? 'selected' : '' }}>g</option>
+                <option value="kg" {{ old('quantity_unit') == 'kg' ? 'selected' : '' }}>kg</option>
+                <option value="ml" {{ old('quantity_unit') == 'ml' ? 'selected' : '' }}>ml</option>
+                <option value="L" {{ old('quantity_unit') == 'L' ? 'selected' : '' }}>L</option>
+            </select>
+        </div>
+
         {{-- 使用量 --}}
         <div class="form-group">
-            <label for="application_rate">使用量</label>
+            <label for="application_rate">数量</label>
             <input type="number" 
                    step="0.01"
                    name="application_rate" 

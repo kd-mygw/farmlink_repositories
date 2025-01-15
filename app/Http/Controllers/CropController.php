@@ -6,9 +6,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Crop;
 use App\Models\Template;
+use App\Models\Cropping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Pesticide;
+use App\Models\Fertilizer;
+use Pest\Plugins\Parallel\Handlers\Pest;
 
 class CropController extends Controller
 {
@@ -35,9 +39,15 @@ class CropController extends Controller
     // 新規農作物の登録フォームを表示
     public function create()
     {
-        return view('crops.create');
+        // 作付け一覧を取ってビューに渡す
+        // 例えばUserごとに作付けを管理しているならUserフィルターを入れても良い
+        $croppings = Cropping::with('item')->get();
+        $pesticides = Pesticide::all();
+        $fertilizers = Fertilizer::all();
+    
+        return view('crops.create', compact('croppings', 'pesticides', 'fertilizers'));
     }
-
+    
     // 新規農作物の保存
     public function store(Request $request)
     {
@@ -45,8 +55,10 @@ class CropController extends Controller
             'product_name' => 'required|string|max:255', //商品名
             'name' => 'required|string|max:255',    //品種名
             'cultivation_method' => 'required|string|max:255', //栽培方法
-            'fertilizer_info' => 'nullable|string', //肥料情報
-            'pesticide_info' => 'nullable|string', //農薬情報
+            'fertilizers' => 'nullable|array', //肥料情報
+            'fertilizers.*' => 'exists:fertilizers,id',
+            'pesticide' => 'nullable|array', //農薬情報
+            'pesticides.*' => 'exists:pesticides,id',
             'description' => 'nullable|string', //作物の説明
             'cooking_tips' => 'nullable|string', //料理のコツ
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', //画像
@@ -55,6 +67,8 @@ class CropController extends Controller
         ]); 
         
         $data = $request->all();
+        $data['fertilizer_info'] = isset($request->fertilizers) ? implode(',', $request->fertilizers) : null;
+        $data['pesticide_info'] = isset($request->pesticides) ? implode(',', $request->pesticides) : null;
 
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('images', 'public');

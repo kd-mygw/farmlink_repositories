@@ -35,5 +35,16 @@ class Crop extends Model
     {
         return $this->belongsTo(Template::class, 'template_id');
     }
+    
+    public function pesticides()
+    {
+        return $this->belongsToMany(Pesticide::class);
+    }
+
+    public function fertilizers()
+    {
+        return $this->belongsToMany(Fertilizer::class);
+    }
+
 
 }

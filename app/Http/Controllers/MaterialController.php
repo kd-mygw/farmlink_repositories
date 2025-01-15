@@ -34,7 +34,8 @@ class MaterialController extends Controller
             'purchased_date' => 'nullable|date',
             'content_volume' => 'nullable|numeric',
             'unit' => 'nullable|string|max:255',
-            'quantity' => 'required|integer|min:0',
+            'quantity' => 'required|numeric|min:0',
+            'quantity_unit' => 'nullable|in:g,kg,m,ml,L',
             'purchase_price' => 'nullable|numeric',
             'supplier' => 'nullable|string|max:255',
         ]);
@@ -58,7 +59,8 @@ class MaterialController extends Controller
             'purchased_date' => 'required|date',
             'content_volume' => 'nullable|numeric',
             'unit' => 'nullable|string|max:255',
-            'quantity' => 'required|integer|min:0',
+            'quantity' => 'required|numeric|min:0',
+            'quantity_unit' => 'nullable|in:g,kg,m,ml,L',
             'purchase_price' => 'nullable|numeric',
             'supplier' => 'nullable|string|max:255',
         ]);
