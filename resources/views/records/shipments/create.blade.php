@@ -65,10 +65,10 @@
                 <select name="product_id" id="product_id"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     <option value="" selected>商品を選択してください</option>
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}"
-                            {{ old('product_id') == $product->id ? 'selected' : '' }}>
-                            {{ $product->product_name }}
+                    @foreach ($crops as $crop)
+                        <option value="{{ $crop->id }}"
+                            {{ old('product_id') == $crop->id ? 'selected' : '' }}>
+                            {{ $crop->product_name }}
                         </option>
                     @endforeach
                 </select>
