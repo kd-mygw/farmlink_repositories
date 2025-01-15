@@ -39,7 +39,9 @@ class FertilizerUsageSoil extends Model
     // 肥料
     public function fertilizer()
     {
-        return $this->belongsTo(Fertiliser::class);
+
+        return $this->belongsTo(Fertilizer::class);
+
     }
 
     // 作業員

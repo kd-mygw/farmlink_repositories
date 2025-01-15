@@ -30,25 +30,31 @@
 
         {{-- 作業開始時間 --}}
         <div class="mb-4">
-            <label for="start_time" class="block text-gray-700 text-sm font-bold mb-2">作業開始時間</label>
-            <input type="time" name="start_time" id="start_time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+
+            <label for="end_time" class="block text-gray-700 text-sm font-bold mb-2">作業終了時間</label>
+            <input type="time" name="end_time" id="end_time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+
         </div>
 
         {{-- 作業内容 --}}
         <div class="mb-4">
-            <label for="worker_id" class="block text-gray-700 text-sm font-bold mb-2">作業内容</label>
-            <select name="worker_id" id="worker_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+            <label for="task_id" class="block text-gray-700 text-sm font-bold mb-2">作業内容</label>
+            <select name="task_id" id="task_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
               <option value="" disabled selected>作業内容を選択してください</option>
-              @foreach ($workers as $worker)
-                <option value="{{ $worker->id }}">{{ $worker->name }}</option>
+              @foreach ($tasks as $task)
+                <option value="{{ $task->id }}">{{ $task->task_name }}</option>
+
               @endforeach
             </select>
           </div>
 
         {{-- メモ --}}
         <div class="mb-4">
-            <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">メモ</label>
-            <textarea name="notes" id="notes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+
+            <label for="memo" class="block text-gray-700 text-sm font-bold mb-2">メモ</label>
+            <textarea name="memo" id="memo" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+
         </div>
 
         <div class="flex items-center justify-between">

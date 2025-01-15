@@ -23,9 +23,11 @@ class FertilizerUsageController extends Controller
         // 圃場用一覧
         $fieldUsages = FertilizerUsageField::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
         // 種苗用の一覧
-        $seedUsages = FErtilizerUsageSeed::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
+
+        $seedUsages = FertilizerUsageSeed::with(['cropping', 'seed', 'fertilizer', 'worker', 'equipment'])->get();
         // 床土用の一覧
-        $soilUsages = FertilizerUsageSoil::with(['cropping', 'field', 'fertilizer', 'worker', 'equipment'])->get();
+        $soilUsages = FertilizerUsageSoil::with(['cropping', 'soil', 'fertilizer', 'worker', 'equipment'])->get();
+
 
         return view('records.fertilizer_usage.index', compact('fieldUsages', 'seedUsages', 'soilUsages'));
     }
@@ -46,24 +48,32 @@ class FertilizerUsageController extends Controller
     public function createSeed()
     {
         $croppings = Cropping::all();
-        $fields = Field::all();
+
+        $seeds = Seed::all();
+
         $fertilizers = Fertilizer::all();
         $workers = Worker::all();
         $equipments = Equipment::all();
 
-        return view('records.fertilizer_usage.create_seed', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
+
+        return view('records.fertilizer_usage.create_seed', compact('croppings', 'seeds', 'fertilizers', 'workers', 'equipments'));
+
     }
 
     // 床土用の新規登録
     public function createSoil()
     {
         $croppings = Cropping::all();
-        $fields = Field::all();
+
+        $soils = Soil::all();
+
         $fertilizers = Fertilizer::all();
         $workers = Worker::all();
         $equipments = Equipment::all();
 
-        return view('records.fertilizer_usage.create_soil', compact('croppings', 'fields', 'fertilizers', 'workers', 'equipments'));
+
+        return view('records.fertilizer_usage.create_soil', compact('croppings', 'soils', 'fertilizers', 'workers', 'equipments'));
+
     }
 
     // 圃場:登録
@@ -103,7 +113,9 @@ class FertilizerUsageController extends Controller
         $request->validate([
             'date'         =>'required|date',
             'cropping_id'  =>'required|exists:croppings,id',
-            'field_id'     =>'required|exists:fields,id',
+
+            'seed_id'      =>'required|exists:seeds,id',
+
             'fertilizer_id'=>'required|exists:fertilizers,id',
             'usage_amount' =>'required|numeric|min:0.01',
             'unit'         =>'required|string',
@@ -116,7 +128,9 @@ class FertilizerUsageController extends Controller
         FertilizerUsageSeed::create([
             'date'         =>$request->date,
             'cropping_id'  =>$request->cropping_id,
-            'field_id'     =>$request->field_id,
+
+            'seed_id'      =>$request->seed_id,
+
             'fertilizer_id'=>$request->fertilizer_id,
             'usage_amount' =>$request->usage_amount,
             'unit'         =>$request->unit,
@@ -134,7 +148,9 @@ class FertilizerUsageController extends Controller
         $request->validate([
             'date'         =>'required|date',
             'cropping_id'  =>'required|exists:croppings,id',
-            'field_id'     =>'required|exists:fields,id',
+
+            'soil_id'     =>'required|exists:soils,id',
+
             'fertilizer_id'=>'required|exists:fertilizers,id',
             'usage_amount' =>'required|numeric|min:0.01',
             'unit'         =>'required|string',
@@ -147,7 +163,9 @@ class FertilizerUsageController extends Controller
         FertilizerUsageSoil::create([
             'date'         =>$request->date,
             'cropping_id'  =>$request->cropping_id,
-            'field_id'     =>$request->field_id,
+
+            'soil_id'     =>$request->soil_id,
+
             'fertilizer_id'=>$request->fertilizer_id,
             'usage_amount' =>$request->usage_amount,
             'unit'         =>$request->unit,
