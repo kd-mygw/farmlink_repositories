@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('field_id')                // 圃場ID
                   ->constrained('fields')
                   ->cascadeOnDelete();
-            $table->foreignId('pesticide_id')            // 農薬ID
-                  ->constrained('pesticides')
+            $table->foreignId('fertilizer_id')            // 農薬ID
+                  ->constrained('fertilizers')
                   ->cascadeOnDelete();
             $table->decimal('usage_amount', 8, 2);       // 使用量
             $table->string('unit');                      // 単位

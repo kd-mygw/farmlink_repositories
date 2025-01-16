@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('crops.index'));
+        return redirect()->intended(route('data.index'));
     }
 
     /**

@@ -97,7 +97,7 @@
         <div class="layout">
             <!-- サイドバー -->
             <div id="sidebar" class="sidebar-container">
-                <a href="{{ route('crops.index') }}" class="text-2xl font-bold tracking-wider">
+                <a href="{{ route('data.index') }}" class="text-2xl font-bold tracking-wider">
                     FARMLINK
                 </a>
                 <ul class="mt-8 space-y-4">

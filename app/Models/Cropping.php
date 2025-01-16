@@ -17,6 +17,7 @@ class Cropping extends Model
         'expected_yield', // 予想収量
         'yield_unit', // 収量単位
         'color', // 色
+        'cultivation_method', // 栽培方法
     ];
     public function item()
     {

@@ -13,4 +13,10 @@ class Task extends Model
         'crop_name',
         'task_name',
     ];
+
+
+    public function report()
+    {
+        return $this->hasMany(Report::class, 'task_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\Cropping;
 use App\Models\Product;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
+use App\Models\Crop;
 
 class ShipmentController extends Controller
 {
@@ -30,9 +31,9 @@ class ShipmentController extends Controller
         // フォームで選択する取引先や作付名、商品名などを取得
         $clients   = Client::all();     // 取引先
         $croppings = Cropping::all();   // 作付
-        $products  = Product::all();    // 商品マスタなどがある場合
+        $crops  = Crop::all();    // 商品マスタなどがある場合
 
-        return view('records.shipments.create', compact('clients', 'croppings', 'products'));
+        return view('records.shipments.create', compact('clients', 'croppings', 'crops'));
     }
 
     /**
