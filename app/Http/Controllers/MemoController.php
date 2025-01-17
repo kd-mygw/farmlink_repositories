@@ -22,7 +22,9 @@ class MemoController extends Controller
         // フォームで選択する作業員情報を取得
         $workers = Worker::all();   // 作業員
 
+
         return view('records.memos.create',compact('workers'));
+
     }
 
     public function store(Request $request)
@@ -33,13 +35,17 @@ class MemoController extends Controller
             'memo'      =>'required|string',
         ]);
 
+
         Memo::create([
+
             'date'=>$request->date,
             'worker_id'=>$request->worker_id,
             'memo'=>$request->memo,
         ]);
 
+
         return redirect()->route('record.memo.index')->with('succes','メモを登録しました。');
+
     }
 
 

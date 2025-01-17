@@ -3,6 +3,7 @@
 @section('content')
 <div class="field-registration-container">
     <h1 class="field-registration-title">種苗編集</h1>
+
     <form action="{{ route('materials.seeds.update', $seed->id) }}" method="POST" class="field-registration-form">
         @csrf
         @method('PATCH')

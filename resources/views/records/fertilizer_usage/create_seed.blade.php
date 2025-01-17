@@ -54,7 +54,9 @@
                 @foreach($seeds as $seed)
                     <option value="{{ $seed->id }}"
                         {{ old('seed_id') == $seed->id ? 'selected' : '' }}>
+
                         {{ $seed->item->crop_name }}({{ $seed->item->variety_name }})
+
                     </option>
                 @endforeach
             </select>

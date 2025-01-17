@@ -7,6 +7,7 @@
 
     {{-- タブボタン --}}
     <div class="mb-4 flex border-b" id="usageTabs">
+
         <button
             type="button"
             class="px-4 py-2 focus:outline-none border-b-2 border-transparent"
@@ -37,12 +38,15 @@
             href="{{ route('record.fertilizer_usage.createField') }}"
             class="btn btn-success"
         >
+
             新規登録
         </a>
     </div>
 
     {{-- 圃場一覧 --}}
+
     <div id="fieldList" class="tab-content hidden transition-all duration-300 opacity-0">
+
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -57,13 +61,16 @@
                 </tr>
             </thead>
             <tbody>
+
                 @forelse($fieldUsages as $usage)
                 <tr>
                     <td class="border px-4 py-2">{{ $usage->date }}</td>
+
                     <td class="border px-4 py-2">{{ optional($usage->cropping)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->field)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->fertilizer)->name }}</td>
                     <td class="border px-4 py-2 text-right">{{ $usage->usage_amount }}</td>
+
                     <td class="border px-4 py-2 text-right">{{ $usage->unit }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->worker)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>
@@ -81,6 +88,7 @@
 
     {{-- 種苗一覧 --}}
     <div id="seedList" class="tab-content hidden transition-all duration-300 opacity-0">
+
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -95,6 +103,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 @forelse($seedUsages as $usage)
                 <tr>
                     <td class="border px-4 py-2">{{ $usage->date }}</td>
@@ -127,6 +136,7 @@
 
     {{-- 床土一覧 --}}
     <div id="soilList" class="tab-content hidden transition-all duration-300 opacity-0">
+
         <table class="table-auto w-full border-collapse border mb-6">
             <thead>
                 <tr class="bg-gray-100">
@@ -141,13 +151,16 @@
                 </tr>
             </thead>
             <tbody>
+
                 @forelse($soilUsages as $usage)
                 <tr>
                     <td class="border px-4 py-2">{{ $usage->date }}</td>
+
                     <td class="border px-4 py-2">{{ optional($usage->cropping)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->soil)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->fertilizer)->name }}</td>
                     <td class="border px-4 py-2 text-right">{{ $usage->usage_amount }}</td>
+
                     <td class="border px-4 py-2 text-right">{{ $usage->unit }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->worker)->name }}</td>
                     <td class="border px-4 py-2">{{ optional($usage->equipment)->name }}</td>
@@ -159,6 +172,7 @@
                     </td>
                   </tr>
                 @endforelse
+
             </tbody>
         </table>
     </div>
@@ -173,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const createButton = document.getElementById('createButton');
 
     function showTabContent(targetId) {
+
         // 1. 他のタブを非表示 & アニメーション用クラスをリセット
         tabContents.forEach(content => {
             content.classList.add('hidden', 'opacity-0');
@@ -198,24 +213,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // 4. 新規登録ボタンのリンク先をタブに合わせて変更
+
         if (targetId === 'fieldList') {
             createButton.href = "{{ route('record.fertilizer_usage.createField') }}";
         } else if (targetId === 'seedList') {
             createButton.href = "{{ route('record.fertilizer_usage.createSeed') }}";
         } else if (targetId === 'soilList') {
+
             createButton.href = "{{ route('record.fertilizer_usage.createSoil') }}";
         }
     }
 
     // タブクリック時イベント
+
     tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             showTabContent(btn.dataset.target);
         });
     });
 
+
     // 初期表示: 圃場タブを開く
     showTabContent('fieldList');
 });
 </script>
 @endpush
+

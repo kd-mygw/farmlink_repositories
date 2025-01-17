@@ -24,7 +24,9 @@
                 @foreach($memos as $memo)
                     <tr>
                         <td class="border px-4 py-2">{{ $memo->date }}</td>
+
                         <td class="border px-4 py-2">{{ optional($memo->worker)->name ?? '未設定' }}</td>
+
                         <td class="border px-4 py-2">{{ $memo->memo }}</td>
                     </tr>
                 @endforeach

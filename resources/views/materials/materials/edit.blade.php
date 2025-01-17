@@ -4,8 +4,10 @@
 <div class="field-registration-container">
     <h1 class="field-registration-title">資材編集</h1>
 
-    <form action="{{ route('materials.materials.store', $material->id) }}" method="POST" class="field-registration-form">
+    <form action="{{ route('materials.materials.update', $material->id) }}" method="POST" class="field-registration-form">
         @csrf
+        @method('PATCH')
+
         <div class="form-group">
             <label for="name">品名</label>
             <input type="text" name="name" id="name" class="form-input" value="{{ $material->name }}">
