@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
-    <h1 class="text-2xl font-bold mb-6">出荷登録</h1>
+<div class="field-registration-container">
+    <h1 class="field-registration-title">出荷登録</h1>
 
     {{-- バリデーションエラーなどの表示例 --}}
     @if ($errors->any())
@@ -15,23 +15,23 @@
         </div>
     @endif
 
-    <form action="{{ route('record.shipment.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <form action="{{ route('record.shipment.store') }}" method="POST" class="field-registration-form">
         @csrf
 
         {{-- 日付 --}}
-        <div class="mb-4">
-            <label for="date" class="block text-gray-700 text-sm font-bold mb-2">日付</label>
+        <div class="form-group">
+            <label for="date">日付</label>
             <input type="date" name="date" id="date"
-                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   class="form-input"
                    value="{{ old('date') }}"
                    required>
         </div>
 
         {{-- 取引先 (client_id) --}}
-        <div class="mb-4">
-            <label for="client_id" class="block text-gray-700 text-sm font-bold mb-2">取引先</label>
+        <div class="form-group">
+            <label for="client_id">取引先</label>
             <select name="client_id" id="client_id"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="form-select"
                     required>
                 <option value="" disabled selected>選択してください</option>
                 @foreach ($clients as $client)
@@ -44,12 +44,12 @@
         </div>
 
         {{-- 出荷品名 (cropping_id or product_id) --}}
-        <div class="mb-4">
+        <div class="form-group">
             <label class="block text-gray-700 text-sm font-bold mb-2">出荷品名</label>
             
-            <div class="mb-2">
+            <div class="form-group">
                 <select name="cropping_id" id="cropping_id"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="form-select">
                     <option value="" selected>作付名を選択してください</option>
                     @foreach ($croppings as $cropping)
                         <option value="{{ $cropping->id }}"
@@ -61,9 +61,9 @@
             </div>
 
             <label class="block text-gray-700 text-sm font-bold mb-2">商品名</label>
-            <div class="mb-2">
+            <div class="form-group">
                 <select name="product_id" id="product_id"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        class="form-select">
                     <option value="" selected>商品を選択してください</option>
                     @foreach ($crops as $crop)
                         <option value="{{ $crop->id }}"
@@ -77,34 +77,34 @@
         </div>
 
         {{-- 単価 (unit_price) --}}
-        <div class="mb-4">
-            <label for="unit_price" class="block text-gray-700 text-sm font-bold mb-2">単価</label>
+        <div class="form-group">
+            <label for="unit_price">単価</label>
             <input type="number" step="0.01" name="unit_price" id="unit_price"
-                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   class="form-input"
                    value="{{ old('unit_price', 0) }}"
                    required>
         </div>
 
         {{-- 数量 (quantity) --}}
-        <div class="mb-4">
-            <label for="quantity" class="block text-gray-700 text-sm font-bold mb-2">数量</label>
+        <div class="form-group">
+            <label for="quantity">数量</label>
             <input type="number" step="0.01" name="quantity" id="quantity"
-                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   class="form-input"
                    value="{{ old('quantity', 0) }}"
                    required>
         </div>
 
         {{-- メモ (memo) --}}
-        <div class="mb-4">
-            <label for="memo" class="block text-gray-700 text-sm font-bold mb-2">メモ</label>
+        <div class="form-group">
+            <label for="memo">メモ</label>
             <textarea name="memo" id="memo" rows="4"
-                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('memo') }}</textarea>
+                      class="form-input">{{ old('memo') }}</textarea>
         </div>
 
         {{-- 登録ボタン --}}
-        <div class="flex items-center justify-between">
+        <div class="form-actions">
             <button type="submit"
-                    class="btn btn-success">
+                    class="btn-success">
                 登録
             </button>
         </div>
