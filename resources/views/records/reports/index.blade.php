@@ -17,10 +17,12 @@
                 <tr class="bg-gray-100">
                     <th class="border px-4 py-2">日付</th>
                     <th class="border px-4 py-2">作業員</th>
-                    <th class="border px-4 py-2">作業時間（開始時間）</th>
-                    <th class="border px-4 py-2">作業時間（終了時間）</th>
+                    <th class="border px-4 py-2">作業開始時間</th>
+                    <th class="border px-4 py-2">作業終了時間</th>
+                    <th class="border px-4 py-2">作業時間</th>
                     <th class="border px-4 py-2">作業内容</th>
                     <th class="border px-4 py-2">メモ</th>
+                    <th class="border px-4 py-2">編集・終了時間入力</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,9 +33,12 @@
                         <td class="border px-4 py-2">{{ optional($report->worker)->name ?? '未設定' }}</td>
                         <td class="border px-4 py-2">{{ $report->start_time}}</td>
                         <td class="border px-4 py-2">{{ $report->end_time}}</td>
+                        <td class="border px-4 py-2">{{ $report->office_hours}}</td>
                         <td class="border px-4 py-2">{{ optional($report->task)->task_name ?? '未設定' }}</td>
-
                         <td class="border px-4 py-2">{{ $report->memo }}</td>
+                        <td>
+                            <a href="{{ route('record.report.edit', $report->id) }}" class="btn-primary">編集</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
