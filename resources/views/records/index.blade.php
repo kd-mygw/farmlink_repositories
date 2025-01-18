@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="record-container">
+<div class="records-container">
     <div class="title-container">
-        <h1 class="record-title">記録管理</h1>
+        <h1 class="records-title">記録管理</h1>
     </div>
 
     <div class="record-grid">
