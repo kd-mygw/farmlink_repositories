@@ -20,7 +20,7 @@ class Report extends Model
         'worker_id',
         'start_time',
         'end_time',
-
+        'office_hours',
         'task_id',
 
         'memo',

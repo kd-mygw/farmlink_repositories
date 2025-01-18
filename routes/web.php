@@ -268,7 +268,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('report', [ReportController::class, 'index'])->name('record.report.index');
         Route::get('report/create', [ReportController::class, 'create'])->name('record.report.create');
         Route::post('report/store', [ReportController::class, 'store'])->name('record.report.store');
-        // 編集、削除追加する
+        Route::get('report/{report}/edit', [ReportController::class, 'edit'])->name('record.report.edit');
+        Route::patch('report/{report}', [ReportController::class, 'update'])->name('record.report.update');
+        // 削除追加する
 
         // 記録画面　メモ
         Route::get('memo', [MemoController::class, 'index'])->name('record.memo.index');
