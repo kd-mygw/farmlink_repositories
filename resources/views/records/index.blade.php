@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','記録ページ')
 @section('content')
 <div class="ledger-container">
     <div class="title-container">

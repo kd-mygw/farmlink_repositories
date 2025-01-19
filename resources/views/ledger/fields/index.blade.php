@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','圃場一覧')
 @section('content')
 <div class="ledger-container">
     <div class="title-container">

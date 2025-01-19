@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','作業員日報新規登録')
 @section('content')
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-6">作業員日報の新規登録</h1>

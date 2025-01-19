@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','ダッシュボード')
+
 @section('content')
 <div class="dashboard-container mx-auto my-6 bg-white p-6 rounded shadow-lg">
     <h1 class="dashboard-title text-3xl font-bold mb-6 text-gray-800">ダッシュボード（日別収穫量 & 収穫率）</h1>

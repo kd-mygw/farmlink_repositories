@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','作業員一覧')
 @section('content')
 <div class="ledger-container">
     <div class="title-container">

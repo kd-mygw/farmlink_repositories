@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','種苗登録')
 @section('content')
 <div class="field-registration-container">
     <h1 class="field-registration-title">種苗を登録</h1>

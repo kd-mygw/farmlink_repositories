@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','日報編集')
 @section('content')
 <div class="field-registration-container">
     <h1 class="field-registration-title">日報編集</h1>
