@@ -155,3 +155,266 @@
     });
  </script>
  
+ <style>
+            /* Reset and base styles */
+    * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          background-color: #f8f9fa;
+      }
+      .default-container {
+          max-width: 480px;
+          margin: 0 auto;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          background:url('/images/木目背景.jpg');
+      }
+
+      /* Header styles */
+      header {
+          background-color: #ffffff;
+          padding: 1rem;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .logo {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #2c7a2c;
+      }
+
+      /* Hero section styles */
+/* スライダーコンテナ */
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* 必要に応じて調整 */
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto;
+}
+
+/* スライダー */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 各スライド */
+.slide {
+    flex: 0 0 100%; /* 表示領域いっぱいに表示 */
+    text-align: center;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* 画像が領域内に収まる */
+    border-radius: 8px; /* 任意で角を丸くする */
+}
+
+/* ナビゲーションボタン */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Hero全体の調整 */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+    
+      .hero::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          /* background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); */
+      }
+      .hero-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+          padding: 10px 20px;
+          background-color: rgba(0, 0, 0, 0.1); /* 半透明の黒背景でテキストを見やすく */
+      }
+      .hero h1 {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+          background-color: #999999;
+      }
+      .badge {
+          display: inline-block;
+          padding: 0.25rem 0.5rem;
+          background-color: #4caf50;
+          color: #fff;
+          border-radius: 4px;
+          font-size: 0.875rem;
+      }
+
+      /* Main content styles */
+      main {
+          padding: 1rem;
+          /* background:url('/images/木目背景.jpg'); */
+      }
+      .section {
+          margin-bottom: 2rem;
+      }
+      .section-title {
+          font-size: 1.25rem;
+          color: #2c7a2c;
+          margin-bottom: 1rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid #e0e0e0;
+      }
+    .card {
+        font-family: 'G_PencilKaisho', Arial, sans-serif;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.6); 
+        position: relative;
+        background-image: url('/images/paper-texture.jpg'); /* 紙のような質感を追加 */
+        background-size: cover;
+    }
+    
+    /* ピンのスタイル (張り紙を固定しているように見せる) */
+    .card::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background-color: #e0e0e0;
+        border-radius: 50%;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+    .card::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 10px;
+        background-color: #f4d03f; /* 黄色いテープ */
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%) rotate(-10deg); /* 少し傾けて自然な感じに */
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+      .card-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+      }
+      .card-icon {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          color: #2c7a2c;
+      }
+      .card h3 {
+        font-family: 'G_PencilKaisho','Permanent Marker', cursive; /* Google Fontsからインポート */
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        color: #2c7a2c;
+      }
+      .card p {
+          font-size: 0.875rem;
+          color: #666;
+      }
+
+      /* Farmer profile styles */
+      .farmer-profile {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+      }
+      .farmer-avatar {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background-color: #4caf50;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 1rem;
+      }
+      .farmer-avatar img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+      }
+      .farmer-info h3 {
+          font-size: 1.125rem;
+          margin-bottom: 0.25rem;
+      }
+      .farmer-info p {
+          font-size: 0.875rem;
+          color: #666;
+      }
+      .farmer-philosophy {
+          font-size: 0.875rem;
+          line-height: 1.6;
+      }
+
+    /* レシピ画像の張り紙風スタイル */
+    .recipe-image {
+    border: 2px dashed #ccc; /* 破線を追加 */
+    padding: 5px;
+    background-color: #fdfdfd; /* 紙の色 */
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+      .recipe-description {
+          font-size: 0.875rem;
+          line-height: 1.6;
+      }
+
+      .header_area {
+        padding: 0;
+        display: grid;
+        place-items: center;
+        object-fit: cover;
+      }
+
+      @font-face {
+        font-family: 'G_PencilKaisho';
+        src: url('/fonts/g_pencilkaisho_free.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+ </style>
