@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','種苗への肥料使用登録')
 @section('content')
 <div class="container mx-auto px-4">
 

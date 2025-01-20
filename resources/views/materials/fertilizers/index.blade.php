@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','肥料一覧')
 @section('content')
 <div class="materials-container">
   <div class="title-container">

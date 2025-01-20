@@ -8,66 +8,84 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
-<body class="font-sans antialiased">
+<body>
     <div class="container">
         <header class="header">
-            <div class="header-left">
-                <h1>FARMLINK</h1>
+            <div class="header-inner">
+                <a class="header-logo" href="{{route('welcome')}}">FARMLINK</a>
+                <nav class="header-site-menu">
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('data') }}" class="login-link">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="login-link">ログイン</a>
+                        @endauth
+                    @endif
+                </nav>
+    
             </div>
-            <nav class="header-right">
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="login-link">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="login-link">ログイン</a>
-                    @endauth
-                @endif
-            </nav>
         </header>
-
-        <main class="main-content">
-            <h2>FARMLINKへようこそ</h2>
-            <p class="description">生産者と消費者を繋ぐプラットフォーム</p>
-            <div class="features" scroll-animation>
-                <div class="feature" scroll-animation>
-                    <span class="icon">👑</span>
-                    <h3>魅力を伝える</h3>
-                    <p>魅力・こだわりを消費者に伝える</p>
-                </div>
-                <div class="feature">
-                    <span class="icon">🛡️</span>
-                    <h3>安全性の保証</h3>
-                    <p>安心して食べられる農作物を届ける</p>
-                </div>
-                <div class="feature">
-                    <span class="icon">🤝</span>
-                    <h3>生産者と消費者の絆</h3>
-                    <p>顔の見える関係づくりで、食の大切さを共有</p>
+        <main class="main">
+            <div class="first-view">
+                <div class="first-view-text">
+                    <h1>FARMLINK</h1>
+                    <p>生産者と消費者を繋ぐ</p>
                 </div>
             </div>
-            <a href="{{ route('register') }}" class="start-button">はじめる</a>
+            <div class="lead">
+                <p>
+                    FARMLINKは、生産者と消費者を繋ぐプラットフォームです。<br>
+                    あなたの好きな野菜や果物を生産している農家さんを見つけましょう。
+                </p>
+                <div class="link-button-area">
+                    <a class="link-button-text" href="{{route('register')}}">はじめる</a>
+                </div>
+            </div>
+            <div class="recommended">
+                <h2>豊富な機能</h2>
+                <ul class="item-list">
+                    <li>
+                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <dl>
+                            <dt>資材管理</dt>
+                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <dl>
+                            <dt>資材管理</dt>
+                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <dl>
+                            <dt>資材管理</dt>
+                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <dl>
+                            <dt>資材管理</dt>
+                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <dl>
+                            <dt>資材管理</dt>
+                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
         </main>
+        <footer class="footer">
+            <p class="footer-tel">TEL 090-9454-2291</p>
+            <p class="copyrigth">© 2025 べにくじゃく</p>
+        </footer>
     </div>
 </body>
 </html>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const targets = document.querySelectorAll(".scroll-animation");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  targets.forEach((target) => {
-    observer.observe(target);
-  });
-});
-
-</script>

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title','作業員日報新規登録')
 @section('content')
 <div class="container mx-auto px-4">
     <h1 class="text-2xl font-bold mb-6">作業員日報の新規登録</h1>
@@ -30,10 +31,8 @@
 
         {{-- 作業開始時間 --}}
         <div class="mb-4">
-
             <label for="end_time" class="block text-gray-700 text-sm font-bold mb-2">作業終了時間</label>
-            <input type="time" name="end_time" id="end_time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
-
+            <input type="time" name="end_time" id="end_time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
 
         {{-- 作業内容 --}}
@@ -44,7 +43,6 @@
               <option value="" disabled selected>作業内容を選択してください</option>
               @foreach ($tasks as $task)
                 <option value="{{ $task->id }}">{{ $task->task_name }}</option>
-
               @endforeach
             </select>
           </div>
