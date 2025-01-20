@@ -45,10 +45,10 @@
                 <h2>豊富な機能</h2>
                 <ul class="item-list">
                     <li>
-                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <img src="{{asset('../images/QRコードアイコン.png')}}" alt="">
                         <dl>
-                            <dt>資材管理</dt>
-                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                            <dt>農作物ページ公開</dt>
+                            <dd>オリジナルのQRコードを作成し、ページを公開することができます。</dd>
                         </dl>
                     </li>
                     <li>
