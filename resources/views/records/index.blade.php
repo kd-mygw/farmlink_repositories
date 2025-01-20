@@ -2,9 +2,11 @@
 
 @section('title','記録ページ')
 @section('content')
-<div class="ledger-container">
+
+<div class="records-container">
     <div class="title-container">
-        <h1 class="ledger-title">記録管理</h1>
+        <h1 class="records-title">記録管理</h1>
+
     </div>
 
     <div class="ledger-grid">
