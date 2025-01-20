@@ -9,6 +9,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
+// use Intervention\Image\ImageManagerStatic as Image;
 
 class QRCodeController extends Controller
 {
@@ -39,8 +40,24 @@ class QRCodeController extends Controller
         // アイコン画像パス
         $userIconPath = storage_path('app/public/' . Auth::user()->icon); 
         
-        // デフォルトロゴを設定
+        $imageInfo = getimagesize($userIconPath);
+        if ($imageInfo['mime'] == 'image/jpeg'){
+            $image = imagecreatefromjpeg($userIconPath);//jpegの場合
+        } elseif ($imageInfo['mime'] == 'image/png'){
+            $image = imagecreatefrompng($userIconPath);//pngの場合
+        } else {
+            abort(400, 'Unsupported image format');
+        }
 
+        //アイコン画像をリサイズ
+        list($originalWidth, $originalHeight) = getimagesize($userIconPath);
+        $newWidth = 73;
+        $newHeight = ($originalHeight / $originalWidth) * $newWidth;
+
+        $resizedImage = imagescale($image, $newWidth, $newHeight);
+
+        $resizedIconPath = storage_path('app/public/temp_resized_icon.png');
+        imagepng($resizedImage, $resizedIconPath);
 
         // QRコードの生成
         $result = Builder::create()
@@ -49,9 +66,9 @@ class QRCodeController extends Controller
             ->size(300)
             ->margin(10)
             ->encoding(new Encoding('UTF-8'))
-            ->logoPath($userIconPath)
-            ->logoResizeToWidth(60) // logoの幅を設定
-            ->logoResizeToHeight(60) // logoの高さを設定
+            ->logoPath($resizedIconPath)
+            // ->logoResizeToWidth(73) // logoの幅を設定
+            // ->logoResizeToHeight(73) // logoの高さを設定
             ->build();
     
         // QRコードの画像を保存
