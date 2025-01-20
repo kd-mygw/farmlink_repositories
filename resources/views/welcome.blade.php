@@ -34,8 +34,8 @@
             </div>
             <div class="lead">
                 <p>
-                    FARMLINKは、生産者と消費者を繋ぐプラットフォームです。<br>
-                    あなたの好きな野菜や果物を生産している農家さんを見つけましょう。
+                    FARMLINKは、生産者と消費者を繋ぐ架け橋です。<br>
+                    あなたの野菜と声をたくさんの人に届けましょう。
                 </p>
                 <div class="link-button-area">
                     <a class="link-button-text" href="{{route('register')}}">はじめる</a>
