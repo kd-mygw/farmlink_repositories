@@ -45,7 +45,7 @@
         <div class="ledger-card">
           <a href="{{route('record.report.index')}}">
             <img src="{{asset('/images/日報アイコン.png')}}" alt="">
-            <span class="recoledgerrd-card-title">従業員日報</span>
+            <span class="ledger-card-title">従業員日報</span>
           </a>
         </div>
         <div class="ledger-card">
@@ -168,6 +168,10 @@
     .ledger-card-title {
         font-size: 1rem;
     }
+}
+
+span {
+    margin-top:13px;
 }
 
 </style>
