@@ -34,8 +34,8 @@
             </div>
             <div class="lead">
                 <p>
-                    FARMLINKは、生産者と消費者を繋ぐプラットフォームです。<br>
-                    あなたの好きな野菜や果物を生産している農家さんを見つけましょう。
+                    FARMLINKは、生産者と消費者を繋ぐ架け橋です。<br>
+                    あなたの野菜と声をたくさんの人に届けましょう。
                 </p>
                 <div class="link-button-area">
                     <a class="link-button-text" href="{{route('register')}}">はじめる</a>
@@ -52,31 +52,94 @@
                         </dl>
                     </li>
                     <li>
-                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <img src="{{asset('../images/資材アイコン.png')}}" alt="">
                         <dl>
                             <dt>資材管理</dt>
                             <dd>農作物の生産に必要な資材を管理できます。</dd>
                         </dl>
                     </li>
                     <li>
-                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <img src="{{asset('../images/グラフアイコン.png')}}" alt="">
                         <dl>
-                            <dt>資材管理</dt>
-                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                            <dt>ダッシュボード</dt>
+                            <dd>様々なデータをグラフで視覚化できます。</dd>
                         </dl>
                     </li>
                     <li>
-                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <img src="{{asset('../images/収穫アイコン.png')}}" alt="">
                         <dl>
-                            <dt>資材管理</dt>
-                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                            <dt>収穫・出荷記録</dt>
+                            <dd>収穫や出荷の記録をして保存することができます。</dd>
                         </dl>
                     </li>
                     <li>
-                        <img src="{{asset('../images/キャベツイラスト.png')}}" alt="">
+                        <img src="{{asset('../images/農薬アイコン.png')}}" alt="">
                         <dl>
-                            <dt>資材管理</dt>
-                            <dd>農作物の生産に必要な資材を管理できます。</dd>
+                            <dt>農薬・肥料記録</dt>
+                            <dd>農薬や肥料の使用履歴を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/日報アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>従業員日報</dt>
+                            <dd>その日行った作業や作業時間などを管理できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/圃場アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>圃場登録</dt>
+                            <dd>使用している圃場の情報を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/作業員アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>作業員登録</dt>
+                            <dd>農場の作業員を登録することができます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/取引先アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>取引先登録</dt>
+                            <dd>商品の出荷先を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/品目アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>品目登録</dt>
+                            <dd>栽培する品目を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/作業アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>作業登録</dt>
+                            <dd>基本的な作業を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/機械設備アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>機械設備登録</dt>
+                            <dd>使用している機械設備の情報を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/商品アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>商品登録</dt>
+                            <dd>出荷する商品を登録できます。</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <img src="{{asset('../images/種苗アイコン.png')}}" alt="">
+                        <dl>
+                            <dt>作付記録</dt>
+                            <dd>作付けした作物などの情報を登録できます。</dd>
                         </dl>
                     </li>
                 </ul>
