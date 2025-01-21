@@ -158,11 +158,21 @@ body{
 
 .item-list{
   display: flex;
+  animation: loop-slide 40s infinite linear 1s both;
   padding-top: 40px;
   padding-bottom: 10px;
   padding-left: 60px;
   padding-right: 60px;
-  overflow: scroll;
+  /*overflow: scroll;*/
+}
+
+@keyframes loop-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .item-list li{
@@ -216,4 +226,11 @@ body{
   font-size: 14px;
   font-weight: bold;
   margin-top: 90px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  height: 340px;
+  overflow: hidden;
 }
